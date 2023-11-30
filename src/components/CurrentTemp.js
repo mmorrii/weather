@@ -9,7 +9,7 @@ const CurrentTemp = ({ currentWeather }) => {
 		<div className="bg-black rounded-2xl px-3 bg-opacity-30 py-2">
 			<div className="w-16 mb-1">
 				<img className="w-full"
-					  src={weatherIcons(weatherCode, isDay)}
+					  src={weatherIcons(weatherCode, isDay).src}
 					  alt="icon current forecast" />
 			</div>
 			<p className="text-4xl font-semibold mb-1" title="Текущая температура воздуха">

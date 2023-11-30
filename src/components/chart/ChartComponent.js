@@ -117,8 +117,8 @@ const ChartComponent = ({ currentWeather }) => {
 	};
 	
 	return (
-		<div className={`${theme.border} border-2 grow-0 border-solid rounded-xl bg-white p-5`}>
-			<div>
+		<div className={`${theme.border} border-2 border-solid rounded-xl bg-white p-5`}>
+			<div className="w-full">
 				<Line
 					height={200}
 					options={options}

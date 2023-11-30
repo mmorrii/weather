@@ -45,22 +45,24 @@ function App() {
 	console.log(currentSeason(weatherCode, timeZone, latitude))
 	
 	return (
-		<div className={`${seasonsTheme.bg} min-h-screen font-sans p-4`}>
-			<ThemeContext.Provider value={seasonsTheme}>
-				<Header
-					handleOptionChange={handleOptionChange}
-					selectedOption={selectedOption}
-					currentWeather={currentWeather}
-				/>
-				<CurrentWeather
-					currentWeather={currentWeather}
-					selectedOption={selectedOption}
-				/>
-				<div className="flex justify-between items-start gap-4">
-					<Grid currentWeather={currentWeather} />
-					<ChartComponent currentWeather={currentWeather} />
-				</div>
-			</ThemeContext.Provider>
+		<div className={`${seasonsTheme.bg} min-h-screen`}>
+			<div className="max-w-screen-2xl font-sans p-4 m-auto overflow-hidden">
+				<ThemeContext.Provider value={seasonsTheme}>
+					<Header
+						handleOptionChange={handleOptionChange}
+						selectedOption={selectedOption}
+						currentWeather={currentWeather}
+					/>
+					<CurrentWeather
+						currentWeather={currentWeather}
+						selectedOption={selectedOption}
+					/>
+					<div className="flex justify-between items-start gap-4">
+						<Grid currentWeather={currentWeather} />
+						<ChartComponent currentWeather={currentWeather} />
+					</div>
+				</ThemeContext.Provider>
+			</div>
 		</div>
 	);
 }
