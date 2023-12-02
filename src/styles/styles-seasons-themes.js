@@ -12,10 +12,8 @@ export const seasonsThemes = (code, tz, lat) => {
 			bg300: "bg-blue-300",
 			bg700: "bg-blue-700",
 			bg800andWhTxt: "bg-blue-800 text-white",
-			iconStrokeColor: "stroke-blue-800",
-			iconFillColor: "fill-blue-800",
-			hexColor: "#1e40af",
-			hoverColor: "#e0f2fe"
+			hexColor: "#1E40AF",
+			hoverColor: "#E0F2FE"
 		}
 	} else if (season === "spring") {
 		return {
@@ -26,10 +24,8 @@ export const seasonsThemes = (code, tz, lat) => {
 			bg300: "bg-green-300",
 			bg700: "bg-green-700",
 			bg800andWhTxt: "bg-green-800 text-white",
-			iconStrokeColor: "stroke-green-800",
-			iconFillColor: "fill-green-800",
 			hexColor: "#166534",
-			hoverColor: "#dcfce7"
+			hoverColor: "#DCFCE7"
 		}
 	} else if (season === "summer") {
 		return {
@@ -40,10 +36,8 @@ export const seasonsThemes = (code, tz, lat) => {
 			bg300: "bg-teal-300",
 			bg700: "bg-teal-700",
 			bg800andWhTxt: "bg-teal-800 text-white",
-			iconStrokeColor: "stroke-teal-800",
-			iconFillColor: "fill-teal-800",
-			hexColor: "#115e59",
-			hoverColor: "#ccfbf1"
+			hexColor: "#115E59",
+			hoverColor: "#CCFBF1"
 		}
 	} else if (season === "autumn") {
 		return {
@@ -54,10 +48,8 @@ export const seasonsThemes = (code, tz, lat) => {
 			bg300: "bg-red-300",
 			bg700: "bg-red-700",
 			bg800andWhTxt: "bg-red-800 text-white",
-			iconStrokeColor: "stroke-red-800",
-			iconFillColor: "fill-red-800",
-			hexColor: "#991b1b",
-			hoverColor: "#fee2e2"
+			hexColor: "#991B1B",
+			hoverColor: "#FEE2E2"
 		}
 	}
 }

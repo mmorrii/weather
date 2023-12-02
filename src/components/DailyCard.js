@@ -1,7 +1,7 @@
-import {weatherIcons} from "../utils/current-icon";
 import {DateTime} from "luxon";
-import {useContext, useState} from "react";
+import React, {useContext, useState} from "react";
 import {ThemeContext} from "../App";
+import {weatherIcons} from "../utils/current-icon";
 
 const DailyCard = ({ currentWeather }) => {
 	const [selectedBtnIndex, setSelectedBtnIndex] = useState(0);
@@ -27,15 +27,10 @@ const DailyCard = ({ currentWeather }) => {
 				>
 				<p>{ DateTime.fromISO(date).toFormat('dd.MM') }</p>
 					<div className="w-11 h-11">
-						{selectedBtnIndex === index ?
-							<img
-								className="w-full"
-								src={ weatherIcons(weatherCode[index]).src }
-								alt="daily weather icon"
-							/> :
-							weatherIcons(weatherCode[index], undefined, theme.hexColor).svg
+						{ selectedBtnIndex === index ?
+							weatherIcons(weatherCode[index], undefined, "#ffffff") :
+							weatherIcons(weatherCode[index], undefined,  theme.hexColor)
 						}
-						
 					</div>
 					<p className="flex gap-2">
 						<span title="Максимальная суточная температура">

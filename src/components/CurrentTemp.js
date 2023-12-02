@@ -8,9 +8,7 @@ const CurrentTemp = ({ currentWeather }) => {
 	return (
 		<div className="bg-black rounded-2xl px-3 bg-opacity-30 py-2">
 			<div className="w-16 mb-1">
-				<img className="w-full"
-					  src={weatherIcons(weatherCode, isDay).src}
-					  alt="icon current forecast" />
+				{ weatherIcons(weatherCode, isDay, "white") }
 			</div>
 			<p className="text-4xl font-semibold mb-1" title="Текущая температура воздуха">
 				{Math.round(currentWeather?.current?.temperature_2m)}°C{' '}

@@ -35,8 +35,8 @@ const ChartComponent = ({ currentWeather }) => {
 	// Фильтрация данных с шагом 3
 	const tempFiltered = temp?.filter((value, i) => (i + 1) % 3 === 0) ?? []
 	const labelsFiltered = labels?.filter((label, i) => (i + 1) % 3 === 0) ?? []
-	console.log(tempFiltered)
-	console.log(labelsFiltered)
+	// console.log(tempFiltered)
+	// console.log(labelsFiltered)
 	
 	const displaySomeElements = (temp) => {
 		return temp.slice(startIndex, startIndex + 8)

@@ -27,10 +27,10 @@ export const currentSeason = (code, tz, lat) => {
 	const isSnow = isSnowCode(code)
 	const isEquator = isEquatorCountries(lat)
 
-	if ( isSnow || month === "Зима" ) {
-		return "winter"
-	} else if ( isEquator || month === "Лето" ) {
+	if ( isEquator || month === "Лето" ) {
 		return "summer"
+	} else if ( isSnow || month === "Зима" ) {
+		return "winter"
 	} else if ( month === "Весна" ) {
 		return "spring"
 	} else if ( month === "Осень" ) {

@@ -1,7 +1,6 @@
 import {createContext, useEffect, useState} from "react";
 import {coords} from "./data/coords";
 import Header from "./components/Header";
-import {currentSeason} from "./utils/current-season";
 import {seasonsThemes} from "./styles/styles-seasons-themes";
 import Grid from "./components/Grid";
 import CurrentWeather from "./components/CurrentWeather";
@@ -42,7 +41,7 @@ function App() {
 		setSelectedOption(selectedOption)
 	}
 	
-	console.log(currentSeason(weatherCode, timeZone, latitude))
+	// console.log(currentSeason(weatherCode, timeZone, latitude))
 	
 	return (
 		<div className={`${seasonsTheme.bg} min-h-screen`}>
