@@ -6,6 +6,7 @@ export const seasonsThemes = (code, tz, lat) => {
 	if (season === "winter") {
 		return {
 			text: "text-blue-800",
+			textNavBar: "text-blue-800 font-semibold",
 			border: "border-blue-800",
 			bg: "bg-gradient-to-t from-blue-200 to-slate-100",
 			bg100: "bg-blue-100",
@@ -18,6 +19,7 @@ export const seasonsThemes = (code, tz, lat) => {
 	} else if (season === "spring") {
 		return {
 			text: "text-green-800",
+			textNavBar: "text-green-800 font-semibold",
 			border: "border-green-800",
 			bg: "bg-gradient-to-t from-green-100 to-sky-100",
 			bg100: "bg-green-100",
@@ -31,6 +33,7 @@ export const seasonsThemes = (code, tz, lat) => {
 		return {
 			text: "text-teal-800",
 			border: "border-teal-800",
+			textNavBar: "text-teal-800 font-semibold",
 			bg: "bg-gradient-to-t from-teal-100 to-violet-100",
 			bg100: "bg-teal-100",
 			bg300: "bg-teal-300",
@@ -43,6 +46,7 @@ export const seasonsThemes = (code, tz, lat) => {
 		return {
 			text: "text-red-800",
 			border: "border-red-800",
+			textNavBar: "text-red-800 font-semibold",
 			bg: "bg-gradient-to-t from-red-100 to-orange-100",
 			bg100: "bg-red-100",
 			bg300: "bg-red-300",

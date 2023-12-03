@@ -11,9 +11,10 @@ import {
 } from 'chart.js';
 import { Line } from 'react-chartjs-2';
 import {DateTime} from "luxon";
-import {useContext, useState} from "react";
+import {Fragment, useContext, useState} from "react";
 import {ThemeContext} from "../../App";
 import DailyCard from "../DailyCard";
+import {chartOptions} from "./options";
 
 ChartJS.register(
 	CategoryScale,
@@ -27,9 +28,11 @@ ChartJS.register(
 );
 
 const ChartComponent = ({ currentWeather }) => {
-	const [startIndex, setStartIndex] = useState(0);
+	const [selectedCardIndex, setSelectedCardIndex] = useState(0)
+	const [navBarIndex, setNavBarIndex] = useState(0)
 	const theme = useContext(ThemeContext)
 	
+	const timezone = currentWeather.timezone
 	const temp = currentWeather.hourly?.temperature_2m.map(item => Math.round(item))
 	const labels = currentWeather.hourly?.time.map(item => DateTime.fromISO(item).toFormat('HH:mm'))
 	// Фильтрация данных с шагом 3
@@ -38,76 +41,28 @@ const ChartComponent = ({ currentWeather }) => {
 	// console.log(tempFiltered)
 	// console.log(labelsFiltered)
 	
-	const displaySomeElements = (temp) => {
-		return temp.slice(startIndex, startIndex + 8)
+	const currentTime = DateTime.now().setZone(timezone).toFormat('HH:mm')
+	
+	const displaySomeElements = (value) => {
+		return value.slice(selectedCardIndex * 8, selectedCardIndex * 8 + 8)
 	}
 	
-	const handleNextClick = () => {
-		if (startIndex + 8 < tempFiltered.length) {
-			setStartIndex(startIndex + 8);
-		}
-	};
+	const currentTimeIndex = labelsFiltered.findIndex(
+		(label) => label === currentTime || label > currentTime
+	)
+	// console.log(currentTimeIndex)
 	
-	const handlePrevClick = () => {
-		if (startIndex - 8 >= 0) {
-			setStartIndex(startIndex - 8);
-		}
-	};
+	const tempArr = [...displaySomeElements(tempFiltered)]
+	const labelsArr = [...displaySomeElements(labelsFiltered)]
 	
-	const options = {
-		maintainAspectRatio: false, // Отключаем автоматическое регулирование высоты
-		responsive: true,
-		plugins: {
-			legend: false,
-			tooltip: {
-				enabled: false, // Отключаем всплывающие подсказки
-			},
-		},
-		scales: {
-			y: {
-				// min: Math.min(...tempFiltered) - 2,
-				// max: Math.max(...tempFiltered) + 2,
-				display: false,
-			},
-			x: {
-				grid: {
-					display: false,
-				},
-			},
-		},
-		layout: {
-			padding: {
-				top: 40, // Расстояние от верхнего края до текста
-			},
-		},
-		animation: {
-			onProgress: (animation) => {
-				const ctx = animation.chart.ctx;
-				const chart = animation.chart;
-				ctx.font = '14px Arial';
-				ctx.fillStyle = theme.hexColor;
-				ctx.textAlign = 'center';
-				ctx.textBaseline = 'bottom';
-
-				chart.config.data.datasets.forEach((dataset, i) => {
-					const meta = chart.getDatasetMeta(i);
-					if (!meta.hidden) {
-						meta.data.forEach((element, index) => {
-							const data = dataset.data[index];
-							ctx.fillText(data, element.x, element.y - 10); // 10 - расстояние от верхнего края до текста
-						});
-					}
-				});
-			},
-		}
-	};
+	const options = chartOptions(theme.hexColor, tempArr)
 	
 	const data = {
-		labels: displaySomeElements(labelsFiltered),
+		labels: labelsArr,
 		datasets: [
 			{
 				fill: true,
-				data: displaySomeElements(tempFiltered),
+				data: tempArr,
 				borderColor: theme.hexColor,
 				backgroundColor: theme.hoverColor,
 				radius: 0,
@@ -116,32 +71,33 @@ const ChartComponent = ({ currentWeather }) => {
 		],
 	};
 	
+	const navBarChart = ["температура", "вероятность осадков", "скорость ветра", "направление ветра"]
+	
 	return (
 		<div className={`${theme.border} border-2 border-solid rounded-xl bg-white p-5`}>
-			<div className="w-full">
+			<div className="flex gap-2">
+				{ navBarChart.map((item, index) => (
+					<Fragment key={item}>
+						<button
+							className={ navBarIndex === index ? theme.textNavBar : "opacity-50" }
+							onClick={() => setNavBarIndex(index)}
+						>
+							{item}
+						</button>
+						{ index !== navBarChart.length - 1 && <div className="opacity-50">|</div> }
+					</Fragment >
+				))}
+			</div>
+			<div className="w-full mb-2">
 				<Line
 					height={200}
 					options={options}
 					data={data} />
 			</div>
-			<div>
-				<div>
-					<button
-						className="mr-2"
-						onClick={handlePrevClick}
-						disabled={startIndex === 0}
-					>
-						Previous
-					</button>
-					<button
-						onClick={handleNextClick}
-						disabled={startIndex + 8 >= tempFiltered.length}
-					>
-						Next
-					</button>
-				</div>
-				<DailyCard currentWeather={currentWeather} />
-			</div>
+			<DailyCard
+				setSelectedCardIndex={setSelectedCardIndex}
+				currentWeather={currentWeather}
+			/>
 		</div>
 	)
 }
