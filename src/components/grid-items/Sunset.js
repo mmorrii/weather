@@ -3,9 +3,9 @@ import SunsetIcon from "../../icons/SunsetIcon";
 import {useContext} from "react";
 import {ThemeContext} from "../../App";
 
-const Sunset = ({ currentWeather }) => {
+const Sunset = ({ weather }) => {
 	const theme = useContext(ThemeContext)
-	const sunsetTime = currentWeather.daily?.sunset[0]
+	const sunsetTime = weather.daily?.sunset[0]
 	
 	return (
 		<div className="flex items-center gap-3">

@@ -1,6 +1,4 @@
-import {DateTime} from "luxon";
-
-export const chartOptions = (color, temp) => {
+export const chartOptions = (color, arr) => {
 	return {
 		maintainAspectRatio: false, // Отключаем автоматическое регулирование высоты
 		responsive: true,
@@ -12,8 +10,8 @@ export const chartOptions = (color, temp) => {
 		},
 		scales: {
 			y: {
-				min: Math.min(...temp) - 1,
-				max: Math.max(...temp) + 1,
+				min: Math.min(...arr) - 1,
+				max: Math.max(...arr) + 1,
 				display: false,
 			},
 			x: {
@@ -47,22 +45,5 @@ export const chartOptions = (color, temp) => {
 				})
 			}
 		},
-		annotation: {
-			annotations: [
-				{
-					type: 'line',
-					mode: 'vertical',
-					scaleID: 'x',
-					value: DateTime.now().toFormat('HH:mm'), // Значение в формате текущего времени
-					borderColor: 'red', // Цвет вертикальной линии
-					borderWidth: 2,
-					label: {
-						enabled: true,
-						content: 'Current Time',
-					},
-				},
-			],
-		},
 	}
-	
 };

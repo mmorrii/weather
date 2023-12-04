@@ -2,7 +2,7 @@ import PrecipitationIcon from "../../icons/PrecipitationIcon";
 import {useContext} from "react";
 import {ThemeContext} from "../../App";
 
-const PrecipitationProbability = ({ currentWeather }) => {
+const PrecipitationProbability = ({ weather }) => {
 	const theme = useContext(ThemeContext)
 	
 	return (
@@ -13,7 +13,7 @@ const PrecipitationProbability = ({ currentWeather }) => {
 			<div>
 				<p>Вероятность осадков</p>
 				<p className="font-bold">
-					{currentWeather.daily?.precipitation_probability_max[0]}%
+					{weather.daily?.precipitation_probability_max[0]}%
 				</p>
 			</div>
 		</div>

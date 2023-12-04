@@ -2,7 +2,7 @@ import FogIcon from "../../icons/FogIcon";
 import {useContext} from "react";
 import {ThemeContext} from "../../App";
 
-const Humidity = ({ currentWeather }) => {
+const Humidity = ({ weather }) => {
 	const theme = useContext(ThemeContext)
 	
 	return (
@@ -13,7 +13,7 @@ const Humidity = ({ currentWeather }) => {
 			<div>
 				<p>Относительная влажность</p>
 				<p className="font-bold">
-					{ Math.round(currentWeather.current?.relative_humidity_2m) }%
+					{ Math.round(weather.current?.relative_humidity_2m) }%
 				</p>
 			</div>
 		</div>

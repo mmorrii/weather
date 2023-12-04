@@ -5,18 +5,18 @@ import CurrentTemp from "./CurrentTemp";
 import CurrentBg from "./CurrentBg";
 import {seasonsThemes} from "../styles/styles-seasons-themes";
 
-const CurrentWeather = ({ selectedOption, currentWeather }) => {
-	const timeUpdate = currentWeather?.current?.time
+const CurrentWeather = ({ selectedOption, weather }) => {
+	const timeUpdate = weather?.current?.time
 	const formattedDate = DateTime.fromISO(timeUpdate).toFormat('dd.MM.yyyy HH:mm')
-	const timeZone = currentWeather?.timezone
-	const weatherCode = currentWeather?.current?.weather_code
+	const timeZone = weather?.timezone
+	const weatherCode = weather?.current?.weather_code
 	const latitude = selectedOption.latitude
 	const optionValue = selectedOption.value
 	const seasonTheme = seasonsThemes(weatherCode, timeZone, latitude)
 	
 	return (
 		<CurrentBg
-			currentWeather={currentWeather}
+			weather={weather}
 			selectedOption={selectedOption}
 			seasonTheme={seasonTheme}
 		>
@@ -29,7 +29,7 @@ const CurrentWeather = ({ selectedOption, currentWeather }) => {
 				</BlackBg>
 			</div>
 			<div className="flex items-end justify-between">
-				<CurrentTemp currentWeather={currentWeather} />
+				<CurrentTemp weather={weather} />
 				<BlackBg>
 					<p className="text-sm">
 						Последнее обновление:

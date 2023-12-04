@@ -3,7 +3,7 @@ import {windSpeed} from "../../utils/wind-speed";
 import {useContext} from "react";
 import {ThemeContext} from "../../App";
 
-const WindSpeed = ({ currentWeather }) => {
+const WindSpeed = ({ weather }) => {
 	const theme = useContext(ThemeContext)
 	
 	return (
@@ -14,9 +14,9 @@ const WindSpeed = ({ currentWeather }) => {
 			<div>
 				<p>Скорость ветра</p>
 				<p className="font-bold">
-					{Math.round(currentWeather.current?.wind_speed_10m)} м/с
+					{Math.round(weather.current?.wind_speed_10m)} м/с
 					<span className="font-normal ml-1 text-xs">
-						({ windSpeed(currentWeather.current?.wind_speed_10m) })
+						({ windSpeed(weather.current?.wind_speed_10m) })
 					</span>
 				</p>
 			</div>

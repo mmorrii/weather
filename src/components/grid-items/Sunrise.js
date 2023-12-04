@@ -3,9 +3,9 @@ import {DateTime} from "luxon";
 import {useContext} from "react";
 import {ThemeContext} from "../../App";
 
-const Sunrise = ({ currentWeather }) => {
+const Sunrise = ({ weather }) => {
 	const theme = useContext(ThemeContext)
-	const sunriseTime = currentWeather.daily?.sunrise[0]
+	const sunriseTime = weather.daily?.sunrise[0]
 	
 	return (
 		<div className="flex items-center gap-3">

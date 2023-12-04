@@ -1,12 +1,12 @@
 import {useEffect, useState} from "react";
 import {weatherImgBg} from "../utils/current-bg";
 
-const CurrentBg = ({ children, currentWeather, selectedOption, seasonTheme }) => {
+const CurrentBg = ({ children, weather, selectedOption, seasonTheme }) => {
 	const [bgImage, setBgImage] = useState({});
 	
-	const weatherCode = currentWeather?.current?.weather_code
-	const isDay = currentWeather?.current?.is_day === 1
-	const timeZone = currentWeather?.timezone
+	const weatherCode = weather?.current?.weather_code
+	const isDay = weather?.current?.is_day === 1
+	const timeZone = weather?.timezone
 	const latitude = selectedOption.latitude
 	
 	useEffect(() => {

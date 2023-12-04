@@ -7,11 +7,12 @@ import CurrentWeather from "./components/CurrentWeather";
 import {WEATHER} from "./services/weather-api";
 import ChartComponent from "./components/chart/ChartComponent";
 import {useLocalStorage} from "./hooks/useLocalStorage";
+import PrecipitationBlock from "./components/PrecipitationBlock";
 
 export const ThemeContext = createContext({})
 
 function App() {
-	const [currentWeather, setCurrentWeather] = useState({})
+	const [weather, setWeather] = useState({})
 	const [selectedOption, setSelectedOption] = useLocalStorage("selectedOption", coords[2].options[1])
 	
 	useEffect(() => {
@@ -20,20 +21,20 @@ function App() {
 				.then((response) => response.json())
 				.then((data) => {
 					console.log(data)
-					setCurrentWeather(data)
+					setWeather(data)
 				})
 				.catch((err) => {
 					console.log(err.message);
 					throw err;
-				});
+				})
 		}
 		fetchData();
 		// const intervalId = setInterval(fetchData, 60 * 60 * 1000);
 		// return () => clearInterval(intervalId);
 	}, [selectedOption])
 	
-	const weatherCode = currentWeather?.current?.weather_code
-	const timeZone = currentWeather?.timezone
+	const weatherCode = weather?.current?.weather_code
+	const timeZone = weather?.timezone
 	const latitude = selectedOption.latitude
 	const seasonsTheme = seasonsThemes(weatherCode, timeZone, latitude)
 	
@@ -50,15 +51,18 @@ function App() {
 					<Header
 						handleOptionChange={handleOptionChange}
 						selectedOption={selectedOption}
-						currentWeather={currentWeather}
+						weather={weather}
 					/>
 					<CurrentWeather
-						currentWeather={currentWeather}
+						weather={weather}
 						selectedOption={selectedOption}
 					/>
 					<div className="flex justify-between items-start gap-4">
-						<Grid currentWeather={currentWeather} />
-						<ChartComponent currentWeather={currentWeather} />
+						<div className="flex-shrink-0 flex flex-col justify-between h-full">
+							<Grid weather={weather} />
+							<PrecipitationBlock weather={weather} />
+						</div>
+						<ChartComponent weather={weather} />
 					</div>
 				</ThemeContext.Provider>
 			</div>
