@@ -1,5 +1,5 @@
 import {useContext} from "react";
-import {ThemeContext} from "../App";
+import {ThemeContext} from "../../App";
 
 const Logo = ({ isDay }) => {
 	const theme = useContext(ThemeContext)
@@ -16,9 +16,9 @@ const Logo = ({ isDay }) => {
 					/>
 				}
 			</div>
-			<h2 className={`text-2xl font-bold ${theme.text}`}>
+			<div className={`text-2xl font-bold ${theme.text}`}>
 				World Weather
-			</h2>
+			</div>
 		</div>
 	)
 }

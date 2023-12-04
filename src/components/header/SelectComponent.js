@@ -1,7 +1,7 @@
-import {coords} from "../data/coords";
+import {coords} from "../../data/coords";
 import Select from "react-select";
 import {useContext} from "react";
-import {ThemeContext} from "../App";
+import {ThemeContext} from "../../App";
 
 const SelectComponent =	({ selectedOption, handleOptionChange }) => {
 	const themeContext = useContext(ThemeContext)

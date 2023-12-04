@@ -1,10 +1,10 @@
 import {createContext, useEffect, useState} from "react";
 import {coords} from "./data/coords";
-import Header from "./components/Header";
+import Header from "./components/header/Header";
 import {seasonsThemes} from "./styles/styles-seasons-themes";
-import Grid from "./components/Grid";
+import Grid from "./components/grid/Grid";
 import CurrentWeather from "./components/CurrentWeather";
-import {WEATHER} from "./services/weather-api";
+import {WEATHER} from "./api/weather-api";
 import ChartComponent from "./components/chart/ChartComponent";
 import {useLocalStorage} from "./hooks/useLocalStorage";
 import PrecipitationBlock from "./components/PrecipitationBlock";
@@ -57,8 +57,8 @@ function App() {
 						weather={weather}
 						selectedOption={selectedOption}
 					/>
-					<div className="flex justify-between items-start gap-4">
-						<div className="flex-shrink-0 flex flex-col justify-between h-full">
+					<div className="flex justify-between gap-4">
+						<div className="flex-shrink-0 flex flex-col gap-4">
 							<Grid weather={weather} />
 							<PrecipitationBlock weather={weather} />
 						</div>

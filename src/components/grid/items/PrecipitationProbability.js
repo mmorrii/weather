@@ -1,6 +1,6 @@
-import PrecipitationIcon from "../../icons/PrecipitationIcon";
+import PrecipitationIcon from "../../../icons/PrecipitationIcon";
 import {useContext} from "react";
-import {ThemeContext} from "../../App";
+import {ThemeContext} from "../../../App";
 
 const PrecipitationProbability = ({ weather }) => {
 	const theme = useContext(ThemeContext)

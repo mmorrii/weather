@@ -1,7 +1,7 @@
 import {DateTime} from "luxon";
-import SunsetIcon from "../../icons/SunsetIcon";
+import SunsetIcon from "../../../icons/SunsetIcon";
 import {useContext} from "react";
-import {ThemeContext} from "../../App";
+import {ThemeContext} from "../../../App";
 
 const Sunset = ({ weather }) => {
 	const theme = useContext(ThemeContext)

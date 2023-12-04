@@ -1,8 +1,8 @@
 import {useContext, useState} from "react";
 import {createPortal} from "react-dom";
-import Modal from "./Modal";
-import {ThemeContext} from "../App";
-import MapIcon from "../icons/MapIcon";
+import Modal from "../Modal";
+import {ThemeContext} from "../../App";
+import MapIcon from "../../icons/MapIcon";
 
 const Map = () => {
 	const [isModalOpen, setIsModalOpen] = useState(false)

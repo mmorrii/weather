@@ -15,12 +15,12 @@ const CurrentBg = ({ children, weather, selectedOption, seasonTheme }) => {
 	}, [weatherCode, timeZone, latitude, isDay]);
 	
 	return (
-		<div className={`py-4 px-5 ${seasonTheme.bg300} rounded-2xl h-80 mb-7
+		<section className={`py-4 px-5 ${seasonTheme.bg300} rounded-2xl h-80 mb-7
 			flex flex-col justify-between text-white`}
 			  style={ bgImage }
 		>
 			{ children }
-		</div>
+		</section>
 	)
 }
 

@@ -10,8 +10,8 @@ const PrecipitationBlock = ({ weather }) => {
 	const pHours = weather.daily?.precipitation_hours
 	
 	return (
-		<div className={`p-5 ${theme.bg800andWhTxt} rounded-xl`}>
-			<h3 className="font-semibold mb-3">Суточные осадки</h3>
+		<div className={`p-5 h-full ${theme.bg800andWhTxt} rounded-xl`}>
+			<h3 className="font-semibold text-lg mb-3">Суточные осадки</h3>
 			<div className="flex gap-3">
 				<div className="basis-1/2 flex items-center gap-1">
 					<div className="w-5 h-5">

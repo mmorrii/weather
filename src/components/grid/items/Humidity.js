@@ -1,6 +1,6 @@
-import FogIcon from "../../icons/FogIcon";
+import FogIcon from "../../../icons/FogIcon";
 import {useContext} from "react";
-import {ThemeContext} from "../../App";
+import {ThemeContext} from "../../../App";
 
 const Humidity = ({ weather }) => {
 	const theme = useContext(ThemeContext)

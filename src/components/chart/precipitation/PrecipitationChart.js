@@ -2,24 +2,22 @@ import {
 	Chart as ChartJS,
 	CategoryScale,
 	LinearScale,
-	PointElement,
-	LineElement,
+	BarElement,
 	Title,
 	Tooltip,
 	Filler,
 	Legend,
 } from 'chart.js';
-import {Line} from "react-chartjs-2";
-import {chartOptions} from "../options";
+import {Bar} from "react-chartjs-2";
 import {useContext, useState} from "react";
 import {ThemeContext} from "../../../App";
 import DailyCardPrecipitation from "./DailyCardPrecipitation";
+import {precipitationOptions} from "./options";
 
 ChartJS.register(
 	CategoryScale,
 	LinearScale,
-	PointElement,
-	LineElement,
+	BarElement,
 	Title,
 	Tooltip,
 	Filler,
@@ -42,18 +40,15 @@ const PrecipitationChart = ({ weather, labels }) => {
 	const precipitationArr = [...displaySomeElements(precipitationFiltered)]
 	const labelsArr = [...displaySomeElements(labels)]
 	
-	const options = chartOptions(theme.hexColor, precipitationArr)
+	const options = precipitationOptions()
 	
 	const data = {
 		labels: labelsArr,
 		datasets: [
 			{
-				fill: true,
 				data: precipitationArr,
 				borderColor: theme.hexColor,
-				backgroundColor: theme.hoverColor,
-				radius: 0,
-				tension: 0.3,
+				backgroundColor: theme.hexColor,
 			},
 		],
 	};
@@ -61,7 +56,7 @@ const PrecipitationChart = ({ weather, labels }) => {
 	return (
 		<>
 			<div className="w-full mb-2">
-				<Line
+				<Bar
 					height={200}
 					options={options}
 					data={data} />
