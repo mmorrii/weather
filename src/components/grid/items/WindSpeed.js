@@ -9,7 +9,7 @@ const WindSpeed = ({ weather }) => {
 	return (
 		<div className="flex items-center gap-3">
 			<div
-				className="w-11"
+				className="w-11 h-11"
 				title="Текущая скорость ветра"
 			>
 				<WindIcon color={theme.hexColor} />

@@ -4,6 +4,7 @@ import TempChart from "./temperature/TempChart";
 import {DateTime} from "luxon";
 import PrecipitationChart from "./precipitation/PrecipitationChart";
 import WindSpeedChart from "./wind-speed/WindSpeedChart";
+import Card from "../../common/Card";
 
 const ChartComponent = ({ weather }) => {
 	const [navBarIndex, setNavBarIndex] = useState(0)
@@ -17,26 +18,28 @@ const ChartComponent = ({ weather }) => {
 	// console.log(currentTimeIndex)
 	const labels = weather.hourly?.time.map(item => DateTime.fromISO(item).toFormat('HH:mm'))
 	const labelsFiltered = labels?.filter((label, i) => (i + 1) % 3 === 0) ?? []
-	const navBar = ["температура", "вероятность осадков", "скорость ветра", "направление ветра"]
+	const navBar = ["температура", "вероятность осадков", "скорость ветра"]
 	
 	return (
-		<div className={`${theme.border} border-2 border-solid rounded-xl bg-white p-5 w-full`}>
-			<div className="flex gap-2">
-				{ navBar.map((item, index) => (
-					<Fragment key={item}>
-						<button
-							className={ navBarIndex === index ? theme.textNavBar : "opacity-50" }
-							onClick={() => setNavBarIndex(index)}
-						>
-							{item}
-						</button>
-						{ index !== navBar.length - 1 && <div className="opacity-50">|</div> }
-					</Fragment >
-				))}
-			</div>
-			{ navBarIndex === 0 && <TempChart weather={weather} labels={labelsFiltered} /> }
-			{ navBarIndex === 1 && <PrecipitationChart weather={weather} labels={labelsFiltered} /> }
-			{ navBarIndex === 2 && <WindSpeedChart weather={weather} labels={labelsFiltered} /> }
+		<div className="w-full">
+			<Card>
+				<div className="flex gap-2">
+					{ navBar.map((item, index) => (
+						<Fragment key={item}>
+							<button
+								className={ navBarIndex === index ? theme.textNavBar : "opacity-50" }
+								onClick={() => setNavBarIndex(index)}
+							>
+								{item}
+							</button>
+							{ index !== navBar.length - 1 && <div className="opacity-50">|</div> }
+						</Fragment >
+					))}
+				</div>
+				{ navBarIndex === 0 && <TempChart weather={weather} labels={labelsFiltered} /> }
+				{ navBarIndex === 1 && <PrecipitationChart weather={weather} labels={labelsFiltered} /> }
+				{ navBarIndex === 2 && <WindSpeedChart weather={weather} labels={labelsFiltered} /> }
+			</Card>
 		</div>
 	)
 }

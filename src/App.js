@@ -8,6 +8,7 @@ import {WEATHER} from "./api/weather-api";
 import ChartComponent from "./components/chart/ChartComponent";
 import {useLocalStorage} from "./hooks/useLocalStorage";
 import PrecipitationBlock from "./components/PrecipitationBlock";
+import DetailedWeather from "./components/DetailedWeather";
 
 export const ThemeContext = createContext({})
 
@@ -38,6 +39,7 @@ function App() {
 	const latitude = selectedOption.latitude
 	const seasonsTheme = seasonsThemes(weatherCode, timeZone, latitude)
 	
+	
 	const handleOptionChange = (selectedOption) => {
 		setSelectedOption(selectedOption)
 	}
@@ -57,13 +59,14 @@ function App() {
 						weather={weather}
 						selectedOption={selectedOption}
 					/>
-					<div className="flex justify-between gap-4">
+					<div className="flex justify-between gap-4 mb-7">
 						<div className="flex-shrink-0 flex flex-col gap-4">
 							<Grid weather={weather} />
 							<PrecipitationBlock weather={weather} />
 						</div>
 						<ChartComponent weather={weather} />
 					</div>
+					<DetailedWeather weather={weather} />
 				</ThemeContext.Provider>
 			</div>
 		</div>

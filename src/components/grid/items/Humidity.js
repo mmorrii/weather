@@ -7,7 +7,10 @@ const Humidity = ({ weather }) => {
 	
 	return (
 		<div className="flex items-center gap-3">
-			<div className="w-11">
+			<div
+				className="w-11 h-11"
+				title="Текущая относительная влажность воздуха"
+			>
 				<FogIcon color={theme.hexColor} />
 			</div>
 			<div>

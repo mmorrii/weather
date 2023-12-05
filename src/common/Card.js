@@ -1,7 +1,11 @@
-const Card = ({ children, seasonsTheme }) => {
+import {useContext} from "react";
+import {ThemeContext} from "../App";
+
+const Card = ({ children }) => {
+	const theme = useContext(ThemeContext)
+	
 	return (
-		<div className={`p-5 border-2 ${seasonsTheme.border} rounded-xl
-			border-solid w-80 bg-white flex items-center gap-3`}>
+		<div className={`p-5 border-2 ${theme.border} rounded-xl border-solid bg-white`}>
 			{children}
 		</div>
 	)

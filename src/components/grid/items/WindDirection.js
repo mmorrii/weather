@@ -9,7 +9,10 @@ const WindDirection = ({ weather }) => {
 	
 	return (
 		<div className="flex items-center gap-3">
-			<div className="w-11">
+			<div
+				className="w-11 h-11"
+				title="Текущее направление ветра"
+			>
 				<ArrowIcon
 					color={theme.hexColor}
 					dir={windDir?.icon}

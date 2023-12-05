@@ -1,7 +1,7 @@
 const PrecipitationIcon = ({ color }) => {
 	return (
 		<svg fill="none" stroke={color} width="95%"
-			  strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" viewBox="0 0 24 24"
+			  strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.8" viewBox="0 0 24 24"
 			  xmlns="http://www.w3.org/2000/svg">
 			<line x1="16" x2="16" y1="13" y2="21"/>
 			<line x1="8" x2="8" y1="13" y2="21"/>
