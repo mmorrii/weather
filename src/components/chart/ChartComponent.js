@@ -5,6 +5,7 @@ import {DateTime} from "luxon";
 import PrecipitationChart from "./precipitation/PrecipitationChart";
 import WindSpeedChart from "./wind-speed/WindSpeedChart";
 import Card from "../../common/Card";
+import HumidityChart from "./humidity/HumidityChart";
 
 const ChartComponent = ({ weather }) => {
 	const [navBarIndex, setNavBarIndex] = useState(0)
@@ -17,8 +18,7 @@ const ChartComponent = ({ weather }) => {
 	// )
 	// console.log(currentTimeIndex)
 	const labels = weather.hourly?.time.map(item => DateTime.fromISO(item).toFormat('HH:mm'))
-	const labelsFiltered = labels?.filter((label, i) => (i + 1) % 3 === 0) ?? []
-	const navBar = ["температура", "вероятность осадков", "скорость ветра"]
+	const navBar = ["температура", "вероятность осадков", "скорость ветра", "относительная влажность"]
 	
 	return (
 		<div className="w-full">
@@ -36,9 +36,10 @@ const ChartComponent = ({ weather }) => {
 						</Fragment >
 					))}
 				</div>
-				{ navBarIndex === 0 && <TempChart weather={weather} labels={labelsFiltered} /> }
-				{ navBarIndex === 1 && <PrecipitationChart weather={weather} labels={labelsFiltered} /> }
-				{ navBarIndex === 2 && <WindSpeedChart weather={weather} labels={labelsFiltered} /> }
+				{ navBarIndex === 0 && <TempChart weather={weather} labels={labels} /> }
+				{ navBarIndex === 1 && <PrecipitationChart weather={weather} labels={labels} /> }
+				{ navBarIndex === 2 && <WindSpeedChart weather={weather} labels={labels} /> }
+				{ navBarIndex === 3 && <HumidityChart weather={weather} labels={labels} /> }
 			</Card>
 		</div>
 	)

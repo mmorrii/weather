@@ -2,48 +2,42 @@ import {
 	Chart as ChartJS,
 	CategoryScale,
 	LinearScale,
-	PointElement,
-	LineElement,
+	BarElement,
 	Title,
 	Tooltip,
 	Filler,
 	Legend,
 } from 'chart.js';
-import {Line} from "react-chartjs-2";
+import {Bar} from "react-chartjs-2";
 import {useContext, useState} from "react";
 import {ThemeContext} from "../../../App";
-import DailyCardWindSpeed from "./DailyCardWindSpeed";
-import {lineOption} from "../options/line";
 import {displaySomeElements} from "../../../utils/utils";
+import {barOption} from "../options/bar";
+import DailyCardHumidity from "./DailyCardHumidity";
 
 ChartJS.register(
 	CategoryScale,
 	LinearScale,
-	PointElement,
-	LineElement,
+	BarElement,
 	Title,
 	Tooltip,
 	Filler,
 	Legend
 );
 
-const WindSpeedChart = ({ weather, labels }) => {
+const HumidityChart = ({ weather, labels }) => {
 	const theme = useContext(ThemeContext)
 	const [selectedCardIndex, setSelectedCardIndex] = useState(0)
 	
-	const windSpeed = weather.hourly?.wind_speed_10m.map(item => Math.round(item))
-	const windArr = displaySomeElements(windSpeed, selectedCardIndex)
+	const humidity = weather.hourly?.relative_humidity_2m
 	
 	const data = {
 		labels: displaySomeElements(labels, selectedCardIndex),
 		datasets: [
 			{
-				fill: true,
-				data: windArr,
+				data: displaySomeElements(humidity, selectedCardIndex),
 				borderColor: theme.hexColor,
-				backgroundColor: theme.hoverColor,
-				radius: 0,
-				tension: 0.3,
+				backgroundColor: theme.hexColor,
 			},
 		],
 	};
@@ -51,18 +45,19 @@ const WindSpeedChart = ({ weather, labels }) => {
 	return (
 		<>
 			<div className="w-full mb-2">
-				<Line
+				<Bar
 					height={200}
-					options={lineOption(theme.hexColor, windArr)}
+					options={barOption}
 					data={data} />
 			</div>
-			<DailyCardWindSpeed
+			<DailyCardHumidity
 				selectedCardIndex={selectedCardIndex}
 				onSelectedCardIndex={(i) => setSelectedCardIndex(i)}
 				weather={weather}
+				humidity={humidity}
 			/>
 		</>
 	)
 }
 
-export default WindSpeedChart
+export default HumidityChart

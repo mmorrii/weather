@@ -12,7 +12,7 @@ const UvIndexWindDirection = ({ weather }) => {
 	const windDir = weather.daily?.wind_direction_10m_dominant
 	
 	return (
-		<>
+		<div className="mb-8">
 			<table className="w-full table-fixed rounded-xl overflow-hidden mb-2">
 				<thead>
 				<tr className={theme.bg800andWhTxt}>
@@ -64,7 +64,7 @@ const UvIndexWindDirection = ({ weather }) => {
 					УФ-индекса
 				</a>
 			</div>
-		</>
+		</div>
 	)
 }
 

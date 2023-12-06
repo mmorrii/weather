@@ -11,9 +11,10 @@ import {
 } from 'chart.js';
 import {Line} from "react-chartjs-2";
 import DailyCardTemp from "./DailyCardTemp";
-import {chartOptions} from "../options";
 import {useContext, useState} from "react";
 import {ThemeContext} from "../../../App";
+import {displaySomeElements} from "../../../utils/utils";
+import {lineOption} from "../options/line";
 
 ChartJS.register(
 	CategoryScale,
@@ -31,21 +32,10 @@ const TempChart = ({ weather, labels }) => {
 	const [selectedCardIndex, setSelectedCardIndex] = useState(0)
 	
 	const temp = weather.hourly?.temperature_2m.map(item => Math.round(item))
-	const tempFiltered = temp?.filter((value, i) => (i + 1) % 3 === 0) ?? []
-	// console.log(tempFiltered)
-	
-	// отображение 8 элементов из массива
-	const displaySomeElements = (value) => {
-		return value.slice(selectedCardIndex * 8, selectedCardIndex * 8 + 8)
-	}
-	
-	const tempArr = [...displaySomeElements(tempFiltered)]
-	const labelsArr = [...displaySomeElements(labels)]
-	
-	const options = chartOptions(theme.hexColor, tempArr)
+	const tempArr = displaySomeElements(temp, selectedCardIndex)
 	
 	const data = {
-		labels: labelsArr,
+		labels: displaySomeElements(labels, selectedCardIndex),
 		datasets: [
 			{
 				fill: true,
@@ -63,7 +53,7 @@ const TempChart = ({ weather, labels }) => {
 			<div className="w-full mb-2">
 				<Line
 					height={200}
-					options={options}
+					options={lineOption(theme.hexColor, tempArr)}
 					data={data} />
 			</div>
 			<DailyCardTemp

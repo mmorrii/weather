@@ -10,7 +10,7 @@ export const seasonsThemes = (code, tz, lat) => {
 				textNavBar: "text-blue-800 font-semibold",
 				border: "border-blue-800",
 				bg: "bg-gradient-to-t from-blue-200 to-slate-100",
-				bg50: "bg-blue-100",
+				bg50: "bg-blue-50",
 				bg100: "bg-blue-100",
 				bg300: "bg-blue-300",
 				bg700: "bg-blue-700",

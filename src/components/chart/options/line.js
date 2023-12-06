@@ -1,4 +1,4 @@
-export const precipitationOptions = () => {
+export const lineOption = (color, arr) => {
 	return {
 		maintainAspectRatio: false, // Отключаем автоматическое регулирование высоты
 		responsive: true,
@@ -7,14 +7,11 @@ export const precipitationOptions = () => {
 			tooltip: {
 				enabled: false, // Отключаем всплывающие подсказки
 			},
-			hover: {
-				mode: null,
-			},
 		},
 		scales: {
 			y: {
-				min: 0,
-				max: 100,
+				min: Math.min(...arr) - 1,
+				max: Math.max(...arr) + 1,
 				display: false,
 			},
 			x: {
@@ -36,7 +33,7 @@ export const precipitationOptions = () => {
 				ctx.fillStyle = color;
 				ctx.textAlign = 'center';
 				ctx.textBaseline = 'bottom';
-
+				
 				chart.config.data.datasets.forEach((dataset, i) => {
 					const meta = chart.getDatasetMeta(i);
 					if (!meta.hidden) {
@@ -49,4 +46,4 @@ export const precipitationOptions = () => {
 			}
 		},
 	}
-}
+};

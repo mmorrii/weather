@@ -1,6 +1,7 @@
 import {useContext} from "react";
 import {ThemeContext} from "../App";
 import UvIndexWindDirection from "./table/UvIndexWindDirection";
+import SoilChart from "./chart/SoilChart";
 
 const DetailedWeather = ({ weather }) => {
 	const theme = useContext(ThemeContext)
@@ -11,6 +12,7 @@ const DetailedWeather = ({ weather }) => {
 				Подробная погода
 			</h2>
 			<UvIndexWindDirection weather={weather} />
+			<SoilChart weather={weather} />
 		</>
 	)
 }
