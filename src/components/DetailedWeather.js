@@ -1,6 +1,6 @@
 import {useContext} from "react";
 import {ThemeContext} from "../App";
-import UvIndexWindDirection from "./table/UvIndexWindDirection";
+import DailyTable from "./table/DailyTable";
 import SoilChart from "./chart/SoilChart";
 
 const DetailedWeather = ({ weather }) => {
@@ -9,9 +9,9 @@ const DetailedWeather = ({ weather }) => {
 	return (
 		<>
 			<h2 className={`mb-5 text-2xl font-bold ${theme.text}`}>
-				Подробная погода
+				Суточная погода
 			</h2>
-			<UvIndexWindDirection weather={weather} />
+			<DailyTable weather={weather} />
 			<SoilChart weather={weather} />
 		</>
 	)

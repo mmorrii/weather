@@ -3,18 +3,25 @@ import {ThemeContext} from "../App";
 import SumIcon from "../icons/SumIcon";
 import ClockIcon from "../icons/ClockIcon";
 import PrecipitationIcon from "../icons/PrecipitationIcon";
+import {currentPattern} from "../utils/current-pattern";
 
-const PrecipitationBlock = ({ weather }) => {
+const PrecipitationBlock = ({ weather, selectedOption }) => {
 	const theme = useContext(ThemeContext)
 	
 	const pProbability = weather.daily?.precipitation_probability_max
 	const pSum = weather.daily?.precipitation_sum
 	const pHours = weather.daily?.precipitation_hours
+	const weatherCode = weather?.current?.weather_code
+	const timeZone = weather?.timezone
+	const latitude = selectedOption.latitude
+	const bgImg = currentPattern(weatherCode, timeZone, latitude)
 	
 	return (
-		<div className={`p-5 h-full ${theme.bg800andWhTxt} rounded-xl`}>
+		<div className={`p-5 h-full ${theme.bg800andWhTxt} rounded-xl`}
+			  style={{ backgroundImage: bgImg, backgroundSize: 'cover'}}
+		>
 			<h3 className="font-semibold text-lg mb-3">Суточные осадки</h3>
-			<div className="basis-1/2 justify-center flex items-center gap-1 mb-4">
+			<div className="justify-center flex items-center gap-1 mb-4">
 				<div className="w-6 h-6">
 					<PrecipitationIcon color="#ffffff" />
 				</div>

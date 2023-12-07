@@ -5,7 +5,7 @@ const Logo = ({ isDay }) => {
 	const theme = useContext(ThemeContext)
 	
 	return (
-		<div className="flex gap-1 items-center">
+		<div className="flex gap-0.5 items-center">
 			<div className="w-16">
 				{ isDay ?
 					<img src="/images/logo/logo_day_icon.svg"

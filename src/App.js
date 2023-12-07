@@ -62,7 +62,7 @@ function App() {
 					<div className="flex justify-between gap-4 mb-7">
 						<div className="flex-shrink-0 flex flex-col gap-4">
 							<Grid weather={weather} />
-							<PrecipitationBlock weather={weather} />
+							<PrecipitationBlock weather={weather} selectedOption={selectedOption} />
 						</div>
 						<ChartComponent weather={weather} />
 					</div>

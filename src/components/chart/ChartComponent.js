@@ -23,18 +23,21 @@ const ChartComponent = ({ weather }) => {
 	return (
 		<div className="w-full">
 			<Card>
-				<div className="flex gap-2">
-					{ navBar.map((item, index) => (
-						<Fragment key={item}>
-							<button
-								className={ navBarIndex === index ? theme.textNavBar : "opacity-50" }
-								onClick={() => setNavBarIndex(index)}
-							>
-								{item}
-							</button>
-							{ index !== navBar.length - 1 && <div className="opacity-50">|</div> }
-						</Fragment >
-					))}
+				<div className="flex justify-between">
+					<div className="flex gap-2">
+						{ navBar.map((item, index) => (
+							<Fragment key={item}>
+								<button
+									className={ navBarIndex === index ? theme.textNavBar : "opacity-50 hover:opacity-70" }
+									onClick={() => setNavBarIndex(index)}
+								>
+									{item}
+								</button>
+								{ index !== navBar.length - 1 && <div className="opacity-50">|</div> }
+							</Fragment >
+						))}
+					</div>
+					<button className={theme.textNavBar}>2м</button>
 				</div>
 				{ navBarIndex === 0 && <TempChart weather={weather} labels={labels} /> }
 				{ navBarIndex === 1 && <PrecipitationChart weather={weather} labels={labels} /> }
