@@ -13,7 +13,7 @@ import {DateTime} from "luxon";
 import {useState} from "react";
 import {displaySomeElements} from "../../../utils/utils";
 import {multiaxisLineOption} from "../options/multiaxisLine";
-import DailyCardSoil from "./DailyCardSoil";
+import DailyCard from "../DailyCard";
 
 ChartJS.register(
 	CategoryScale,
@@ -72,7 +72,7 @@ const SoilTempChart = ({weather}) => {
 					data={data}
 				/>
 			</div>
-			<DailyCardSoil
+			<DailyCard
 				weather={weather}
 				selectedCardIndex={selectedCardIndex}
 				onSelectedCardIndex={(i) => setSelectedCardIndex(i)}

@@ -1,6 +1,6 @@
 const PressureIcon = ({ color }) => {
 	return (
-		<svg version="1.1" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><title/><desc/><defs/>
+		<svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
 			<g fill="none" fillRule="evenodd" id="Thermometer-Hot" stroke="none" strokeWidth="1">
 				<g id="Group" stroke={color} strokeWidth="1.8" transform="translate(7.000000, 2.000000)">
 					<path d="M3,16.8026932 L3,3 C3,1.34314575 4.34314575,3.04359188e-16 6,0

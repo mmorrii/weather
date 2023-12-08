@@ -36,7 +36,6 @@ const PrecipitationChart = ({ weather, labels }) => {
 		datasets: [
 			{
 				data: displaySomeElements(precipitation, selectedCardIndex),
-				borderColor: theme.hexColor,
 				backgroundColor: theme.hexColor,
 			},
 		],

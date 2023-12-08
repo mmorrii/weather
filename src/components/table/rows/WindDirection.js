@@ -1,7 +1,7 @@
-import ArrowIcon from "../../icons/ArrowIcon";
-import {windDirection} from "../../utils/wind-direction";
+import ArrowIcon from "../../../icons/ArrowIcon";
+import {windDirection} from "../../../utils/wind-direction";
 import {useContext} from "react";
-import {ThemeContext} from "../../App";
+import {ThemeContext} from "../../../App";
 
 const WindDirection = ({ weather }) => {
 	const theme = useContext(ThemeContext)

@@ -6,9 +6,12 @@ import PrecipitationChart from "./precipitation/PrecipitationChart";
 import WindSpeedChart from "./wind-speed/WindSpeedChart";
 import Card from "../../common/Card";
 import HumidityChart from "./humidity/HumidityChart";
+import {Figcaption} from "../../common/Caption";
 
 const ChartComponent = ({ weather }) => {
 	const [navBarIndex, setNavBarIndex] = useState(0)
+	const [tempHeight, setTempHeight] = useState(2)
+	const [windSpeedHeight, setWindSpeedHeight] = useState(10)
 	const theme = useContext(ThemeContext)
 	
 	// const timezone = weather.timezone
@@ -21,7 +24,7 @@ const ChartComponent = ({ weather }) => {
 	const navBar = ["температура", "вероятность осадков", "скорость ветра", "относительная влажность"]
 	
 	return (
-		<div className="w-full">
+		<figure className="w-full">
 			<Card>
 				<div className="flex justify-between">
 					<div className="flex gap-2">
@@ -37,14 +40,24 @@ const ChartComponent = ({ weather }) => {
 							</Fragment >
 						))}
 					</div>
-					<button className={theme.textNavBar}>2м</button>
+					{ navBarIndex === 0 &&
+						<button className={`${theme.textNavBar} hover:text-blue-950`}
+								  onClick={() => setTempHeight(tempHeight === 2 ? 80 : tempHeight === 80 ? 120 : 2)}
+						>{tempHeight}м</button>
+					}
+					{ navBarIndex === 2 &&
+						<button className={`${theme.textNavBar} hover:text-blue-950`}
+								  onClick={() => setWindSpeedHeight(windSpeedHeight === 10 ? 80 : windSpeedHeight === 80 ? 120 : 10)}
+						>{windSpeedHeight}м</button>
+					}
 				</div>
-				{ navBarIndex === 0 && <TempChart weather={weather} labels={labels} /> }
+				{ navBarIndex === 0 && <TempChart weather={weather} labels={labels} tempHeight={tempHeight} /> }
 				{ navBarIndex === 1 && <PrecipitationChart weather={weather} labels={labels} /> }
-				{ navBarIndex === 2 && <WindSpeedChart weather={weather} labels={labels} /> }
+				{ navBarIndex === 2 && <WindSpeedChart weather={weather} labels={labels} windSpeedHeight={windSpeedHeight} /> }
 				{ navBarIndex === 3 && <HumidityChart weather={weather} labels={labels} /> }
 			</Card>
-		</div>
+			<Figcaption>Температура воздуха </Figcaption>
+		</figure>
 	)
 }
 

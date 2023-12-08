@@ -1,9 +1,9 @@
 import {DateTime} from "luxon";
 import {useContext} from "react";
 import {ThemeContext} from "../../App";
-import Caption from "../../common/Caption";
-import WindDirection from "./WindDirection";
-import UvIndex from "./UvIndex";
+import WindDirection from "./rows/WindDirection";
+import UvIndex from "./rows/UvIndex";
+import {Caption} from "../../common/Caption";
 
 const DailyTable = ({ weather }) => {
 	const theme = useContext(ThemeContext)
@@ -11,16 +11,13 @@ const DailyTable = ({ weather }) => {
 	const date = weather.daily?.time
 	
 	return (
-		<section className="mb-8">
-			<table className="w-full table-fixed rounded-xl overflow-hidden mb-2">
+		<>
+			<table className="w-full table-fixed rounded-xl overflow-hidden ">
 				<thead>
 					<tr className={theme.bg800andWhTxt}>
 						<th></th>
 						{date && date.map(d => (
-							<th
-								key={d}
-								className="p-2"
-							>
+							<th key={d} className="p-2">
 								{DateTime.fromISO(d).toFormat('dd.MM')}
 							</th>
 						))}
@@ -41,7 +38,7 @@ const DailyTable = ({ weather }) => {
 					УФ-индекса
 				</a>
 			</Caption>
-		</section>
+		</>
 	)
 }
 

@@ -1,5 +1,5 @@
 import {useContext} from "react";
-import {ThemeContext} from "../../App";
+import {ThemeContext} from "../../../App";
 
 const UvIndex = ({ weather }) => {
 	const theme = useContext(ThemeContext)

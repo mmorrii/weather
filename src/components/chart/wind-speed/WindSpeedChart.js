@@ -27,19 +27,30 @@ ChartJS.register(
 	Legend
 );
 
-const WindSpeedChart = ({ weather, labels }) => {
+const WindSpeedChart = ({ weather, labels, windSpeedHeight }) => {
 	const theme = useContext(ThemeContext)
 	const [selectedCardIndex, setSelectedCardIndex] = useState(0)
 	
-	const windSpeed = weather.hourly?.wind_speed_10m.map(item => Math.round(item))
-	const windArr = displaySomeElements(windSpeed, selectedCardIndex)
+	const windSpeed10m = weather.hourly?.wind_speed_10m.map(item => Math.round(item))
+	const windSpeed80m = weather.hourly?.wind_speed_80m.map(item => Math.round(item))
+	const windSpeed120m = weather.hourly?.wind_speed_120m.map(item => Math.round(item))
+	
+	const getData = () => {
+		const heightMapping = {
+			10: windSpeed10m,
+			80: windSpeed80m,
+			120: windSpeed120m
+		};
+		
+		return displaySomeElements(heightMapping[windSpeedHeight], selectedCardIndex);
+	}
 	
 	const data = {
 		labels: displaySomeElements(labels, selectedCardIndex),
 		datasets: [
 			{
 				fill: true,
-				data: windArr,
+				data: getData(),
 				borderColor: theme.hexColor,
 				backgroundColor: theme.hoverColor,
 				radius: 0,
@@ -53,7 +64,7 @@ const WindSpeedChart = ({ weather, labels }) => {
 			<div className="w-full mb-2">
 				<Line
 					height={200}
-					options={lineOption(theme.hexColor, windArr)}
+					options={lineOption(theme.hexColor, getData())}
 					data={data} />
 			</div>
 			<DailyCardWindSpeed

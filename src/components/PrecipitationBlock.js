@@ -17,7 +17,7 @@ const PrecipitationBlock = ({ weather, selectedOption }) => {
 	const bgImg = currentPattern(weatherCode, timeZone, latitude)
 	
 	return (
-		<div className={`p-5 h-full ${theme.bg800andWhTxt} rounded-xl`}
+		<div className={`p-5 pb-8 ${theme.bg800andWhTxt} rounded-xl`}
 			  style={{ backgroundImage: bgImg, backgroundSize: 'cover'}}
 		>
 			<h3 className="font-semibold text-lg mb-3">Суточные осадки</h3>
