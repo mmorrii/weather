@@ -12,7 +12,9 @@ const Pressure = ({ weather, selectedCardIndex }) => {
 		<tr className={`border-y border-solid border-blue-800 ${theme.bg50}`}>
 			<td className="font-semibold pl-2 cursor-default">
 				<div className="flex items-center gap-1">
-					<div className="w-6 h-6"><PressureIcon color={theme.hexColor}/></div>
+					<div className="flex-shrink-0 w-6 h-6">
+						<PressureIcon color={theme.hexColor}/>
+					</div>
 					<p>Давление</p>
 				</div>
 			</td>

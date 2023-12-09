@@ -2,6 +2,7 @@ import ArrowIcon from "../../../icons/ArrowIcon";
 import {windDirection} from "../../../utils/wind-direction";
 import {useContext} from "react";
 import {ThemeContext} from "../../../App";
+import WindIcon from "../../../icons/WindIcon";
 
 const WindDirection = ({ weather }) => {
 	const theme = useContext(ThemeContext)
@@ -10,7 +11,14 @@ const WindDirection = ({ weather }) => {
 	
 	return (
 		<tr className={theme.bg50}>
-			<td className="font-semibold pl-3">Направление ветра</td>
+			<td className="font-semibold pl-2 cursor-default">
+				<div className="flex items-center gap-1">
+					<div className="flex-shrink-0 w-6 h-6">
+						<WindIcon color={theme.hexColor}/>
+					</div>
+					<p className="leading-4">Направление ветра</p>
+				</div>
+			</td>
 			{windDir && windDir.map((w, index) => (
 				<td key={index}
 					 className="text-center p-2"
