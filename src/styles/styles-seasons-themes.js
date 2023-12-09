@@ -15,6 +15,7 @@ export const seasonsThemes = (code, tz, lat) => {
 				bg300: "bg-blue-300",
 				bg700: "bg-blue-700",
 				bg800andWhTxt: "bg-blue-800 text-white",
+				bg900: "bg-blue-900",
 				hexColor: "#1E40AF",
 				hoverColor: "#E0F2FE"
 			}
@@ -29,6 +30,7 @@ export const seasonsThemes = (code, tz, lat) => {
 				bg300: "bg-green-300",
 				bg700: "bg-green-700",
 				bg800andWhTxt: "bg-green-800 text-white",
+				bg900: "bg-green-900",
 				hexColor: "#166534",
 				hoverColor: "#DCFCE7"
 			}
@@ -43,6 +45,7 @@ export const seasonsThemes = (code, tz, lat) => {
 				bg300: "bg-teal-300",
 				bg700: "bg-teal-700",
 				bg800andWhTxt: "bg-teal-800 text-white",
+				bg900: "bg-teal-900",
 				hexColor: "#115E59",
 				hoverColor: "#CCFBF1"
 			}
@@ -57,6 +60,7 @@ export const seasonsThemes = (code, tz, lat) => {
 				bg300: "bg-red-300",
 				bg700: "bg-red-700",
 				bg800andWhTxt: "bg-red-800 text-white",
+				bg900: "bg-red-900",
 				hexColor: "#991B1B",
 				hoverColor: "#FEE2E2"
 			}

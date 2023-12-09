@@ -8,18 +8,12 @@ import Card from "../../common/Card";
 import HumidityChart from "./humidity/HumidityChart";
 import {Figcaption} from "../../common/Caption";
 
-const ChartComponent = ({ weather }) => {
+const ChartComponent = ({ weather, selectedCardIndex, onSelectedCardIndex }) => {
 	const [navBarIndex, setNavBarIndex] = useState(0)
 	const [tempHeight, setTempHeight] = useState(2)
 	const [windSpeedHeight, setWindSpeedHeight] = useState(10)
 	const theme = useContext(ThemeContext)
 	
-	// const timezone = weather.timezone
-	// const currentTime = DateTime.now().setZone(timezone).toFormat('HH:mm')
-	// const currentTimeIndex = labelsFiltered.findIndex(
-	// 	(label) => label === currentTime || label > currentTime
-	// )
-	// console.log(currentTimeIndex)
 	const labels = weather.hourly?.time.map(item => DateTime.fromISO(item).toFormat('HH:mm'))
 	const navBar = ["температура", "вероятность осадков", "скорость ветра", "относительная влажность"]
 	
@@ -51,10 +45,40 @@ const ChartComponent = ({ weather }) => {
 						>{windSpeedHeight}м</button>
 					}
 				</div>
-				{ navBarIndex === 0 && <TempChart weather={weather} labels={labels} tempHeight={tempHeight} /> }
-				{ navBarIndex === 1 && <PrecipitationChart weather={weather} labels={labels} /> }
-				{ navBarIndex === 2 && <WindSpeedChart weather={weather} labels={labels} windSpeedHeight={windSpeedHeight} /> }
-				{ navBarIndex === 3 && <HumidityChart weather={weather} labels={labels} /> }
+				{ navBarIndex === 0 &&
+					<TempChart
+						weather={weather}
+						labels={labels}
+						tempHeight={tempHeight}
+						selectedCardIndex={selectedCardIndex}
+						onSelectedCardIndex={onSelectedCardIndex}
+					/>
+				}
+				{ navBarIndex === 1 &&
+					<PrecipitationChart
+						weather={weather}
+						labels={labels}
+						selectedCardIndex={selectedCardIndex}
+						onSelectedCardIndex={onSelectedCardIndex}
+					/>
+				}
+				{ navBarIndex === 2 &&
+					<WindSpeedChart
+						weather={weather}
+						labels={labels}
+						windSpeedHeight={windSpeedHeight}
+						selectedCardIndex={selectedCardIndex}
+						onSelectedCardIndex={onSelectedCardIndex}
+					/>
+				}
+				{ navBarIndex === 3 &&
+					<HumidityChart
+						weather={weather}
+						labels={labels}
+						selectedCardIndex={selectedCardIndex}
+						onSelectedCardIndex={onSelectedCardIndex}
+					/>
+				}
 			</Card>
 			<Figcaption>
 				{ navBarIndex === 0 && `Температура воздуха на высоте ${tempHeight} м над землей. Стандартная высота – 2 м`}

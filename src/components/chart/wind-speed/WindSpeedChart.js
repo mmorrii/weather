@@ -10,7 +10,7 @@ import {
 	Legend,
 } from 'chart.js';
 import {Line} from "react-chartjs-2";
-import {useContext, useState} from "react";
+import {useContext} from "react";
 import {ThemeContext} from "../../../App";
 import DailyCardWindSpeed from "./DailyCardWindSpeed";
 import {lineOption} from "../options/line";
@@ -27,9 +27,8 @@ ChartJS.register(
 	Legend
 );
 
-const WindSpeedChart = ({ weather, labels, windSpeedHeight }) => {
+const WindSpeedChart = ({ weather, labels, windSpeedHeight, selectedCardIndex, onSelectedCardIndex }) => {
 	const theme = useContext(ThemeContext)
-	const [selectedCardIndex, setSelectedCardIndex] = useState(0)
 	
 	const windSpeed10m = weather.hourly?.wind_speed_10m.map(item => Math.round(item))
 	const windSpeed80m = weather.hourly?.wind_speed_80m.map(item => Math.round(item))
@@ -69,8 +68,11 @@ const WindSpeedChart = ({ weather, labels, windSpeedHeight }) => {
 			</div>
 			<DailyCardWindSpeed
 				selectedCardIndex={selectedCardIndex}
-				onSelectedCardIndex={(i) => setSelectedCardIndex(i)}
+				onSelectedCardIndex={onSelectedCardIndex}
 				weather={weather}
+				windSpeedHeight={windSpeedHeight}
+				windSpeed80m={windSpeed80m}
+				windSpeed120m={windSpeed120m}
 			/>
 		</>
 	)

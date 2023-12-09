@@ -9,7 +9,7 @@ import {
 	Legend,
 } from 'chart.js';
 import {Bar} from "react-chartjs-2";
-import {useContext, useState} from "react";
+import {useContext} from "react";
 import {ThemeContext} from "../../../App";
 import {displaySomeElements} from "../../../utils/utils";
 import {barOption} from "../options/bar";
@@ -25,9 +25,8 @@ ChartJS.register(
 	Legend
 );
 
-const HumidityChart = ({ weather, labels }) => {
+const HumidityChart = ({ weather, labels, selectedCardIndex, onSelectedCardIndex }) => {
 	const theme = useContext(ThemeContext)
-	const [selectedCardIndex, setSelectedCardIndex] = useState(0)
 	
 	const humidity = weather.hourly?.relative_humidity_2m
 	
@@ -52,7 +51,7 @@ const HumidityChart = ({ weather, labels }) => {
 			</div>
 			<DailyCardHumidity
 				selectedCardIndex={selectedCardIndex}
-				onSelectedCardIndex={(i) => setSelectedCardIndex(i)}
+				onSelectedCardIndex={onSelectedCardIndex}
 				weather={weather}
 				humidity={humidity}
 			/>

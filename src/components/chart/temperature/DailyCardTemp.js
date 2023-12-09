@@ -2,8 +2,10 @@ import {DateTime} from "luxon";
 import {useContext} from "react";
 import {ThemeContext} from "../../../App";
 import {weatherIcons} from "../../../utils/current-icon";
+import {getMaxValues, getMinValues} from "../../../utils/max-min-value";
 
-const DailyCardTemp = ({ weather, onSelectedCardIndex, selectedCardIndex }) => {
+const DailyCardTemp = ({ weather, onSelectedCardIndex, selectedCardIndex,
+								  tempHeight, temp80m, temp120m }) => {
 	const theme = useContext(ThemeContext)
 	
 	const date = weather.daily?.time
@@ -29,13 +31,17 @@ const DailyCardTemp = ({ weather, onSelectedCardIndex, selectedCardIndex }) => {
 					</div>
 					<p className="flex gap-2">
 						<span title="Максимальная суточная температура">
-							{ Math.round(tempMax[index]) }
+							{ tempHeight === 2 && Math.round(tempMax[index]) }
+							{ tempHeight === 80 && getMaxValues(temp80m)[index] }
+							{ tempHeight === 120 && getMaxValues(temp120m)[index] }
 						</span>
 						<span
 							className="opacity-60"
 							title="Минимальная суточная температура"
 						>
-							{ Math.round(tempMin[index]) }
+							{ tempHeight === 2 && Math.round(tempMin[index]) }
+							{ tempHeight === 80 && getMinValues(temp80m)[index] }
+							{ tempHeight === 120 && getMinValues(temp120m)[index] }
 						</span>
 					</p>
 				</button>

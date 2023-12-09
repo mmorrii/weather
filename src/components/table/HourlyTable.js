@@ -7,12 +7,21 @@ import SnowDepth from "./rows/SnowDepth";
 import Pressure from "./rows/Pressure";
 import CloudCover from "./rows/CloudCover";
 import Visibility from "./rows/Visibility";
+import {currentPattern} from "../../utils/current-pattern";
 
-const HourlyTable = ({ weather }) => {
+const HourlyTable = ({ weather, selectedOption }) => {
 	const theme = useContext(ThemeContext)
 	const [selectedCardIndex, setSelectedCardIndex] = useState(0)
 	
-	const date = displaySomeElements(weather.hourly?.time, selectedCardIndex)
+	const time = displaySomeElements(weather.hourly?.time, selectedCardIndex)
+	const timezone = weather.timezone
+	const currentTime = DateTime.now().setZone(timezone).toFormat('HH:mm')
+	const currentTimeIndex = time.findIndex(t => DateTime.fromISO(t).toFormat('HH:mm') > currentTime)
+	
+	const weatherCode = weather?.current?.weather_code
+	const timeZone = weather?.timezone
+	const latitude = selectedOption.latitude
+	const bgImg = currentPattern(weatherCode, timeZone, latitude)
 	
 	return (
 		<div className="mb-8">
@@ -20,9 +29,15 @@ const HourlyTable = ({ weather }) => {
 				<thead>
 					<tr className={theme.bg800andWhTxt}>
 						<th></th>
-						{date && date.map(d => (
-							<th key={d} className="p-2">
-								{ DateTime.fromISO(d).toFormat('HH:mm') }
+						{time && time.map((t, index) => (
+							<th
+								key={t}
+								className={`p-2 ${(index === currentTimeIndex - 1 && selectedCardIndex === 0) ?
+									theme.bg900 : ''}`}
+								style={(index === currentTimeIndex - 1 && selectedCardIndex === 0) ?
+									{backgroundImage: bgImg, backgroundSize: '250%'} : {}}
+							>
+								{ DateTime.fromISO(t).toFormat('HH:mm') }
 							</th>
 						))}
 					</tr>

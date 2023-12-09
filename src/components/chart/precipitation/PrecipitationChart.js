@@ -9,7 +9,7 @@ import {
 	Legend,
 } from 'chart.js';
 import {Bar} from "react-chartjs-2";
-import {useContext, useState} from "react";
+import {useContext} from "react";
 import {ThemeContext} from "../../../App";
 import DailyCardPrecipitation from "./DailyCardPrecipitation";
 import {displaySomeElements} from "../../../utils/utils";
@@ -25,9 +25,8 @@ ChartJS.register(
 	Legend
 );
 
-const PrecipitationChart = ({ weather, labels }) => {
+const PrecipitationChart = ({ weather, labels, selectedCardIndex, onSelectedCardIndex }) => {
 	const theme = useContext(ThemeContext)
-	const [selectedCardIndex, setSelectedCardIndex] = useState(0)
 	
 	const precipitation = weather.hourly?.precipitation_probability
 	
@@ -51,7 +50,7 @@ const PrecipitationChart = ({ weather, labels }) => {
 			</div>
 			<DailyCardPrecipitation
 				selectedCardIndex={selectedCardIndex}
-				onSelectedCardIndex={(i) => setSelectedCardIndex(i)}
+				onSelectedCardIndex={onSelectedCardIndex}
 				weather={weather}
 			/>
 		</>

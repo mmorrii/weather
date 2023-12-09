@@ -1,8 +1,10 @@
 import {DateTime} from "luxon";
 import {useContext} from "react";
 import {ThemeContext} from "../../../App";
+import {getMaxValues} from "../../../utils/max-min-value";
 
-const DailyCardWindSpeed = ({ weather, onSelectedCardIndex, selectedCardIndex }) => {
+const DailyCardWindSpeed = ({ weather, onSelectedCardIndex, selectedCardIndex,
+										 windSpeedHeight, windSpeed80m, windSpeed120m }) => {
 	const theme = useContext(ThemeContext)
 	
 	const date = weather.daily?.time
@@ -22,7 +24,9 @@ const DailyCardWindSpeed = ({ weather, onSelectedCardIndex, selectedCardIndex })
 						className="w-11 h-11 text-3xl flex items-center justify-center"
 						title="Максимальная суточная скорость ветра"
 					>
-						{ windSpeed[index] }
+						{ windSpeedHeight === 10 && windSpeed[index] }
+						{ windSpeedHeight === 80 && getMaxValues(windSpeed80m)[index] }
+						{ windSpeedHeight === 120 && getMaxValues(windSpeed120m)[index] }
 					</div>
 					<p> м/с </p>
 				</button>
