@@ -4,7 +4,7 @@ import HourlyTable from "./table/HourlyTable";
 
 const HourlyWeather = ({ weather }) => {
 	return (
-		<section>
+		<section className="mb-14">
 			<Title>Почасовая погода</Title>
 			<HourlyTable weather={weather} />
 			<SoilChart weather={weather} />

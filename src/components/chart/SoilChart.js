@@ -31,7 +31,7 @@ const SoilChart = ({ weather }) => {
 				{ navBarIndex === 1 && <SoilMoistureChart weather={weather} /> }
 			</Card>
 			<Figcaption>
-				{ navBarIndex === 0 && "Температура почвы на глубине 0, 6 и 18см. 0 см – температура поверхности суши или воды" }
+				{ navBarIndex === 0 && "Температура почвы на глубине 0, 6 и 18см. 0 см – температура поверхности почвы или воды" }
 				{ navBarIndex === 1 && "Среднее содержание влаги в почве на глубине 0–1, 1–3 и 3–9 см" }
 			</Figcaption>
 		</figure>

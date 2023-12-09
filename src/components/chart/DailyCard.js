@@ -13,7 +13,7 @@ const DailyCard = ({ weather, selectedCardIndex, onSelectedCardIndex }) => {
 				<button
 					key={d}
 					onClick={() => onSelectedCardIndex(index)}
-					className={` ${ (selectedCardIndex === index) ? theme.bg800andWhTxt : theme.bg50}
+					className={` ${ (selectedCardIndex === index) ? theme.bg800andWhTxt : `${theme.bg50} hover:bg-gray-50`}
 					py-2.5 px-6 rounded-xl text-black`}
 				>
 					<p>{ DateTime.fromISO(d).toFormat('dd.MM') }</p>

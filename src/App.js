@@ -10,6 +10,7 @@ import {useLocalStorage} from "./hooks/useLocalStorage";
 import PrecipitationBlock from "./components/PrecipitationBlock";
 import DailyWeather from "./components/DailyWeather";
 import HourlyWeather from "./components/HourlyWeather";
+import Footer from "./components/Footer";
 
 export const ThemeContext = createContext({})
 
@@ -46,7 +47,7 @@ function App() {
 	
 	return (
 		<div className={`${seasonsTheme.bg} min-h-screen`}>
-			<div className="max-w-screen-2xl font-sans p-4 m-auto overflow-hidden">
+			<div className="max-w-screen-2xl font-sans p-4 pb-0 m-auto overflow-hidden">
 				<ThemeContext.Provider value={seasonsTheme}>
 					<Header
 						handleOptionChange={handleOptionChange}
@@ -68,6 +69,7 @@ function App() {
 						<DailyWeather weather={weather} />
 						<HourlyWeather weather={weather} />
 					</main>
+					<Footer />
 				</ThemeContext.Provider>
 			</div>
 		</div>
