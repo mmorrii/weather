@@ -16,7 +16,7 @@ const SelectComponent =	({ selectedOption, handleOptionChange }) => {
 	})
 	
 	const customStyles = {
-		control: (baseStyles, state) => ({
+		control: (baseStyles) => ({
 			...baseStyles,
 			width: 300,
 			backgroundColor: "white",
@@ -26,11 +26,11 @@ const SelectComponent =	({ selectedOption, handleOptionChange }) => {
 				borderColor: "none",
 			},
 		}),
-		menu: (baseStyles, state) => ({
+		menu: (baseStyles) => ({
 			...baseStyles,
 			width: 300,
 		}),
-		groupHeading: (baseStyles, state) => ({
+		groupHeading: (baseStyles) => ({
 			...baseStyles,
 			fontSize: 11,
 			letterSpacing: 1,
@@ -38,10 +38,14 @@ const SelectComponent =	({ selectedOption, handleOptionChange }) => {
 			paddingBottom: 5,
 			paddingTop: 5,
 		}),
-		group: (baseStyles, state) => ({
+		group: (baseStyles) => ({
 			...baseStyles,
 			paddingTop: 0,
 		}),
+		valueContainer: (baseStyles) => ({
+			...baseStyles,
+			cursor: "text",
+		})
 	}
 	
 	
@@ -53,7 +57,6 @@ const SelectComponent =	({ selectedOption, handleOptionChange }) => {
 			onChange={handleOptionChange}
 			options={coords}
 			isSearchable={true}
-			// defaultMenuIsOpen={true}
 		/>
 	)
 }

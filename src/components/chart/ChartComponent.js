@@ -35,12 +35,12 @@ const ChartComponent = ({ weather, selectedCardIndex, onSelectedCardIndex }) => 
 						))}
 					</div>
 					{ navBarIndex === 0 &&
-						<button className={`${theme.textNavBar} hover:text-blue-950`}
+						<button className={`${theme.textNavBar} ${theme.textHover}`}
 								  onClick={() => setTempHeight(tempHeight === 2 ? 80 : tempHeight === 80 ? 120 : 2)}
 						>{tempHeight}м</button>
 					}
 					{ navBarIndex === 2 &&
-						<button className={`${theme.textNavBar} hover:text-blue-950`}
+						<button className={`${theme.textNavBar} ${theme.textHover}`}
 								  onClick={() => setWindSpeedHeight(windSpeedHeight === 10 ? 80 : windSpeedHeight === 80 ? 120 : 10)}
 						>{windSpeedHeight}м</button>
 					}

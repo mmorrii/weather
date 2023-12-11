@@ -1,5 +1,5 @@
-import {weatherIcons} from "../utils/current-icon";
-import {weatherCodeFn} from "../utils/interpretation-weather-codes";
+import {weatherIcons} from "../../utils/current-icon";
+import {weatherCodeFn} from "../../utils/interpretation-weather-codes";
 
 const CurrentTemp = ({ weather }) => {
 	const weatherCode = weather?.current?.weather_code

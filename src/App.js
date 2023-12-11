@@ -3,7 +3,7 @@ import {coords} from "./data/coords";
 import {WEATHER} from "./api/weather-api";
 import {useLocalStorage} from "./hooks/useLocalStorage";
 import {seasonsThemes} from "./styles/styles-seasons-themes";
-import CurrentWeather from "./components/CurrentWeather";
+import CurrentWeather from "./components/current-weather/CurrentWeather";
 import Header from "./components/header/Header";
 import DailyWeather from "./components/DailyWeather";
 import HourlyWeather from "./components/HourlyWeather";
@@ -39,18 +39,24 @@ function App() {
 	const latitude = selectedOption.latitude
 	const seasonsTheme = seasonsThemes(weatherCode, timeZone, latitude)
 	
-	const handleOptionChange = (selectedOption) => {
-		setSelectedOption(selectedOption)
-	}
+	const handleInputChange = (key, value) => {
+		setSelectedOption(prevState => ({
+			...prevState,
+			[key]: value,
+			value: weather?.timezone,
+			label: weather?.timezone,
+		}));
+	};
 	
 	return (
 		<div className={`${seasonsTheme.bg} min-h-screen`}>
 			<div className="max-w-screen-2xl font-sans p-4 pb-0 m-auto overflow-hidden">
 				<ThemeContext.Provider value={seasonsTheme}>
 					<Header
-						handleOptionChange={handleOptionChange}
+						handleOptionChange={(s) => setSelectedOption(s)}
 						selectedOption={selectedOption}
 						weather={weather}
+						onChangeSelected={(field, value) => handleInputChange(field, value)}
 					/>
 					<main>
 						<CurrentWeather weather={weather} selectedOption={selectedOption} />

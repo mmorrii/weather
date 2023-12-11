@@ -2,7 +2,7 @@ import Logo from "./Logo";
 import SelectComponent from "./SelectComponent";
 import Map from "./Map";
 
-const Header = ({ handleOptionChange, selectedOption, weather }) => {
+const Header = ({ handleOptionChange, selectedOption, weather, onChangeSelected }) => {
 	const isDay = weather?.current?.is_day === 1
 	
 	return (
@@ -13,7 +13,7 @@ const Header = ({ handleOptionChange, selectedOption, weather }) => {
 					handleOptionChange={handleOptionChange}
 					selectedOption={selectedOption}
 				/>
-				<Map />
+				<Map selectedOption={selectedOption} onChangeSelected={onChangeSelected} />
 			</div>
 		</header>
 	)

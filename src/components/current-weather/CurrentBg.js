@@ -1,5 +1,5 @@
 import {useEffect, useState} from "react";
-import {weatherImgBg} from "../utils/current-bg";
+import {weatherImgBg} from "../../utils/current-bg";
 
 const CurrentBg = ({ children, weather, selectedOption, seasonTheme }) => {
 	const [bgImage, setBgImage] = useState({});

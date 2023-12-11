@@ -1,9 +1,9 @@
-import BlackBg from "../common/BlackBg";
+import BlackBg from "../../common/BlackBg";
 import CurrentTime from "./CurrentTime";
 import {DateTime} from "luxon";
 import CurrentTemp from "./CurrentTemp";
 import CurrentBg from "./CurrentBg";
-import {seasonsThemes} from "../styles/styles-seasons-themes";
+import {seasonsThemes} from "../../styles/styles-seasons-themes";
 
 const CurrentWeather = ({ selectedOption, weather }) => {
 	const timeUpdate = weather?.current?.time
