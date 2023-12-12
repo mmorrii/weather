@@ -6,7 +6,7 @@ const InputForm = ({ id, value, placeholder, onChange }) => {
 	
 	return (
 		<input
-			type="text"
+			type="number"
 			id={id}
 			value={value}
 			placeholder={placeholder}

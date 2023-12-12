@@ -8,8 +8,9 @@ import Pressure from "./rows/Pressure";
 import CloudCover from "./rows/CloudCover";
 import Visibility from "./rows/Visibility";
 import {currentPattern} from "../../utils/current-pattern";
+import ChristmasLightIcon from "../../icons/ChristmasLightIcon";
 
-const HourlyTable = ({ weather, selectedOption }) => {
+const HourlyTable = ({ weather, selectedOption, season }) => {
 	const theme = useContext(ThemeContext)
 	const [selectedCardIndex, setSelectedCardIndex] = useState(0)
 	
@@ -24,7 +25,12 @@ const HourlyTable = ({ weather, selectedOption }) => {
 	const bgImg = currentPattern(weatherCode, timeZone, latitude)
 	
 	return (
-		<div className="mb-8">
+		<div className="mb-8 relative">
+			{ season === "winter" &&
+				<div className="absolute -top-[2.95rem] -left-6">
+					<ChristmasLightIcon />
+				</div>
+			}
 			<table className="w-full table-fixed rounded-xl overflow-hidden mb-2">
 				<thead>
 					<tr className={theme.bg800andWhTxt}>

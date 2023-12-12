@@ -18,7 +18,7 @@ const SelectComponent =	({ selectedOption, handleOptionChange }) => {
 	const customStyles = {
 		control: (baseStyles) => ({
 			...baseStyles,
-			width: 300,
+			width: 280,
 			backgroundColor: "white",
 			borderColor: themeContext.hexColor,
 			borderWidth: 2,
@@ -28,7 +28,7 @@ const SelectComponent =	({ selectedOption, handleOptionChange }) => {
 		}),
 		menu: (baseStyles) => ({
 			...baseStyles,
-			width: 300,
+			width: 280,
 		}),
 		groupHeading: (baseStyles) => ({
 			...baseStyles,

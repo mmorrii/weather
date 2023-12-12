@@ -4,14 +4,20 @@ import {ThemeContext} from "../../App";
 import WindDirection from "./rows/WindDirection";
 import UvIndex from "./rows/UvIndex";
 import {Caption} from "../../common/Caption";
+import ChristmasLightIcon from "../../icons/ChristmasLightIcon";
 
-const DailyTable = ({ weather }) => {
+const DailyTable = ({ weather, season }) => {
 	const theme = useContext(ThemeContext)
 	
 	const date = weather.daily?.time
 	
 	return (
-		<>
+		<div className="relative">
+			{ season === "winter" &&
+				<div className="absolute -top-[2.95rem] -left-6">
+					<ChristmasLightIcon />
+				</div>
+			}
 			<table className="w-full table-fixed rounded-xl overflow-hidden ">
 				<thead>
 					<tr className={theme.bg800andWhTxt}>
@@ -38,7 +44,7 @@ const DailyTable = ({ weather }) => {
 					УФ-индекса
 				</a>
 			</Caption>
-		</>
+		</div>
 	)
 }
 

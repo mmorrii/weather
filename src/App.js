@@ -9,6 +9,7 @@ import DailyWeather from "./components/DailyWeather";
 import HourlyWeather from "./components/HourlyWeather";
 import Footer from "./components/Footer";
 import InfoBlock from "./components/InfoBlock";
+import {currentSeason} from "./utils/current-season";
 
 export const ThemeContext = createContext({})
 
@@ -38,6 +39,7 @@ function App() {
 	const timeZone = weather?.timezone
 	const latitude = selectedOption.latitude
 	const seasonsTheme = seasonsThemes(weatherCode, timeZone, latitude)
+	const curSeason = currentSeason(weatherCode, timeZone, latitude)
 	
 	const handleInputChange = (key, value) => {
 		setSelectedOption(prevState => ({
@@ -61,8 +63,8 @@ function App() {
 					<main>
 						<CurrentWeather weather={weather} selectedOption={selectedOption} />
 						<InfoBlock weather={weather} selectedOption={selectedOption} />
-						<DailyWeather weather={weather} />
-						<HourlyWeather weather={weather} selectedOption={selectedOption} />
+						<DailyWeather weather={weather} season={curSeason} />
+						<HourlyWeather weather={weather} selectedOption={selectedOption} season={curSeason} />
 					</main>
 					<Footer />
 				</ThemeContext.Provider>
