@@ -82,7 +82,7 @@ const ChartComponent = ({ weather, selectedCardIndex, onSelectedCardIndex }) => 
 			</Card>
 			<Figcaption>
 				{ navBarIndex === 0 && `Температура воздуха на высоте ${tempHeight} м над землей. Стандартная высота – 2 м`}
-				{ navBarIndex === 1 && "Вероятность осадков более 0,1 мм за предыдущий час"}
+				{ navBarIndex === 1 && "Вероятность осадков"}
 				{ navBarIndex === 2 && `Скорость ветра на высоте ${windSpeedHeight} м над землей. Стандартная высота – 10 м`}
 				{ navBarIndex === 3 && "Относительная влажность на высоте 2 м над землей"}
 			</Figcaption>

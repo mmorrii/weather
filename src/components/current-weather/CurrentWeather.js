@@ -5,14 +5,15 @@ import CurrentTemp from "./CurrentTemp";
 import CurrentBg from "./CurrentBg";
 import {seasonsThemes} from "../../styles/styles-seasons-themes";
 
-const CurrentWeather = ({ selectedOption, weather }) => {
+const CurrentWeather = ({ selectedOption, weather, cityData }) => {
 	const timeUpdate = weather?.current?.time
 	const formattedDate = DateTime.fromISO(timeUpdate).toFormat('dd.MM.yyyy HH:mm')
 	const timeZone = weather?.timezone
 	const weatherCode = weather?.current?.weather_code
 	const latitude = selectedOption.latitude
-	const optionValue = selectedOption.value
 	const seasonTheme = seasonsThemes(weatherCode, timeZone, latitude)
+	const country = cityData?.results?.[0]?.components?.country
+	const city = cityData?.results?.[0]?.components?.city
 	
 	return (
 		<CurrentBg
@@ -22,7 +23,7 @@ const CurrentWeather = ({ selectedOption, weather }) => {
 		>
 			<div className="flex justify-between items-center">
 				<BlackBg>
-					<h3>{timeZone}, {optionValue}</h3>
+					<h3>{country}, {city}</h3>
 				</BlackBg>
 				<BlackBg>
 					<CurrentTime timezone={timeZone}/>

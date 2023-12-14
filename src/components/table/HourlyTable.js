@@ -49,7 +49,9 @@ const HourlyTable = ({ weather, selectedOption, season }) => {
 					</tr>
 				</thead>
 				<tbody>
+				{ season === "winter" &&
 					<SnowDepth weather={weather} selectedCardIndex={selectedCardIndex} />
+				}
 					<Pressure weather={weather} selectedCardIndex={selectedCardIndex} />
 					<CloudCover weather={weather} selectedCardIndex={selectedCardIndex} />
 					<Visibility weather={weather} selectedCardIndex={selectedCardIndex} />

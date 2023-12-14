@@ -1,38 +1,28 @@
 import {createContext, useEffect, useState} from "react";
 import {coords} from "./data/coords";
-import {WEATHER} from "./api/weather-api";
 import {useLocalStorage} from "./hooks/useLocalStorage";
 import {seasonsThemes} from "./styles/styles-seasons-themes";
+import {currentSeason} from "./utils/current-season";
+import {fetchCity, fetchWeather} from "./api/api";
 import CurrentWeather from "./components/current-weather/CurrentWeather";
 import Header from "./components/header/Header";
 import DailyWeather from "./components/DailyWeather";
 import HourlyWeather from "./components/HourlyWeather";
 import Footer from "./components/Footer";
 import InfoBlock from "./components/InfoBlock";
-import {currentSeason} from "./utils/current-season";
 
 export const ThemeContext = createContext({})
 
 function App() {
 	const [weather, setWeather] = useState({})
+	const [city, setCity] = useState({})
 	const [selectedOption, setSelectedOption] = useLocalStorage("selectedOption", coords[2].options[1])
 	
 	useEffect(() => {
-		const fetchData = () => {
-			fetch(`${WEATHER}&latitude=${selectedOption.latitude}&longitude=${selectedOption.longitude}`)
-				.then((response) => response.json())
-				.then((data) => {
-					console.log(data)
-					setWeather(data)
-				})
-				.catch((err) => {
-					console.log(err.message);
-					throw err;
-				})
-		}
-		fetchData();
-		// const intervalId = setInterval(fetchData, 60 * 60 * 1000);
+		fetchWeather(selectedOption.latitude, selectedOption.longitude, setWeather);
+		// const intervalId = setInterval(fetchWeather, 60 * 60 * 1000);
 		// return () => clearInterval(intervalId);
+		fetchCity(selectedOption.latitude, selectedOption.longitude, setCity)
 	}, [selectedOption])
 	
 	const weatherCode = weather?.current?.weather_code
@@ -45,8 +35,8 @@ function App() {
 		setSelectedOption(prevState => ({
 			...prevState,
 			[key]: value,
-			value: weather?.timezone,
-			label: weather?.timezone,
+			value: city?.results?.[0]?.components?.country,
+			label: city?.results?.[0]?.components?.country,
 		}));
 	};
 	
@@ -61,7 +51,11 @@ function App() {
 						onChangeSelected={(field, value) => handleInputChange(field, value)}
 					/>
 					<main>
-						<CurrentWeather weather={weather} selectedOption={selectedOption} />
+						<CurrentWeather
+							weather={weather}
+							selectedOption={selectedOption}
+							cityData={city}
+						/>
 						<InfoBlock weather={weather} selectedOption={selectedOption} />
 						<DailyWeather weather={weather} season={curSeason} />
 						<HourlyWeather weather={weather} selectedOption={selectedOption} season={curSeason} />
