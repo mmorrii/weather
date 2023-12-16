@@ -5,7 +5,7 @@ const Card = ({ children, className }) => {
 	const theme = useContext(ThemeContext)
 	
 	return (
-		<div className={`p-5 ${theme.border} rounded-xl bg-white ${className}`}>
+		<div className={`p-5 ${theme.border} dark:border-none rounded-xl bg-white dark:bg-neutral-800 ${className}`}>
 			{children}
 		</div>
 	)

@@ -1,5 +1,5 @@
 import {Fragment, useContext, useState} from "react";
-import {ThemeContext} from "../../App";
+import {IsDarkContext, ThemeContext} from "../../App";
 import Card from "../../common/Card";
 import SoilTempChart from "./soil/SoilTempChart";
 import SoilMoistureChart from "./soil/SoilMoistureChart";
@@ -8,8 +8,10 @@ import {Figcaption} from "../../common/Caption";
 const SoilChart = ({ weather }) => {
 	const [navBarIndex, setNavBarIndex] = useState(0)
 	const theme = useContext(ThemeContext)
+	const isDark = useContext(IsDarkContext)
 	
 	const navBar = ["температура почвы", "влажность почвы"]
+	const textColor = isDark ? theme.textDark : theme.text
 	
 	return (
 		<figure>
@@ -18,7 +20,7 @@ const SoilChart = ({ weather }) => {
 					{ navBar.map((item, index) => (
 						<Fragment key={item}>
 							<button
-								className={ navBarIndex === index ? theme.textNavBar : "opacity-50 hover:opacity-70" }
+								className={ navBarIndex === index ? `${textColor} font-semibold` : "opacity-50 hover:opacity-70" }
 								onClick={() => setNavBarIndex(index)}
 							>
 								{item}

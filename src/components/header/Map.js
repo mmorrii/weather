@@ -1,12 +1,13 @@
 import {useContext, useState} from "react";
 import {createPortal} from "react-dom";
 import Modal from "../modal/Modal";
-import {ThemeContext} from "../../App";
+import {IsDarkContext, ThemeContext} from "../../App";
 import MapIcon from "../../icons/MapIcon";
 
 const Map = ({ selectedOption, onChangeSelected }) => {
 	const [isModalOpen, setIsModalOpen] = useState(false)
 	const theme = useContext(ThemeContext)
+	const isDark = useContext(IsDarkContext)
 	
 	const handleCloseModal = () => {
 		setIsModalOpen(false)
@@ -24,7 +25,7 @@ const Map = ({ selectedOption, onChangeSelected }) => {
 				className="w-11"
 				onClick={handleOpenModal}
 			>
-				<MapIcon color={theme.hexColor} />
+				<MapIcon color={isDark ? theme.hexColorDark : theme.hexColor} />
 			</button>
 			{ isModalOpen &&
 				createPortal(

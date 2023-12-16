@@ -11,7 +11,7 @@ import {
 } from 'chart.js';
 import {Line} from "react-chartjs-2";
 import {useContext} from "react";
-import {ThemeContext} from "../../../App";
+import {IsDarkContext, ThemeContext} from "../../../App";
 import DailyCardWindSpeed from "./DailyCardWindSpeed";
 import {lineOption} from "../options/line";
 import {displaySomeElements} from "../../../utils/utils";
@@ -29,10 +29,13 @@ ChartJS.register(
 
 const WindSpeedChart = ({ weather, labels, windSpeedHeight, selectedCardIndex, onSelectedCardIndex }) => {
 	const theme = useContext(ThemeContext)
+	const isDark = useContext(IsDarkContext)
 	
 	const windSpeed10m = weather.hourly?.wind_speed_10m.map(item => Math.round(item))
 	const windSpeed80m = weather.hourly?.wind_speed_80m.map(item => Math.round(item))
 	const windSpeed120m = weather.hourly?.wind_speed_120m.map(item => Math.round(item))
+	const textColor = isDark ? "#ffffff" : "#000000"
+	const bgColor = isDark ? theme.hoverDarkColor : theme.hoverColor
 	
 	const getData = () => {
 		const heightMapping = {
@@ -50,8 +53,8 @@ const WindSpeedChart = ({ weather, labels, windSpeedHeight, selectedCardIndex, o
 			{
 				fill: true,
 				data: getData(),
-				borderColor: theme.hexColor,
-				backgroundColor: theme.hoverColor,
+				borderColor: isDark ? theme.hexColorDark : theme.hexColor,
+				backgroundColor: bgColor,
 				radius: 0,
 				tension: 0.3,
 			},
@@ -63,7 +66,7 @@ const WindSpeedChart = ({ weather, labels, windSpeedHeight, selectedCardIndex, o
 			<div className="w-full mb-2">
 				<Line
 					height={200}
-					options={lineOption(theme.hexColor, getData())}
+					options={lineOption(textColor, getData())}
 					data={data} />
 			</div>
 			<DailyCardWindSpeed

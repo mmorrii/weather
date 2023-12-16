@@ -26,7 +26,7 @@ export const lineOption = (color, arr) => {
 			},
 		},
 		animation: {
-			onProgress: (animation, color) => {
+			onProgress: (animation) => {
 				const ctx = animation.chart.ctx;
 				const chart = animation.chart;
 				ctx.font = '14px Arial';

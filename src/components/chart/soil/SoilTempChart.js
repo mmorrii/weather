@@ -13,7 +13,7 @@ import {DateTime} from "luxon";
 import {useState} from "react";
 import {displaySomeElements} from "../../../utils/utils";
 import {multiaxisLineOption} from "../options/multiaxisLine";
-import DailyCard from "../DailyCard";
+import DailyCard from "../../DailyCard";
 
 ChartJS.register(
 	CategoryScale,

@@ -17,7 +17,7 @@ const DailyCardWindSpeed = ({ weather, onSelectedCardIndex, selectedCardIndex,
 					key={d}
 					onClick={() => onSelectedCardIndex(index)}
 					className={` ${ (selectedCardIndex === index) ? theme.bg800andWhTxt : 'bg-transparent'}
-					py-3.5 px-6 flex flex-col items-center gap-0.5 rounded-xl text-black`}
+					py-3.5 px-6 flex flex-col items-center gap-0.5 rounded-xl text-black dark:text-neutral-50`}
 				>
 					<p>{ DateTime.fromISO(d).toFormat('dd.MM') }</p>
 					<div

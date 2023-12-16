@@ -2,7 +2,7 @@ import {DateTime} from "luxon";
 import {useContext, useState} from "react";
 import {ThemeContext} from "../../App";
 import {displaySomeElements} from "../../utils/utils";
-import DailyCard from "../chart/DailyCard";
+import DailyCard from "../DailyCard";
 import SnowDepth from "./rows/SnowDepth";
 import Pressure from "./rows/Pressure";
 import CloudCover from "./rows/CloudCover";

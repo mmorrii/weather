@@ -1,16 +1,17 @@
 import {coords} from "../../data/coords";
 import Select from "react-select";
 import {useContext} from "react";
-import {ThemeContext} from "../../App";
+import {IsDarkContext, ThemeContext} from "../../App";
 
 const SelectComponent =	({ selectedOption, handleOptionChange }) => {
 	const themeContext = useContext(ThemeContext)
+	const isDark = useContext(IsDarkContext)
 	
 	const theme = (theme) => ({
 		...theme,
 		colors: {
 			...theme.colors,
-			primary25: themeContext.hoverColor,
+			primary25: isDark? themeContext.hoverDarkColor : themeContext.hoverColor,
 			primary: themeContext.hexColor,
 		},
 	})
@@ -19,8 +20,8 @@ const SelectComponent =	({ selectedOption, handleOptionChange }) => {
 		control: (baseStyles) => ({
 			...baseStyles,
 			width: 280,
-			backgroundColor: "white",
-			borderColor: themeContext.hexColor,
+			backgroundColor: isDark ? "#171717" : "white",
+			borderColor: isDark ? themeContext.hexColorDark : themeContext.hexColor,
 			borderWidth: 2,
 			"&:hover": {
 				borderColor: "none",
@@ -29,12 +30,13 @@ const SelectComponent =	({ selectedOption, handleOptionChange }) => {
 		menu: (baseStyles) => ({
 			...baseStyles,
 			width: 280,
+			backgroundColor: isDark ? "#171717" : "white",
 		}),
 		groupHeading: (baseStyles) => ({
 			...baseStyles,
 			fontSize: 11,
 			letterSpacing: 1,
-			backgroundColor: "#efefef",
+			backgroundColor: isDark ? "#262626" : "#efefef",
 			paddingBottom: 5,
 			paddingTop: 5,
 		}),
@@ -45,7 +47,15 @@ const SelectComponent =	({ selectedOption, handleOptionChange }) => {
 		valueContainer: (baseStyles) => ({
 			...baseStyles,
 			cursor: "text",
-		})
+		}),
+		singleValue: (baseStyles) => ({
+			...baseStyles,
+			color: isDark ? "#fafafa" : "#000000",
+		}),
+		input: (baseStyles) => ({
+			...baseStyles,
+			color: isDark ? "#fafafa" : "#000000",
+		}),
 	}
 	
 	

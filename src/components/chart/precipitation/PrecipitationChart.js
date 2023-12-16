@@ -10,7 +10,7 @@ import {
 } from 'chart.js';
 import {Bar} from "react-chartjs-2";
 import {useContext} from "react";
-import {ThemeContext} from "../../../App";
+import {IsDarkContext, ThemeContext} from "../../../App";
 import DailyCardPrecipitation from "./DailyCardPrecipitation";
 import {displaySomeElements} from "../../../utils/utils";
 import {barOption} from "../options/bar";
@@ -27,8 +27,10 @@ ChartJS.register(
 
 const PrecipitationChart = ({ weather, labels, selectedCardIndex, onSelectedCardIndex }) => {
 	const theme = useContext(ThemeContext)
+	const isDark = useContext(IsDarkContext)
 	
 	const precipitation = weather.hourly?.precipitation_probability
+	const textColor = isDark ? "#ffffff" : "#000000"
 	
 	const data = {
 		labels: displaySomeElements(labels, selectedCardIndex),
@@ -45,7 +47,7 @@ const PrecipitationChart = ({ weather, labels, selectedCardIndex, onSelectedCard
 			<div className="w-full mb-2">
 				<Bar
 					height={200}
-					options={barOption}
+					options={barOption(textColor)}
 					data={data} />
 			</div>
 			<DailyCardPrecipitation

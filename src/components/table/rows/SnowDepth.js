@@ -1,19 +1,20 @@
 import {useContext} from "react";
-import {ThemeContext} from "../../../App";
+import {IsDarkContext, ThemeContext} from "../../../App";
 import {displaySomeElements} from "../../../utils/utils";
 import SnowDepthIcon from "../../../icons/SnowDepthIcon";
 
 const SnowDepth = ({ weather, selectedCardIndex }) => {
 	const theme = useContext(ThemeContext)
+	const isDark = useContext(IsDarkContext)
 	
 	const depth = displaySomeElements(weather.hourly?.snow_depth, selectedCardIndex)
 	
 	return (
-		<tr className={`border-y border-solid border-blue-800 ${theme.bg50}`}>
+		<tr className={`border-y border-solid border-blue-800 ${theme.bg50} dark:bg-neutral-800`}>
 			<td className="font-semibold pl-2 cursor-default">
 				<div className="flex items-center gap-1">
 					<div className="flex-shrink-0 w-6 h-6" title="Глубина снега на земле">
-						<SnowDepthIcon color={theme.hexColor}/>
+						<SnowDepthIcon color={isDark ? theme.hexColorDark : theme.hexColor} />
 					</div>
 					<p className="leading-4">Глубина снега</p>
 				</div>

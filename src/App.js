@@ -12,17 +12,19 @@ import Footer from "./components/Footer";
 import InfoBlock from "./components/InfoBlock";
 
 export const ThemeContext = createContext({})
+export const IsDarkContext = createContext(false)
 
 function App() {
 	const [weather, setWeather] = useState({})
 	const [city, setCity] = useState({})
+	const [isDark, setIsDark] = useLocalStorage("isDarkTheme",false)
 	const [selectedOption, setSelectedOption] = useLocalStorage("selectedOption", coords[2].options[1])
 	
 	useEffect(() => {
 		fetchWeather(selectedOption.latitude, selectedOption.longitude, setWeather);
 		// const intervalId = setInterval(fetchWeather, 60 * 60 * 1000);
 		// return () => clearInterval(intervalId);
-		fetchCity(selectedOption.latitude, selectedOption.longitude, setCity)
+		// fetchCity(selectedOption.latitude, selectedOption.longitude, setCity)
 	}, [selectedOption])
 	
 	const weatherCode = weather?.current?.weather_code
@@ -41,26 +43,30 @@ function App() {
 	};
 	
 	return (
-		<div className={`${seasonsTheme.bg} min-h-screen`}>
+		<div className={`${!isDark && seasonsTheme.bg} dark:bg-neutral-900 dark:text-neutral-50 min-h-screen`}>
 			<div className="max-w-screen-2xl font-sans p-4 pb-0 m-auto overflow-hidden">
 				<ThemeContext.Provider value={seasonsTheme}>
-					<Header
-						handleOptionChange={(s) => setSelectedOption(s)}
-						selectedOption={selectedOption}
-						weather={weather}
-						onChangeSelected={(field, value) => handleInputChange(field, value)}
-					/>
-					<main>
-						<CurrentWeather
-							weather={weather}
+					<IsDarkContext.Provider value={isDark}>
+						<Header
+							isDark={isDark}
+							onChangeTheme={(val) => setIsDark(val)}
+							handleOptionChange={(s) => setSelectedOption(s)}
 							selectedOption={selectedOption}
-							cityData={city}
+							weather={weather}
+							onChangeSelected={(field, value) => handleInputChange(field, value)}
 						/>
-						<InfoBlock weather={weather} selectedOption={selectedOption} />
-						<DailyWeather weather={weather} season={curSeason} />
-						<HourlyWeather weather={weather} selectedOption={selectedOption} season={curSeason} />
-					</main>
-					<Footer />
+						<main>
+							<CurrentWeather
+								weather={weather}
+								selectedOption={selectedOption}
+								cityData={city}
+							/>
+							<InfoBlock weather={weather} selectedOption={selectedOption} />
+							<DailyWeather weather={weather} season={curSeason} />
+							<HourlyWeather weather={weather} selectedOption={selectedOption} season={curSeason} />
+						</main>
+						<Footer />
+					</IsDarkContext.Provider>
 				</ThemeContext.Provider>
 			</div>
 		</div>

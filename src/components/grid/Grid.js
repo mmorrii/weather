@@ -19,7 +19,7 @@ const Grid = ({ weather }) => {
 					<WindSpeed weather={weather} />
 					<WindDirection weather={weather} />
 				</div>
-				<div className={`max-h-full w-0.5 ${theme.bg700} rounded`}></div>
+				<div className={`max-h-full w-0.5 ${theme.bg700} dark:bg-neutral-700 rounded`}></div>
 				<div className="flex flex-col gap-4">
 					<Sunset weather={weather} />
 					<Pressure weather={weather} />

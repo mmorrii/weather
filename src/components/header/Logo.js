@@ -1,22 +1,21 @@
 import {useContext} from "react";
-import {ThemeContext} from "../../App";
+import {IsDarkContext, ThemeContext} from "../../App";
+import LogoDayIcon from "../../icons/LogoDayIcon";
+import LogoNightIcon from "../../icons/LogoNightIcon";
 
 const Logo = ({ isDay }) => {
 	const theme = useContext(ThemeContext)
+	const isDark = useContext(IsDarkContext)
 	
 	return (
-		<div className="flex gap-0.5 items-center">
-			<div className="w-16">
+		<div className="flex gap-3 items-center">
+			<div className="w-11">
 				{ isDay ?
-					<img src="/images/logo/logo_day_icon.svg"
-						  alt="logo day icon"
-					/> :
-					<img src="/images/logo/logo_night_icon.svg"
-						  alt="logo night icon"
-					/>
+					<LogoDayIcon color={ isDark ? "#e5e5e5" : "#000000"} /> :
+					<LogoNightIcon color={ isDark ? "#e5e5e5" : "#000000"} />
 				}
 			</div>
-			<div className={`text-2xl font-bold ${theme.text}`}>
+			<div className={`text-2xl font-bold ${theme.text} ${theme.textDark} `}>
 				World Weather
 			</div>
 		</div>

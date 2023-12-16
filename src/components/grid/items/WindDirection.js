@@ -1,10 +1,11 @@
 import ArrowIcon from "../../../icons/ArrowIcon";
 import {useContext} from "react";
-import {ThemeContext} from "../../../App";
+import {IsDarkContext, ThemeContext} from "../../../App";
 import {windDirection} from "../../../utils/wind-direction";
 
 const WindDirection = ({ weather }) => {
 	const theme = useContext(ThemeContext)
+	const isDark = useContext(IsDarkContext)
 	const windDir = windDirection(weather.current?.wind_direction_10m)
 	
 	return (
@@ -14,7 +15,7 @@ const WindDirection = ({ weather }) => {
 				title="Текущее направление ветра"
 			>
 				<ArrowIcon
-					color={theme.hexColor}
+					color={isDark ? theme.hexColorDark : theme.hexColor}
 					dir={windDir?.icon}
 				/>
 			</div>

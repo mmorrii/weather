@@ -20,7 +20,7 @@ const DailyTable = ({ weather, season }) => {
 			}
 			<table className="w-full table-fixed rounded-xl overflow-hidden ">
 				<thead>
-					<tr className={theme.bg800andWhTxt}>
+					<tr className={`${theme.bg800andWhTxt}`}>
 						<th></th>
 						{date && date.map(d => (
 							<th key={d} className="p-2">
@@ -39,7 +39,7 @@ const DailyTable = ({ weather, season }) => {
 				<a href="https://www.who.int/news-room/questions-and-answers/item/radiation-the-ultraviolet-(uv)-index"
 					rel="noopener noreferrer"
 					target="_blank"
-					className="opacity-100 text-blue-800 hover:underline"
+					className="opacity-100 text-blue-800 dark:text-blue-500 hover:underline"
 				>
 					УФ-индекса
 				</a>

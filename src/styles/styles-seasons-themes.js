@@ -7,9 +7,11 @@ export const seasonsThemes = (code, tz, lat) => {
 		case "winter":
 			return {
 				text: "text-blue-800",
+				textDark: "dark:text-blue-500",
 				textHover: "hover:text-blue-950",
-				textNavBar: "text-blue-800 font-semibold",
+				textHoverDark: "dark:hover:text-blue-600",
 				border: "border-blue-800 border-solid border-2",
+				borderDark: "dark:border-blue-500 dark:border-solid dark:border-2",
 				bg: "bg-gradient-to-t from-blue-200 to-slate-100",
 				bg50: "bg-blue-50",
 				bg100: "bg-blue-100",
@@ -20,14 +22,18 @@ export const seasonsThemes = (code, tz, lat) => {
 				bgHover50: "hover:bg-blue-50",
 				bgHover900: "hover:bg-blue-900",
 				hexColor: "#1E40AF",
-				hoverColor: "#E0F2FE"
+				hexColorDark: "#3b82f6",
+				hoverColor: "#E0F2FE",
+				hoverDarkColor: "rgba(59,130,246,0.2)",
 			}
 		case "spring":
 			return {
 				text: "text-green-800",
+				textDark: "dark:text-green-500",
 				textHover: "hover:text-green-950",
-				textNavBar: "text-green-800 font-semibold",
+				textHoverDark: "dark:hover:text-green-600",
 				border: "border-green-800 border-solid border-2",
+				borderDark: "dark:border-green-500 dark:border-solid dark:border-2",
 				bg: "bg-gradient-to-t from-green-100 to-sky-100",
 				bg50: "bg-green-50",
 				bg100: "bg-green-100",
@@ -38,14 +44,18 @@ export const seasonsThemes = (code, tz, lat) => {
 				bgHover50: "hover:bg-green-50",
 				bgHover900: "hover:bg-green-900",
 				hexColor: "#166534",
-				hoverColor: "#DCFCE7"
+				hexColorDark: "#22c55e",
+				hoverColor: "#DCFCE7",
+				hoverDarkColor: "rgba(34,197,94,0.2)",
 			}
 		case "summer":
 			return {
 				text: "text-teal-800",
+				textDark: "dark:text-teal-500",
 				textHover: "hover:text-teal-950",
+				textHoverDark: "dark:hover:text-teal-600",
 				border: "border-teal-800 border-solid border-2",
-				textNavBar: "text-teal-800 font-semibold",
+				borderDark: "dark:border-teal-500 dark:border-solid dark:border-2",
 				bg: "bg-gradient-to-t from-teal-100 to-violet-100",
 				bg50: "bg-teal-50",
 				bg100: "bg-teal-100",
@@ -56,14 +66,18 @@ export const seasonsThemes = (code, tz, lat) => {
 				bgHover50: "hover:bg-teal-50",
 				bgHover900: "hover:bg-teal-900",
 				hexColor: "#115E59",
-				hoverColor: "#CCFBF1"
+				hexColorDark: "#14b8a6",
+				hoverColor: "#CCFBF1",
+				hoverDarkColor: "rgba(20,184,166,0.2)",
 			}
 		case "autumn":
 			return {
 				text: "text-red-800",
+				textDark: "dark:text-red-500",
 				textHover: "hover:text-red-950",
+				textHoverDark: "dark:hover:text-red-600",
 				border: "border-red-800 border-solid border-2",
-				textNavBar: "text-red-800 font-semibold",
+				borderDark: "dark:border-red-500 dark:border-solid dark:border-2",
 				bg: "bg-gradient-to-t from-red-100 to-orange-100",
 				bg50: "bg-red-50",
 				bg100: "bg-red-100",
@@ -74,7 +88,9 @@ export const seasonsThemes = (code, tz, lat) => {
 				bgHover50: "hover:bg-red-50",
 				bgHover900: "hover:bg-red-900",
 				hexColor: "#991B1B",
-				hoverColor: "#FEE2E2"
+				hexColorDark: "#ef4444",
+				hoverColor: "#FEE2E2",
+				hoverDarkColor: "rgba(239,68,68,0.2)",
 			}
 		default:
 			return {}

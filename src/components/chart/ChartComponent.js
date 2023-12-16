@@ -1,5 +1,5 @@
 import {Fragment, useContext, useState} from "react";
-import {ThemeContext} from "../../App";
+import {IsDarkContext, ThemeContext} from "../../App";
 import TempChart from "./temperature/TempChart";
 import {DateTime} from "luxon";
 import PrecipitationChart from "./precipitation/PrecipitationChart";
@@ -13,19 +13,21 @@ const ChartComponent = ({ weather, selectedCardIndex, onSelectedCardIndex }) => 
 	const [tempHeight, setTempHeight] = useState(2)
 	const [windSpeedHeight, setWindSpeedHeight] = useState(10)
 	const theme = useContext(ThemeContext)
+	const isDark = useContext(IsDarkContext)
 	
 	const labels = weather.hourly?.time.map(item => DateTime.fromISO(item).toFormat('HH:mm'))
 	const navBar = ["температура", "вероятность осадков", "скорость ветра", "относительная влажность"]
+	const textColor = isDark ? theme.textDark : theme.text
 	
 	return (
 		<figure className="w-full">
 			<Card>
 				<div className="flex justify-between">
-					<div className="flex gap-2">
+					<div className="flex gap-2 text-base">
 						{ navBar.map((item, index) => (
 							<Fragment key={item}>
 								<button
-									className={ navBarIndex === index ? theme.textNavBar : "opacity-50 hover:opacity-70" }
+									className={ navBarIndex === index ? `${textColor} font-semibold` : "opacity-50 hover:opacity-70" }
 									onClick={() => setNavBarIndex(index)}
 								>
 									{item}
@@ -35,12 +37,12 @@ const ChartComponent = ({ weather, selectedCardIndex, onSelectedCardIndex }) => 
 						))}
 					</div>
 					{ navBarIndex === 0 &&
-						<button className={`${theme.textNavBar} ${theme.textHover}`}
+						<button className={`${textColor} font-semibold ${theme.textHoverDark} ${theme.textHover}`}
 								  onClick={() => setTempHeight(tempHeight === 2 ? 80 : tempHeight === 80 ? 120 : 2)}
 						>{tempHeight}м</button>
 					}
 					{ navBarIndex === 2 &&
-						<button className={`${theme.textNavBar} ${theme.textHover}`}
+						<button className={`${textColor} font-semibold ${theme.textHoverDark} ${theme.textHover}`}
 								  onClick={() => setWindSpeedHeight(windSpeedHeight === 10 ? 80 : windSpeedHeight === 80 ? 120 : 10)}
 						>{windSpeedHeight}м</button>
 					}

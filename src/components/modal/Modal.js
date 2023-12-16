@@ -1,25 +1,26 @@
 import { IoClose } from "react-icons/io5";
 import {useContext} from "react";
-import {ThemeContext} from "../../App";
+import {IsDarkContext, ThemeContext} from "../../App";
 import Form from "./Form";
 import Cards from "./Cards";
 
 const Modal = ({ onClick, selectedOption, onChangeSelected }) => {
 	const theme = useContext(ThemeContext)
+	const isDark = useContext(IsDarkContext)
 	
 	return (
 		<div className="fixed inset-0 bg-black bg-opacity-60">
 			<div className="fixed inset-0 flex items-center justify-center">
-				<div className={`w-11/12 max-w-screen-2xl ${theme.bg100} p-6 pt-4 rounded-xl`}>
+				<div className={`w-11/12 max-w-screen-2xl ${theme.bg100} dark:bg-neutral-900 p-6 pt-4 rounded-xl`}>
 					<div className="flex items-start justify-between mb-6">
 						<Form selectedOption={selectedOption} onChangeSelected={onChangeSelected} />
 						<button onClick={onClick}
-								  className={`border border-solid border-2 ${theme.border} mt-2 rounded-md`} >
-							<IoClose size={25} color={theme.hexColor} />
+								  className={`border border-solid border-2 ${theme.border} ${theme.borderDark} mt-2 rounded-md`} >
+							<IoClose size={25} color={isDark ? theme.hexColorDark : theme.hexColor} />
 						</button>
 					</div>
 					<div className="mb-6">
-						<h3 className={`${theme.text} font-semibold mb-2`}>Последние запросы</h3>
+						<h3 className={`${theme.text} ${theme.textDark} font-semibold mb-2`}>Последние запросы</h3>
 						<Cards />
 					</div>
 					<div className="-mx-6 -mb-3 bg-gray-50">

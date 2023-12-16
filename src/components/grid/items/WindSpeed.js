@@ -1,10 +1,11 @@
 import WindIcon from "../../../icons/WindIcon";
 import {windSpeed} from "../../../utils/wind-speed";
 import {useContext} from "react";
-import {ThemeContext} from "../../../App";
+import {IsDarkContext, ThemeContext} from "../../../App";
 
 const WindSpeed = ({ weather }) => {
 	const theme = useContext(ThemeContext)
+	const isDark = useContext(IsDarkContext)
 	
 	return (
 		<div className="flex items-center gap-3">
@@ -12,7 +13,7 @@ const WindSpeed = ({ weather }) => {
 				className="w-11 h-11"
 				title="Текущая скорость ветра"
 			>
-				<WindIcon color={theme.hexColor} />
+				<WindIcon color={isDark ? theme.hexColorDark : theme.hexColor} />
 			</div>
 			<div>
 				<p>Скорость ветра</p>

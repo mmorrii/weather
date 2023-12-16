@@ -1,16 +1,17 @@
 import {DateTime} from "luxon";
 import SunsetIcon from "../../../icons/SunsetIcon";
 import {useContext} from "react";
-import {ThemeContext} from "../../../App";
+import {IsDarkContext, ThemeContext} from "../../../App";
 
 const Sunset = ({ weather }) => {
 	const theme = useContext(ThemeContext)
+	const isDark = useContext(IsDarkContext)
 	const sunsetTime = weather.daily?.sunset[0]
 	
 	return (
 		<div className="flex items-center gap-3">
 			<div className="w-11 h-11">
-				<SunsetIcon color={theme.hexColor} />
+				<SunsetIcon color={isDark ? theme.hexColorDark : theme.hexColor} />
 			</div>
 			<div>
 				<p>Закат</p>
