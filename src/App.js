@@ -33,6 +33,12 @@ function App() {
 	const seasonsTheme = seasonsThemes(weatherCode, timeZone, latitude)
 	const curSeason = currentSeason(weatherCode, timeZone, latitude)
 	
+	if (isDark === true) {
+		document.documentElement.classList.add("dark");
+	} else {
+		document.documentElement.classList.remove("dark");
+	}
+	
 	const handleInputChange = (key, value) => {
 		setSelectedOption(prevState => ({
 			...prevState,

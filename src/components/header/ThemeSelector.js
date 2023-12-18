@@ -14,10 +14,8 @@ const ThemeSelector = ({ onChangeTheme }) => {
 	
 	const handleThemeChange = (option) => {
 		if (option === "Темная" || (option === "Устройство" && window.matchMedia("(prefers-color-scheme: dark)").matches)) {
-			document.documentElement.classList.add("dark");
 			onChangeTheme(true)
 		} else {
-			document.documentElement.classList.remove("dark");
 			onChangeTheme(false)
 		}
 		setSelectedOption(option);
