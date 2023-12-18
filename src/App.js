@@ -40,7 +40,7 @@ function App() {
 			value: city?.results?.[0]?.components?.country,
 			label: city?.results?.[0]?.components?.country,
 		}));
-	};
+	}
 	
 	return (
 		<div className={`${!isDark && seasonsTheme.bg} dark:bg-neutral-900 dark:text-neutral-50 min-h-screen`}>
@@ -48,7 +48,6 @@ function App() {
 				<ThemeContext.Provider value={seasonsTheme}>
 					<IsDarkContext.Provider value={isDark}>
 						<Header
-							isDark={isDark}
 							onChangeTheme={(val) => setIsDark(val)}
 							handleOptionChange={(s) => setSelectedOption(s)}
 							selectedOption={selectedOption}

@@ -11,8 +11,8 @@ const Logo = ({ isDay }) => {
 		<div className="flex gap-3 items-center">
 			<div className="w-11">
 				{ isDay ?
-					<LogoDayIcon color={ isDark ? "#e5e5e5" : "#000000"} /> :
-					<LogoNightIcon color={ isDark ? "#e5e5e5" : "#000000"} />
+					<LogoDayIcon color={ isDark ? "#737373" : "#000000"} /> :
+					<LogoNightIcon color={ isDark ? "#737373" : "#000000"} />
 				}
 			</div>
 			<div className={`text-2xl font-bold ${theme.text} ${theme.textDark} `}>
