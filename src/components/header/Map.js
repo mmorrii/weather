@@ -4,7 +4,7 @@ import Modal from "../modal/Modal";
 import {IsDarkContext, ThemeContext} from "../../App";
 import MapIcon from "../../icons/MapIcon";
 
-const Map = ({ selectedOption, onChangeSelected }) => {
+const Map = ({ selectedOption, onChangeSelected, city }) => {
 	const [isModalOpen, setIsModalOpen] = useState(false)
 	const theme = useContext(ThemeContext)
 	const isDark = useContext(IsDarkContext)
@@ -32,6 +32,7 @@ const Map = ({ selectedOption, onChangeSelected }) => {
 					<Modal onClick={handleCloseModal}
 							 selectedOption={selectedOption}
 							 onChangeSelected={onChangeSelected}
+							 city={city}
 					/>, document.body )
 			}
 		</>

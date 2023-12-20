@@ -3,17 +3,46 @@ import {useContext} from "react";
 import {IsDarkContext, ThemeContext} from "../../App";
 import Form from "./Form";
 import Cards from "./Cards";
+import {useLocalStorage} from "../../hooks/useLocalStorage";
 
-const Modal = ({ onClick, selectedOption, onChangeSelected }) => {
+const Modal = ({ onClick, selectedOption, onChangeSelected, city }) => {
 	const theme = useContext(ThemeContext)
 	const isDark = useContext(IsDarkContext)
+	const [requests, setRequests] = useLocalStorage("requests",[])
+	
+	//TODO Error: only when double-clicked it adds to the cache
+	const handleChangeRequest = () => {
+		const country = city?.results?.[0]?.components?.country
+		const cityData = city?.results?.[0]?.components?.city
+		const town = city?.results?.[0]?.components?.town
+		const district = city?.results?.[0]?.components?.district
+		const state = city?.results?.[0]?.components?.state
+		const newLocation = `${country}, ${cityData ? cityData : town ? town : district ? district : state}`
+		
+		const isLocationAlreadyExists = requests.some(request => (request.location === newLocation))
+
+		if (isLocationAlreadyExists) {
+			return
+		}
+		
+		const updatedRequests = [
+			{ location: newLocation, latitude: selectedOption.latitude, longitude: selectedOption.longitude },
+			...requests.slice(0, 4)
+		]
+		
+		setRequests(updatedRequests)
+	}
 	
 	return (
 		<div className="fixed inset-0 bg-black bg-opacity-60">
 			<div className="fixed inset-0 flex items-center justify-center">
 				<div className={`w-11/12 max-w-screen-2xl ${theme.bg100} dark:bg-neutral-900 p-6 pt-4 rounded-xl`}>
 					<div className="flex items-start justify-between mb-6">
-						<Form selectedOption={selectedOption} onChangeSelected={onChangeSelected} />
+						<Form
+							selectedOption={selectedOption}
+							onChangeSelected={onChangeSelected}
+							onChangeRequest={handleChangeRequest}
+						/>
 						<button onClick={onClick}
 								  className={`border border-solid border-2 ${theme.border} ${theme.borderDark} mt-2 rounded-md`} >
 							<IoClose size={25} color={isDark ? theme.hexColorDark : theme.hexColor} />
@@ -21,7 +50,7 @@ const Modal = ({ onClick, selectedOption, onChangeSelected }) => {
 					</div>
 					<div className="mb-6">
 						<h3 className={`${theme.text} ${theme.textDark} font-semibold mb-2`}>Последние запросы</h3>
-						<Cards />
+						<Cards requests={requests} />
 					</div>
 					<div className="-mx-6 -mb-3 bg-gray-50">
 						<iframe

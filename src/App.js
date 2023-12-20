@@ -24,7 +24,7 @@ function App() {
 		fetchWeather(selectedOption.latitude, selectedOption.longitude, setWeather);
 		// const intervalId = setInterval(fetchWeather, 60 * 60 * 1000);
 		// return () => clearInterval(intervalId);
-		// fetchCity(selectedOption.latitude, selectedOption.longitude, setCity)
+		fetchCity(selectedOption.latitude, selectedOption.longitude, setCity)
 	}, [selectedOption])
 	
 	const weatherCode = weather?.current?.weather_code
@@ -34,9 +34,9 @@ function App() {
 	const curSeason = currentSeason(weatherCode, timeZone, latitude)
 	
 	if (isDark === true) {
-		document.documentElement.classList.add("dark");
+		document.documentElement.classList.add("dark")
 	} else {
-		document.documentElement.classList.remove("dark");
+		document.documentElement.classList.remove("dark")
 	}
 	
 	const handleInputChange = (key, value) => {
@@ -45,7 +45,7 @@ function App() {
 			[key]: value,
 			value: city?.results?.[0]?.components?.country,
 			label: city?.results?.[0]?.components?.country,
-		}));
+		}))
 	}
 	
 	return (
@@ -54,6 +54,7 @@ function App() {
 				<ThemeContext.Provider value={seasonsTheme}>
 					<IsDarkContext.Provider value={isDark}>
 						<Header
+							city={city}
 							onChangeTheme={(val) => setIsDark(val)}
 							handleOptionChange={(s) => setSelectedOption(s)}
 							selectedOption={selectedOption}

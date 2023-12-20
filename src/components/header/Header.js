@@ -3,7 +3,7 @@ import SelectComponent from "./SelectComponent";
 import Map from "./Map";
 import ThemeSelector from "./ThemeSelector";
 
-const Header = ({ handleOptionChange, selectedOption, weather, onChangeSelected, onChangeTheme }) => {
+const Header = ({ handleOptionChange, selectedOption, weather, onChangeSelected, onChangeTheme, city }) => {
 	const isDay = weather?.current?.is_day === 1
 	
 	return (
@@ -17,7 +17,7 @@ const Header = ({ handleOptionChange, selectedOption, weather, onChangeSelected,
 					handleOptionChange={handleOptionChange}
 					selectedOption={selectedOption}
 				/>
-				<Map selectedOption={selectedOption} onChangeSelected={onChangeSelected} />
+				<Map selectedOption={selectedOption} onChangeSelected={onChangeSelected} city={city} />
 			</div>
 		</header>
 	)

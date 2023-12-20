@@ -4,7 +4,7 @@ import {IsDarkContext, ThemeContext} from "../../App";
 import {IoClose} from "react-icons/io5";
 import ErrorText from "./ErrorText";
 
-const Form = ({ selectedOption, onChangeSelected }) => {
+const Form = ({ selectedOption, onChangeSelected, onChangeRequest }) => {
 	const theme = useContext(ThemeContext)
 	const isDark = useContext(IsDarkContext)
 	const [formData, setFormData] = useState(`${selectedOption.latitude}, ${selectedOption.longitude}`)
@@ -24,6 +24,7 @@ const Form = ({ selectedOption, onChangeSelected }) => {
 		const [latitude, longitude] = formData.split(', ')
 		onChangeSelected("latitude", latitude)
 		onChangeSelected("longitude", longitude)
+		onChangeRequest()
 	}
 	
 	return (

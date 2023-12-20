@@ -3,27 +3,25 @@ import CurrentTime from "./CurrentTime";
 import {DateTime} from "luxon";
 import CurrentTemp from "./CurrentTemp";
 import CurrentBg from "./CurrentBg";
-import {seasonsThemes} from "../../styles/styles-seasons-themes";
 
 const CurrentWeather = ({ selectedOption, weather, cityData }) => {
 	const timeUpdate = weather?.current?.time
 	const formattedDate = DateTime.fromISO(timeUpdate).toFormat('dd.MM.yyyy HH:mm')
 	const timeZone = weather?.timezone
-	const weatherCode = weather?.current?.weather_code
-	const latitude = selectedOption.latitude
-	const seasonTheme = seasonsThemes(weatherCode, timeZone, latitude)
 	const country = cityData?.results?.[0]?.components?.country
 	const city = cityData?.results?.[0]?.components?.city
+	const town = cityData?.results?.[0]?.components?.town
+	const district = cityData?.results?.[0]?.components?.district
+	const state = city?.results?.[0]?.components?.state
 	
 	return (
 		<CurrentBg
 			weather={weather}
 			selectedOption={selectedOption}
-			seasonTheme={seasonTheme}
 		>
 			<div className="flex justify-between items-center">
 				<BlackBg>
-					<h3>{country}, {city}</h3>
+					<h3>{country}, {city ? city : town ? town : district ? district : state}</h3>
 				</BlackBg>
 				<BlackBg>
 					<CurrentTime timezone={timeZone}/>
