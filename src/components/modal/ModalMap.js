@@ -5,7 +5,7 @@ import Form from "./Form";
 import Cards from "./Cards";
 import {useLocalStorage} from "../../hooks/useLocalStorage";
 
-const Modal = ({ onClick, selectedOption, onChangeSelected, city }) => {
+const ModalMap = ({ onClick, selectedOption, onChangeSelected, city }) => {
 	const theme = useContext(ThemeContext)
 	const isDark = useContext(IsDarkContext)
 	const [requests, setRequests] = useLocalStorage("requests",[])
@@ -66,4 +66,4 @@ const Modal = ({ onClick, selectedOption, onChangeSelected, city }) => {
 	)
 }
 
-export default Modal
+export default ModalMap

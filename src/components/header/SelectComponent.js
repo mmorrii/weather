@@ -2,10 +2,12 @@ import {coords} from "../../data/coords";
 import Select from "react-select";
 import {useContext} from "react";
 import {IsDarkContext, ThemeContext} from "../../App";
+import {useResize} from "../../hooks/useResize";
 
 const SelectComponent =	({ selectedOption, handleOptionChange }) => {
 	const themeContext = useContext(ThemeContext)
 	const isDark = useContext(IsDarkContext)
+	const windowWidth = useResize()
 	
 	const theme = (theme) => ({
 		...theme,
@@ -19,7 +21,7 @@ const SelectComponent =	({ selectedOption, handleOptionChange }) => {
 	const customStyles = {
 		control: (baseStyles) => ({
 			...baseStyles,
-			width: 280,
+			width: windowWidth > 768 ? 280 : 185,
 			backgroundColor: isDark ? "#171717" : "white",
 			borderColor: isDark ? themeContext.hexColorDark : themeContext.hexColor,
 			borderWidth: 2,
@@ -29,7 +31,7 @@ const SelectComponent =	({ selectedOption, handleOptionChange }) => {
 		}),
 		menu: (baseStyles) => ({
 			...baseStyles,
-			width: 280,
+			width: windowWidth > 768 ? 280 : 185,
 			backgroundColor: isDark ? "#171717" : "white",
 		}),
 		groupHeading: (baseStyles) => ({

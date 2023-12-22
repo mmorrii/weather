@@ -25,7 +25,7 @@ const HourlyTable = ({ weather, selectedOption, season }) => {
 	const bgImg = currentPattern(weatherCode, timeZone, latitude)
 	
 	return (
-		<div className="mb-8 relative">
+		<div className="mb-6 relative">
 			{ season === "winter" &&
 				<div className="absolute -top-[2.95rem] -left-6">
 					<ChristmasLightIcon />

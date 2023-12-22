@@ -3,7 +3,7 @@ import Title from "../common/Title";
 
 const DailyWeather = ({ weather, season }) => {
 	return (
-		<section className="mb-6">
+		<section className="mb-4">
 			<Title>Суточная погода</Title>
 			<DailyTable weather={weather} season={season}/>
 		</section>

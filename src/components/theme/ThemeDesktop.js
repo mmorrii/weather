@@ -1,27 +1,13 @@
-import {useContext, useState} from "react";
-import {useLocalStorage} from "../../hooks/useLocalStorage";
-import {IsDarkContext, ThemeContext} from "../../App";
-import Computer from "../../icons/Computer";
-import ClearlyDayIcon from "../../icons/ClearlyDayIcon";
+import ComputerIcon from "../../icons/ComputerIcon";
 import ClearlyNightIcon from "../../icons/ClearlyNightIcon";
+import ClearlyDayIcon from "../../icons/ClearlyDayIcon";
+import {useContext, useState} from "react";
+import {IsDarkContext, ThemeContext} from "../../App";
 
-
-const ThemeSelector = ({ onChangeTheme }) => {
+const ThemeDesktop = ({ selectedOption, options, onThemeChange }) => {
 	const theme = useContext(ThemeContext)
 	const isDark = useContext(IsDarkContext)
-	const [selectedOption, setSelectedOption] = useLocalStorage("themeOption","Устройство")
 	const [isOpen, setIsOpen] = useState(false)
-	
-	const handleThemeChange = (option) => {
-		if (option === "Темная" || (option === "Устройство" && window.matchMedia("(prefers-color-scheme: dark)").matches)) {
-			onChangeTheme(true)
-		} else {
-			onChangeTheme(false)
-		}
-		setSelectedOption(option);
-	};
-	
-	const options = ["Устройство", "Темная", "Светлая"]
 	
 	return (
 		<div
@@ -30,7 +16,7 @@ const ThemeSelector = ({ onChangeTheme }) => {
 		>
 			<div className="bg-inherit flex items-center gap-1">
 				<div className={`w-5 h-5 ${selectedOption === "Устройство" && "relative top-[1.1px]"}`}>
-					{selectedOption === "Устройство" && <Computer color={isDark ? "#ffffff" : "#000000"}/>}
+					{selectedOption === "Устройство" && <ComputerIcon color={isDark ? "#ffffff" : "#000000"}/>}
 					{selectedOption === "Темная" && <ClearlyNightIcon color={isDark ? "#ffffff" : "#000000"}/>}
 					{selectedOption === "Светлая" && <ClearlyDayIcon color={isDark ? "#ffffff" : "#000000"}/>}
 				</div>
@@ -42,7 +28,7 @@ const ThemeSelector = ({ onChangeTheme }) => {
 						key={option}
 						className={`px-4 py-1.5 ${selectedOption === option ? theme.bg800andWhTxt :
 							`dark:hover:bg-neutral-800 ${theme.bgHover100}`}`}
-						onClick={() => handleThemeChange(option)}
+						onClick={() => onThemeChange(option)}
 					>
 						{option}
 					</li>
@@ -52,4 +38,4 @@ const ThemeSelector = ({ onChangeTheme }) => {
 	)
 }
 
-export default ThemeSelector
+export default ThemeDesktop

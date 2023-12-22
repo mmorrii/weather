@@ -1,6 +1,6 @@
 import {useContext, useState} from "react";
 import {createPortal} from "react-dom";
-import Modal from "../modal/Modal";
+import ModalMap from "../modal/ModalMap";
 import {IsDarkContext, ThemeContext} from "../../App";
 import MapIcon from "../../icons/MapIcon";
 
@@ -22,17 +22,17 @@ const Map = ({ selectedOption, onChangeSelected, city }) => {
 	return (
 		<>
 			<button
-				className="w-11"
+				className="w-11 h-11"
 				onClick={handleOpenModal}
 			>
 				<MapIcon color={isDark ? theme.hexColorDark : theme.hexColor} />
 			</button>
 			{ isModalOpen &&
 				createPortal(
-					<Modal onClick={handleCloseModal}
-							 selectedOption={selectedOption}
-							 onChangeSelected={onChangeSelected}
-							 city={city}
+					<ModalMap onClick={handleCloseModal}
+								 selectedOption={selectedOption}
+								 onChangeSelected={onChangeSelected}
+								 city={city}
 					/>, document.body )
 			}
 		</>

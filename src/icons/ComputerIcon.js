@@ -1,4 +1,4 @@
-const Computer = ({ color }) => {
+const ComputerIcon = ({ color }) => {
 	return (
 		<svg viewBox="0 0 512 512" fill={color} xmlns="http://www.w3.org/2000/svg"><title/>
 			<g data-name="1" id="_1"><path d="M413,353.15H97.24a43.15,43.15,0,0,1-43.11-43.1V100.36A43.16,43.16,0,
@@ -14,4 +14,4 @@ const Computer = ({ color }) => {
 	)
 }
 
-export default Computer
+export default ComputerIcon

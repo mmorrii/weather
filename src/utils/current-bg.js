@@ -16,7 +16,7 @@ export const weatherImgBg = ( code, tz, lat, isDay ) => {
 		case 3:
 			return {
 				backgroundImage:`url('/images/bg/${season}_cloudy_${dayOrNight}.jpg')`,
-				backgroundSize: "cover",
+				backgroundSize: "100% auto",
 				backgroundPosition: "0 -355px",
 			}
 		case 45:

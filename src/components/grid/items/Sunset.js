@@ -9,7 +9,7 @@ const Sunset = ({ weather }) => {
 	const sunsetTime = weather.daily?.sunset[0]
 	
 	return (
-		<div className="flex items-center gap-3">
+		<div className="max-sm:flex-auto flex items-center gap-3">
 			<div className="w-11 h-11">
 				<SunsetIcon color={isDark ? theme.hexColorDark : theme.hexColor} />
 			</div>

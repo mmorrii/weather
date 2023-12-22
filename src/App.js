@@ -50,7 +50,7 @@ function App() {
 	
 	return (
 		<div className={`${!isDark && seasonsTheme.bg} dark:bg-neutral-900 dark:text-neutral-50 min-h-screen`}>
-			<div className="max-w-screen-2xl font-sans p-4 pb-0 m-auto overflow-hidden">
+			<div className="max-w-[1500px] font-sans p-4 max-sm:p-2 max-sm:pb-0 pb-0 m-auto overflow-hidden">
 				<ThemeContext.Provider value={seasonsTheme}>
 					<IsDarkContext.Provider value={isDark}>
 						<Header

@@ -16,7 +16,7 @@ const DailyCardTemp = ({ weather, onSelectedCardIndex, selectedCardIndex,
 	const color = isDark ? theme.hexColorDark : theme.hexColor
 	
 	return (
-		<div className="flex justify-between gap-2">
+		<div className="flex justify-around gap-2">
 			{date?.map((d, index) => (
 				<button
 					key={d}
@@ -37,10 +37,7 @@ const DailyCardTemp = ({ weather, onSelectedCardIndex, selectedCardIndex,
 							{ tempHeight === 80 && getMaxValues(temp80m)[index] }
 							{ tempHeight === 120 && getMaxValues(temp120m)[index] }
 						</span>
-						<span
-							className="opacity-60"
-							title="Минимальная суточная температура"
-						>
+						<span className="opacity-60" title="Минимальная суточная температура">
 							{ tempHeight === 2 && Math.round(tempMin[index]) }
 							{ tempHeight === 80 && getMinValues(temp80m)[index] }
 							{ tempHeight === 120 && getMinValues(temp120m)[index] }

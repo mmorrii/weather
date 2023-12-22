@@ -9,7 +9,7 @@ const Sunrise = ({ weather }) => {
 	const sunriseTime = weather.daily?.sunrise[0]
 	
 	return (
-		<div className="flex items-center gap-3">
+		<div className="max-sm:flex-auto flex items-center gap-3">
 			<div className="w-11 h-11">
 				<SunriseIcon color={isDark ? theme.hexColorDark : theme.hexColor} />
 			</div>
