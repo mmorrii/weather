@@ -7,15 +7,15 @@ import ModalMap from "../modal/ModalMap";
 const MenuList = ({ selectedOption, onChangeSelected, city, onModalClose }) => {
 	const theme = useContext(ThemeContext)
 	const isDark = useContext(IsDarkContext)
-	const [isModalOpen, setIsModalOpen] = useState(false)
+	const [isOpen, setIsOpen] = useState(false)
 	
 	const handleCloseModal = () => {
-		setIsModalOpen(false)
+		setIsOpen(false)
 		document.body.style.overflow = 'auto'
 	}
 	
 	const handleOpenModal = () => {
-		setIsModalOpen(true)
+		setIsOpen(true)
 		document.body.style.overflow = 'hidden'
 		// onModalClose()
 	}
@@ -34,7 +34,7 @@ const MenuList = ({ selectedOption, onChangeSelected, city, onModalClose }) => {
 					</div>
 				</li>
 			</ul>
-			{ isModalOpen &&
+			{ isOpen &&
 				createPortal(
 					<ModalMap onClick={handleCloseModal}
 								 selectedOption={selectedOption}
