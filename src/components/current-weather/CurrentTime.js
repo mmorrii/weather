@@ -15,7 +15,7 @@ const CurrentTime = ({timezone}) => {
 	return (
 		<div>
 			<p>Текущее время:
-				<span className="ml-2 text-xl font-semibold">
+				<span className="ml-2 text-xl font-semibold max-[530px]:block max-[530px]:text-right">
 					{currentTime.toFormat('HH:mm:ss')}
 				</span>
 			</p>

@@ -8,7 +8,7 @@ const InfoBlock = ({ weather, selectedOption }) => {
 	
 	return (
 		<section className="mb-4">
-			<div className="flex max-lg:flex-col gap-4 mb-4">
+			<div className="flex max-lg:flex-col gap-4 max-sm:gap-2 mb-4 max-sm:mb-2">
 				<Grid weather={weather} />
 				<PrecipitationBlock
 					weather={weather}

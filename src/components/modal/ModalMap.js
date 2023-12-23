@@ -35,7 +35,7 @@ const ModalMap = ({ onClick, selectedOption, onChangeSelected, city }) => {
 	
 	return (
 		<div className="fixed inset-0 bg-black bg-opacity-60">
-			<div className="fixed inset-0 flex items-center justify-center">
+			<div className="fixed inset-0 flex items-center justify-center overflow-auto">
 				<div className={`w-11/12 max-w-screen-2xl ${theme.bg100} dark:bg-neutral-900 p-6 pt-4 rounded-xl`}>
 					<div className="flex items-start justify-between mb-6">
 						<Form

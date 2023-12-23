@@ -9,7 +9,7 @@ const UvIndex = ({ weather }) => {
 	const uvIndex = weather.daily?.uv_index_max
 	
 	return (
-		<tr className={`border-y border-solid border-blue-800 ${theme.bg50} dark:bg-neutral-800`}>
+		<tr className={`border-y border-solid ${theme.borderColor} ${theme.bg50} dark:bg-neutral-800`}>
 			<td className="font-semibold pl-2 cursor-default">
 				<div className="flex items-center gap-1">
 					<div className="flex-shrink-0 w-6 h-6">

@@ -4,7 +4,7 @@ export const fetchWeather = (latitude, longitude, setWeather) => {
 	fetch(`${WEATHER}&latitude=${latitude}&longitude=${longitude}`)
 		.then((response) => response.json())
 		.then((data) => {
-			// console.log(data)
+			console.log(data)
 			setWeather(data)
 		})
 		.catch((err) => {

@@ -11,7 +11,7 @@ const DailyCardWindSpeed = ({ weather, onSelectedCardIndex, selectedCardIndex,
 	const windSpeed = weather.daily?.wind_speed_10m_max.map(item => Math.round(item))
 	
 	return (
-		<div className="flex justify-around gap-2">
+		<div className="flex justify-center gap-10">
 			{date?.map((d, index) => (
 				<button
 					key={d}

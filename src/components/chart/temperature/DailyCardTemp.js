@@ -16,7 +16,7 @@ const DailyCardTemp = ({ weather, onSelectedCardIndex, selectedCardIndex,
 	const color = isDark ? theme.hexColorDark : theme.hexColor
 	
 	return (
-		<div className="flex justify-around gap-2">
+		<div className="flex justify-center gap-10">
 			{date?.map((d, index) => (
 				<button
 					key={d}

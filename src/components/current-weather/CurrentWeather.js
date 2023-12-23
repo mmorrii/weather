@@ -12,22 +12,22 @@ const CurrentWeather = ({ selectedOption, weather, cityData }) => {
 	const city = cityData?.results?.[0]?.components?.city
 	const town = cityData?.results?.[0]?.components?.town
 	const district = cityData?.results?.[0]?.components?.district
-	const state = city?.results?.[0]?.components?.state
+	const state = cityData?.results?.[0]?.components?.state
 	
 	return (
 		<CurrentBg
 			weather={weather}
 			selectedOption={selectedOption}
 		>
-			<div className="flex justify-between items-center">
+			<div className="flex justify-between items-center gap-2 max-[530px]:items-start">
 				<BlackBg>
 					<h3>{country}, {city ? city : town ? town : district ? district : state}</h3>
 				</BlackBg>
-				<BlackBg>
+				<BlackBg className="flex-shrink-0">
 					<CurrentTime timezone={timeZone}/>
 				</BlackBg>
 			</div>
-			<div className="flex items-end justify-between">
+			<div className="flex items-end justify-between max-[530px]:flex-col max-[530px]:items-start max-[530px]:gap-2">
 				<CurrentTemp weather={weather} />
 				<BlackBg>
 					<p className="text-sm">

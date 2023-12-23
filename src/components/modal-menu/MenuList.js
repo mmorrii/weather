@@ -1,10 +1,10 @@
 import {useContext, useState} from "react";
-import {createPortal} from "react-dom";
-import ModalMap from "../modal/ModalMap";
 import {IsDarkContext, ThemeContext} from "../../App";
 import MapIcon from "../../icons/MapIcon";
+import {createPortal} from "react-dom";
+import ModalMap from "../modal/ModalMap";
 
-const Map = ({ selectedOption, onChangeSelected, city }) => {
+const MenuList = ({ selectedOption, onChangeSelected, city, onModalClose }) => {
 	const theme = useContext(ThemeContext)
 	const isDark = useContext(IsDarkContext)
 	const [isModalOpen, setIsModalOpen] = useState(false)
@@ -17,16 +17,23 @@ const Map = ({ selectedOption, onChangeSelected, city }) => {
 	const handleOpenModal = () => {
 		setIsModalOpen(true)
 		document.body.style.overflow = 'hidden'
+		// onModalClose()
 	}
 	
 	return (
 		<>
-			<button
-				className="w-11 h-11"
-				onClick={handleOpenModal}
-			>
-				<MapIcon color={isDark ? theme.hexColorDark : theme.hexColor} />
-			</button>
+			<ul>
+				<li className={`border-y border-solid ${theme.borderColor} dark:border-neutral-800 py-5`}
+					 onClick={handleOpenModal}
+				>
+					<div className="flex items-center justify-center gap-2">
+						<div className="w-8 h-8">
+							<MapIcon color={isDark ? theme.hexColorDark : theme.hexColor} />
+						</div>
+						<p>Мое местоположение</p>
+					</div>
+				</li>
+			</ul>
 			{ isModalOpen &&
 				createPortal(
 					<ModalMap onClick={handleCloseModal}
@@ -39,4 +46,4 @@ const Map = ({ selectedOption, onChangeSelected, city }) => {
 	)
 }
 
-export default Map
+export default MenuList

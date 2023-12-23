@@ -15,8 +15,8 @@ const ThemeMobile = ({ options, selectedOption, onThemeChange }) => {
 	]
 	
 	return (
-		<div className="flex justify-center">
-			<div className="inline-flex dark:bg-neutral-950 rounded-3xl">
+		<div className="flex justify-center mb-6">
+			<div className={`inline-flex ${theme.bg50} dark:bg-neutral-950 rounded-3xl`}>
 				{ options.map((option, i) => (
 					<button
 						key={option}
