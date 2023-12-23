@@ -2,22 +2,24 @@ import {useContext, useState} from "react";
 import {IsDarkContext, ThemeContext} from "../../App";
 import MapIcon from "../../icons/MapIcon";
 import {createPortal} from "react-dom";
-import ModalMap from "../modal/ModalMap";
+import ModalMap from "../modal-map/ModalMap";
 
-const MenuList = ({ selectedOption, onChangeSelected, city, onModalClose }) => {
+const MenuList = ({ selectedOption, onChangeSelected, city, onModalClose, isModalOpen }) => {
 	const theme = useContext(ThemeContext)
 	const isDark = useContext(IsDarkContext)
 	const [isOpen, setIsOpen] = useState(false)
 	
 	const handleCloseModal = () => {
 		setIsOpen(false)
-		document.body.style.overflow = 'auto'
+		// document.body.style.overflow = 'auto'
 	}
 	
 	const handleOpenModal = () => {
 		setIsOpen(true)
-		document.body.style.overflow = 'hidden'
-		// onModalClose()
+		// document.body.style.overflow = 'hidden'
+		// if (isModalOpen) {
+		// 	onModalClose()
+		// }
 	}
 	
 	return (

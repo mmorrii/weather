@@ -14,6 +14,7 @@ import {IsDarkContext, ThemeContext} from "../../../App";
 import {displaySomeElements} from "../../../utils/utils";
 import {barOption} from "../options/bar";
 import DailyCardHumidity from "./DailyCardHumidity";
+import {useResize} from "../../../hooks/useResize";
 
 ChartJS.register(
 	CategoryScale,
@@ -28,6 +29,7 @@ ChartJS.register(
 const HumidityChart = ({ weather, labels, selectedCardIndex, onSelectedCardIndex }) => {
 	const theme = useContext(ThemeContext)
 	const isDark = useContext(IsDarkContext)
+	const windowWidth = useResize()
 	
 	const humidity = weather.hourly?.relative_humidity_2m
 	const textColor = isDark ? "#ffffff" : "#000000"
@@ -47,7 +49,7 @@ const HumidityChart = ({ weather, labels, selectedCardIndex, onSelectedCardIndex
 		<>
 			<div className="w-full mb-2">
 				<Bar
-					height={200}
+					height={ (windowWidth > 700) ? 200 : 180 }
 					options={barOption(textColor)}
 					data={data} />
 			</div>

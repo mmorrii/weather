@@ -14,6 +14,7 @@ import {IsDarkContext, ThemeContext} from "../../../App";
 import DailyCardPrecipitation from "./DailyCardPrecipitation";
 import {displaySomeElements} from "../../../utils/utils";
 import {barOption} from "../options/bar";
+import {useResize} from "../../../hooks/useResize";
 
 ChartJS.register(
 	CategoryScale,
@@ -28,6 +29,7 @@ ChartJS.register(
 const PrecipitationChart = ({ weather, labels, selectedCardIndex, onSelectedCardIndex }) => {
 	const theme = useContext(ThemeContext)
 	const isDark = useContext(IsDarkContext)
+	const windowWidth = useResize()
 	
 	const precipitation = weather.hourly?.precipitation_probability
 	const textColor = isDark ? "#ffffff" : "#000000"
@@ -46,7 +48,7 @@ const PrecipitationChart = ({ weather, labels, selectedCardIndex, onSelectedCard
 		<>
 			<div className="w-full mb-2">
 				<Bar
-					height={200}
+					height={ (windowWidth > 700) ? 200 : 180 }
 					options={barOption(textColor)}
 					data={data} />
 			</div>

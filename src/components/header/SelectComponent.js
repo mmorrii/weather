@@ -58,6 +58,10 @@ const SelectComponent =	({ selectedOption, handleOptionChange }) => {
 			...baseStyles,
 			color: isDark ? "#fafafa" : "#000000",
 		}),
+		option: (baseStyles) => ({
+			...baseStyles,
+			padding: windowWidth <= 768 ? "16px 12px" : "8px 12px",
+		}),
 	}
 	
 	
@@ -69,6 +73,7 @@ const SelectComponent =	({ selectedOption, handleOptionChange }) => {
 			onChange={handleOptionChange}
 			options={coords}
 			isSearchable={true}
+			// defaultMenuIsOpen={true}
 		/>
 	)
 }

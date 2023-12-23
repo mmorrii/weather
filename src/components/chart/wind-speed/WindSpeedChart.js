@@ -15,6 +15,7 @@ import {IsDarkContext, ThemeContext} from "../../../App";
 import DailyCardWindSpeed from "./DailyCardWindSpeed";
 import {lineOption} from "../options/line";
 import {displaySomeElements} from "../../../utils/utils";
+import {useResize} from "../../../hooks/useResize";
 
 ChartJS.register(
 	CategoryScale,
@@ -30,6 +31,7 @@ ChartJS.register(
 const WindSpeedChart = ({ weather, labels, windSpeedHeight, selectedCardIndex, onSelectedCardIndex }) => {
 	const theme = useContext(ThemeContext)
 	const isDark = useContext(IsDarkContext)
+	const windowWidth = useResize()
 	
 	const windSpeed10m = weather.hourly?.wind_speed_10m.map(item => Math.round(item))
 	const windSpeed80m = weather.hourly?.wind_speed_80m.map(item => Math.round(item))
@@ -65,7 +67,7 @@ const WindSpeedChart = ({ weather, labels, windSpeedHeight, selectedCardIndex, o
 		<>
 			<div className="w-full mb-2">
 				<Line
-					height={200}
+					height={ (windowWidth > 700) ? 200 : 180 }
 					options={lineOption(textColor, getData())}
 					data={data} />
 			</div>

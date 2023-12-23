@@ -4,7 +4,7 @@ import {IsDarkContext, ThemeContext} from "../../App";
 import ThemeSelector from "../theme/ThemeSelector";
 import MenuList from "./MenuList";
 
-const ModalMenu = ({ onModalClose, onChangeTheme, selectedOption, onChangeSelected, city }) => {
+const ModalMenu = ({ onModalClose, onChangeTheme, selectedOption, onChangeSelected, city, isModalOpen }) => {
 	const theme = useContext(ThemeContext)
 	const isDark = useContext(IsDarkContext)
 	
@@ -22,6 +22,7 @@ const ModalMenu = ({ onModalClose, onChangeTheme, selectedOption, onChangeSelect
 				</div>
 				<ThemeSelector onChangeTheme={onChangeTheme} />
 				<MenuList
+					isModalOpen={isModalOpen}
 					onModalClose={onModalClose}
 					selectedOption={selectedOption}
 					onChangeSelected={onChangeSelected}

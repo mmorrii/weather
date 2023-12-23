@@ -1,4 +1,4 @@
-import {Fragment, useContext, useState} from "react";
+import {useContext, useState} from "react";
 import {IsDarkContext, ThemeContext} from "../../App";
 import TempChart from "./temperature/TempChart";
 import {DateTime} from "luxon";
@@ -7,6 +7,7 @@ import WindSpeedChart from "./wind-speed/WindSpeedChart";
 import Card from "../../common/Card";
 import HumidityChart from "./humidity/HumidityChart";
 import {Figcaption} from "../../common/Caption";
+import NavBar from "./NavBar";
 
 const ChartComponent = ({ weather, selectedCardIndex, onSelectedCardIndex }) => {
 	const [navBarIndex, setNavBarIndex] = useState(0)
@@ -16,33 +17,26 @@ const ChartComponent = ({ weather, selectedCardIndex, onSelectedCardIndex }) => 
 	const isDark = useContext(IsDarkContext)
 	
 	const labels = weather.hourly?.time.map(item => DateTime.fromISO(item).toFormat('HH:mm'))
-	const navBar = ["температура", "вероятность осадков", "скорость ветра", "относительная влажность"]
+	const navBarData = ["температура", "вероятность осадков", "скорость ветра", "относительная влажность"]
 	const textColor = isDark ? theme.textDark : theme.text
 	
 	return (
 		<figure className="w-full">
-			<Card>
-				<div className="flex justify-between">
-					<div className="flex gap-2 text-base">
-						{ navBar.map((item, index) => (
-							<Fragment key={item}>
-								<button
-									className={ navBarIndex === index ? `${textColor} font-semibold` : "opacity-50 hover:opacity-70" }
-									onClick={() => setNavBarIndex(index)}
-								>
-									{item}
-								</button>
-								{ index !== navBar.length - 1 && <div className="opacity-50">|</div> }
-							</Fragment >
-						))}
-					</div>
+			<Card className="max-md:px-2">
+				<div className="flex justify-between max-md:px-3">
+					<NavBar
+						navBarData={navBarData}
+						navBarIndex={navBarIndex}
+						textColor={textColor}
+						onChangeIndex={(index) => setNavBarIndex(index)}
+					/>
 					{ navBarIndex === 0 &&
-						<button className={`${textColor} font-semibold ${theme.textHoverDark} ${theme.textHover}`}
+						<button className={`${textColor} font-semibold ${theme.textHoverDark} ${theme.textHover} px-1 max-[700px]:text-xl`}
 								  onClick={() => setTempHeight(tempHeight === 2 ? 80 : tempHeight === 80 ? 120 : 2)}
 						>{tempHeight}м</button>
 					}
 					{ navBarIndex === 2 &&
-						<button className={`${textColor} font-semibold ${theme.textHoverDark} ${theme.textHover}`}
+						<button className={`${textColor} font-semibold ${theme.textHoverDark} ${theme.textHover} px-1 max-[700px]:text-xl`}
 								  onClick={() => setWindSpeedHeight(windSpeedHeight === 10 ? 80 : windSpeedHeight === 80 ? 120 : 10)}
 						>{windSpeedHeight}м</button>
 					}

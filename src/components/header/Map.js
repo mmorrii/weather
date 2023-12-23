@@ -1,6 +1,6 @@
 import {useContext, useState} from "react";
 import {createPortal} from "react-dom";
-import ModalMap from "../modal/ModalMap";
+import ModalMap from "../modal-map/ModalMap";
 import {IsDarkContext, ThemeContext} from "../../App";
 import MapIcon from "../../icons/MapIcon";
 

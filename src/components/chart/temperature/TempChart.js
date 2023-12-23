@@ -15,6 +15,7 @@ import {useContext} from "react";
 import {IsDarkContext, ThemeContext} from "../../../App";
 import {displaySomeElements} from "../../../utils/utils";
 import {lineOption} from "../options/line";
+import {useResize} from "../../../hooks/useResize";
 
 ChartJS.register(
 	CategoryScale,
@@ -30,6 +31,7 @@ ChartJS.register(
 const TempChart = ({ weather, labels, tempHeight, selectedCardIndex, onSelectedCardIndex }) => {
 	const theme = useContext(ThemeContext)
 	const isDark = useContext(IsDarkContext)
+	const windowWidth = useResize()
 	
 	const temp2m = weather.hourly?.temperature_2m.map(item => Math.round(item))
 	const temp80m = weather.hourly?.temperature_80m.map(item => Math.round(item))
@@ -65,7 +67,7 @@ const TempChart = ({ weather, labels, tempHeight, selectedCardIndex, onSelectedC
 		<>
 			<div className="w-full mb-2">
 				<Line
-					height={200}
+					height={ (windowWidth > 700) ? 200 : 180 }
 					options={lineOption(textColor, getData())}
 					data={data} />
 			</div>

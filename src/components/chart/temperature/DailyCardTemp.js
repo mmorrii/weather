@@ -16,35 +16,38 @@ const DailyCardTemp = ({ weather, onSelectedCardIndex, selectedCardIndex,
 	const color = isDark ? theme.hexColorDark : theme.hexColor
 	
 	return (
-		<div className="flex justify-center gap-10">
-			{date?.map((d, index) => (
-				<button
-					key={d}
-					onClick={() => onSelectedCardIndex(index)}
-					className={` ${ (selectedCardIndex === index) ? theme.bg800andWhTxt : 'bg-transparent'}
-					py-3.5 px-6 flex flex-col items-center gap-0.5 rounded-xl text-black dark:text-neutral-50`}
-				>
-					<p>{ DateTime.fromISO(d).toFormat('dd.MM') }</p>
-					<div className="w-11 h-11">
-						{ selectedCardIndex === index ?
-							weatherIcons(weatherCode[index], undefined, "#ffffff") :
-							weatherIcons(weatherCode[index], undefined,  color)
-						}
-					</div>
-					<p className="flex gap-2">
-						<span title="Максимальная суточная температура">
-							{ tempHeight === 2 && Math.round(tempMax[index]) }
-							{ tempHeight === 80 && getMaxValues(temp80m)[index] }
-							{ tempHeight === 120 && getMaxValues(temp120m)[index] }
-						</span>
-						<span className="opacity-60" title="Минимальная суточная температура">
-							{ tempHeight === 2 && Math.round(tempMin[index]) }
-							{ tempHeight === 80 && getMinValues(temp80m)[index] }
-							{ tempHeight === 120 && getMinValues(temp120m)[index] }
-						</span>
-					</p>
-				</button>
-			))}
+		<div className="w-full overflow-hidden max-md:px-3">
+			<div className="flex justify-center max-[690px]:justify-start gap-10 max-lg:gap-4 max-[830px]:gap-2
+			max-[690px]:overflow-y-auto horizontalScrollbar">
+				{date?.map((d, index) => (
+					<button
+						key={d}
+						onClick={() => onSelectedCardIndex(index)}
+						className={` ${ (selectedCardIndex === index) ? theme.bg800andWhTxt : 'bg-transparent'}
+				py-3.5 px-6 flex flex-col items-center gap-0.5 rounded-xl text-black dark:text-neutral-50`}
+					>
+						<p>{ DateTime.fromISO(d).toFormat('dd.MM') }</p>
+						<div className="w-11 h-11">
+							{ selectedCardIndex === index ?
+								weatherIcons(weatherCode[index], undefined, "#ffffff") :
+								weatherIcons(weatherCode[index], undefined,  color)
+							}
+						</div>
+						<p className="flex gap-2">
+					<span title="Максимальная суточная температура">
+						{ tempHeight === 2 && Math.round(tempMax[index]) }
+						{ tempHeight === 80 && getMaxValues(temp80m)[index] }
+						{ tempHeight === 120 && getMaxValues(temp120m)[index] }
+					</span>
+							<span className="opacity-60" title="Минимальная суточная температура">
+						{ tempHeight === 2 && Math.round(tempMin[index]) }
+								{ tempHeight === 80 && getMinValues(temp80m)[index] }
+								{ tempHeight === 120 && getMinValues(temp120m)[index] }
+					</span>
+						</p>
+					</button>
+				))}
+			</div>
 		</div>
 	)
 }
