@@ -49,8 +49,8 @@ html.dark {
    background-color: #262626;
 }
 
-html.horizontalScrollbar,
-.horizontalScrollbar::-webkit-scrollbar {
+html.hideScrollbar,
+.hideScrollbar::-webkit-scrollbar {
    display: none;
 }
 

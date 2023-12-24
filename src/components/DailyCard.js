@@ -10,7 +10,7 @@ const DailyCard = ({ weather, selectedCardIndex, onSelectedCardIndex }) => {
 	return (
 		<div className="w-full overflow-hidden max-md:px-3">
 			<div className="flex justify-center max-[625px]:justify-start gap-6 max-[830px]:gap-2
-			max-[625px]:overflow-y-auto horizontalScrollbar">
+			max-[625px]:overflow-y-auto hideScrollbar">
 				{date?.map((d, index) => (
 					<button
 						key={d}

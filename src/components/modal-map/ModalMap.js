@@ -36,11 +36,11 @@ const ModalMap = ({ onClick, selectedOption, onChangeSelected, city }) => {
 	}
 	
 	return (
-		<div className="fixed inset-0 bg-black bg-opacity-60">
-			<div className="fixed inset-0 flex items-center justify-center max-md:block overflow-auto">
-				<div className={`w-11/12 max-w-screen-2xl max-md:w-full ${theme.bg100} dark:bg-neutral-900 p-6 pt-4
-				 max-md:p-2 rounded-xl max-md:rounded-none`}>
-					<div className="flex max-md:flex-col-reverse items-start justify-between gap-2 mb-6 max-md:mb-4">
+		<div className="fixed inset-0 bg-black bg-opacity-60 overflow-auto">
+			<div className="fixed inset-0 md:top-8 flex justify-center max-md:block overflow-auto">
+				<div className={`w-11/12 max-w-screen-2xl h-fit max-md:w-full max-md:h-full ${theme.bg100} dark:bg-neutral-900 p-6 pt-4
+				 max-md:p-2 rounded-xl max-md:rounded-none overflow-auto`}>
+					<div className="flex max-md:flex-col-reverse items-start justify-between gap-2 mb-6 max-md:mb-5">
 						<Form
 							selectedOption={selectedOption}
 							onChangeSelected={onChangeSelected}
@@ -54,7 +54,7 @@ const ModalMap = ({ onClick, selectedOption, onChangeSelected, city }) => {
 								color={isDark ? theme.hexColorDark : theme.hexColor} />
 						</button>
 					</div>
-					<div className="mb-6 max-md:mb-4">
+					<div className="mb-6">
 						<h3 className={`${theme.text} ${theme.textDark} font-semibold mb-2`}>Последние запросы</h3>
 						<Cards requests={requests} />
 					</div>

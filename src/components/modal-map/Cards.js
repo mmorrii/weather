@@ -7,7 +7,7 @@ const Cards = ({ requests }) => {
 	
 	return (
 		<div className="w-full overflow-hidden">
-			<div className="flex gap-2 overflow-y-auto horizontalScrollbar">
+			<div className="flex gap-2 overflow-y-auto hideScrollbar">
 				{requests.map(r => (
 					<button key={r.location} className="flex-auto max-w-[232px]">
 						<Card className={`${theme.bgHover50} dark:hover:bg-neutral-700 dark:text-neutral-50`}>
