@@ -3,12 +3,16 @@ import {windDirection} from "../../../utils/wind-direction";
 import {useContext} from "react";
 import {IsDarkContext, ThemeContext} from "../../../App";
 import WindIcon from "../../../icons/WindIcon";
+import {useResize} from "../../../hooks/useResize";
 
-const WindDirection = ({ weather }) => {
+const WindDirection = ({ weather, pageIndex }) => {
 	const theme = useContext(ThemeContext)
 	const isDark = useContext(IsDarkContext)
+	const windowWidth = useResize()
 	
-	const windDir = weather.daily?.wind_direction_10m_dominant
+	const winDirData = weather.daily?.wind_direction_10m_dominant
+	const windDir = (windowWidth <= 1050 && windowWidth > 590) ? winDirData?.slice(pageIndex * 4, pageIndex * 4 + 4) :
+		(windowWidth <= 590) ? winDirData?.slice(pageIndex * 2, pageIndex * 2 + 2) : winDirData
 	
 	return (
 		<tr className={`${theme.bg50} dark:bg-neutral-800`}>

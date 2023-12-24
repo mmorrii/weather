@@ -21,6 +21,13 @@ body {
    }
 }
 
+@media (min-width: 1440px) {
+   html,
+   body {
+      font-size: 18px;
+   }
+}
+
 input {
    outline: none;
 }

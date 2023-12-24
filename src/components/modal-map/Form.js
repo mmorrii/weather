@@ -48,7 +48,7 @@ const Form = ({ selectedOption, onChangeSelected, onChangeRequest }) => {
 								dark:text-neutral-50 ${theme.focusDarkColor}`}
 					/>
 					<button onClick={() => setFormData('')}
-						className="absolute bottom-2 right-1 max-md:bottom-1 max-md:right-0.5">
+						className="absolute bottom-2 right-1 max-md:bottom-1.5 max-md:right-0.5">
 						<IoClose
 							size={windowWidth <= 768 ? 28 : 25}
 							color={isDark ? theme.hexColorDark : theme.hexColor} />

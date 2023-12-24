@@ -1,6 +1,6 @@
-export const Caption = ({ children }) => {
+export const Caption = ({ children, className }) => {
 	return (
-		<div className="text-center text-sm opacity-70 mt-2">
+		<div className={`text-center text-sm opacity-70 mt-2 ${className}`}>
 			{ children }
 		</div>
 	)
