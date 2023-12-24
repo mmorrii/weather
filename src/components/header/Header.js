@@ -11,7 +11,7 @@ const Header = ({ handleOptionChange, selectedOption, weather, onChangeSelected,
 	const isDay = weather?.current?.is_day === 1
 	
 	return (
-		<header className="flex justify-between items-center mb-4">
+		<header className="flex justify-between items-center mb-4 max-sm:mb-2">
 			<div className="flex items-center gap-3">
 				<Logo isDay={isDay} />
 				{ windowWidth > 768 &&

@@ -9,6 +9,7 @@ const DailyCardPrecipitation = ({ weather, onSelectedCardIndex, selectedCardInde
 	
 	const date = weather.daily?.time
 	const precipitation = weather.daily?.precipitation_probability_max
+	const tempMax = weather.daily?.temperature_2m_max
 	const color = isDark ? theme.hexColorDark : theme.hexColor
 	
 	return (
@@ -25,8 +26,8 @@ const DailyCardPrecipitation = ({ weather, onSelectedCardIndex, selectedCardInde
 						<p>{ DateTime.fromISO(d).toFormat('dd.MM') }</p>
 						<div className="w-11 h-11">
 							{ selectedCardIndex === index ?
-								precipitationIcon(precipitation[index], "#ffffff") :
-								precipitationIcon(precipitation[index], color)
+								precipitationIcon(precipitation[index], Math.round(tempMax[index]),"#ffffff") :
+								precipitationIcon(precipitation[index], Math.round(tempMax[index]), color)
 							}
 						</div>
 						<p title="Максимальная суточная вероятность осадков" >

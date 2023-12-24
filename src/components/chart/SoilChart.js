@@ -15,8 +15,8 @@ const SoilChart = ({ weather }) => {
 	
 	return (
 		<figure>
-			<Card>
-				<div className="flex gap-2">
+			<Card className="max-md:px-2">
+				<div className="flex gap-2 max-md:px-3 mb-1">
 					{ navBar.map((item, index) => (
 						<Fragment key={item}>
 							<button

@@ -31,7 +31,7 @@ const NavBar = ({ navBarData, onChangeIndex, navBarIndex, textColor }) => {
 					onClick={() => setIsOpen(!isOpen)}
 				>
 					<p className="truncate">{navBarData[navBarIndex]}</p>
-					{ isOpen && <ul className="absolute mt-3 left-0 z-10 w-fit bg-white dark:bg-neutral-900 py-1.5 rounded-md">
+					{ isOpen && <ul className={`absolute mt-3 left-0 z-10 w-fit ${theme.bg50} dark:bg-neutral-900 py-1.5 rounded-md`}>
 						{navBarData.map((item, index) => (
 							<li
 								key={item}

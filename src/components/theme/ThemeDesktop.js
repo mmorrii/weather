@@ -22,7 +22,7 @@ const ThemeDesktop = ({ selectedOption, options, onThemeChange }) => {
 				</div>
 				<p>Тема</p>
 			</div>
-			{ isOpen && <ul className="absolute z-10 -left-4 w-fit bg-white dark:bg-neutral-900 mt-2 py-1.5 rounded-md">
+			{ isOpen && <ul className="absolute z-10 -left-4 w-fit bg-white dark:bg-neutral-900 mt-2.5 py-1.5 rounded-md">
 				{options.map((option) => (
 					<li
 						key={option}
