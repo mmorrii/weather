@@ -4,7 +4,7 @@ import MapIcon from "../../icons/MapIcon";
 import {createPortal} from "react-dom";
 import ModalMap from "../modal-map/ModalMap";
 
-const MenuList = ({ selectedOption, onChangeSelected, city, onModalClose, isModalOpen }) => {
+const MenuList = ({ selectedOption, onChangeSelected, city, onModalClose, isModalOpen, handleOptionChange }) => {
 	const theme = useContext(ThemeContext)
 	const isDark = useContext(IsDarkContext)
 	const [isOpen, setIsOpen] = useState(false)
@@ -41,6 +41,7 @@ const MenuList = ({ selectedOption, onChangeSelected, city, onModalClose, isModa
 					<ModalMap onClick={handleCloseModal}
 								 selectedOption={selectedOption}
 								 onChangeSelected={onChangeSelected}
+								 handleOptionChange={handleOptionChange}
 								 city={city}
 					/>, document.body )
 			}

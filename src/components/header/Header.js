@@ -24,11 +24,16 @@ const Header = ({ handleOptionChange, selectedOption, weather, onChangeSelected,
 					selectedOption={selectedOption}
 				/>
 				{ windowWidth > 768 &&
-					<Map selectedOption={selectedOption} onChangeSelected={onChangeSelected} city={city} />
+					<Map
+						selectedOption={selectedOption}
+						handleOptionChange={handleOptionChange}
+						onChangeSelected={onChangeSelected}
+						city={city} />
 				}
 				{ windowWidth <= 768 &&
 					<MobileMenu
 						selectedOption={selectedOption}
+						handleOptionChange={handleOptionChange}
 						onChangeSelected={onChangeSelected}
 						city={city}
 						onChangeTheme={onChangeTheme}

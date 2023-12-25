@@ -6,7 +6,7 @@ import Cards from "./Cards";
 import {useLocalStorage} from "../../hooks/useLocalStorage";
 import {useResize} from "../../hooks/useResize";
 
-const ModalMap = ({ onClick, selectedOption, onChangeSelected, city }) => {
+const ModalMap = ({ onClick, selectedOption, onChangeSelected, city, handleOptionChange }) => {
 	const theme = useContext(ThemeContext)
 	const isDark = useContext(IsDarkContext)
 	const windowWidth = useResize()
@@ -28,7 +28,13 @@ const ModalMap = ({ onClick, selectedOption, onChangeSelected, city }) => {
 		}
 		
 		const updatedRequests = [
-			{ location: newLocation, latitude: selectedOption.latitude, longitude: selectedOption.longitude },
+			{
+				value: country,
+				label: country,
+				location: newLocation,
+				latitude: selectedOption.latitude,
+				longitude: selectedOption.longitude,
+			},
 			...requests.slice(0, 4)
 		]
 		
@@ -56,7 +62,7 @@ const ModalMap = ({ onClick, selectedOption, onChangeSelected, city }) => {
 					</div>
 					<div className="mb-6">
 						<h3 className={`${theme.text} ${theme.textDark} font-semibold mb-2`}>Последние запросы</h3>
-						<Cards requests={requests} />
+						<Cards requests={requests} handleOptionChange={handleOptionChange} />
 					</div>
 					<div className="-mx-6 -mb-3 max-md:-mx-2 max-md:-mb-2 bg-gray-50">
 						<iframe
