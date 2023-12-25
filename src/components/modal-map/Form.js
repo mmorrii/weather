@@ -11,6 +11,7 @@ const Form = ({ selectedOption, onChangeSelected, onChangeRequest }) => {
 	const windowWidth = useResize()
 	const [formData, setFormData] = useState(`${selectedOption.latitude}, ${selectedOption.longitude}`)
 	const [isError, setIsError] = useState('')
+	console.log(selectedOption)
 	
 	const handleSubmit = (e) => {
 		e.preventDefault()
@@ -50,7 +51,7 @@ const Form = ({ selectedOption, onChangeSelected, onChangeRequest }) => {
 					<button onClick={() => setFormData('')}
 						className="absolute bottom-2 right-1 max-md:bottom-1.5 max-md:right-0.5">
 						<IoClose
-							size={windowWidth <= 768 ? 28 : 25}
+							size={windowWidth <= 768 ? 28 : 26}
 							color={isDark ? theme.hexColorDark : theme.hexColor} />
 					</button>
 				</div>

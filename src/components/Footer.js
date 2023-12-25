@@ -6,7 +6,7 @@ const Footer = () => {
 	const theme = useContext(ThemeContext)
 	
 	return (
-		<footer className={`${theme.bg800andWhTxt} p-3 -mx-4`}>
+		<footer className={`${theme.bg800andWhTxt} p-3 2xl:rounded-t-xl max-2xl:-mx-4`}>
 			<div className="flex items-center justify-center gap-2">
 				<div className="w-8 h-8">
 					<a href="https://github.com/mmorrii/weather" rel="noopener noreferrer" target="_blank">

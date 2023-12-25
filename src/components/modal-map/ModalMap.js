@@ -45,7 +45,7 @@ const ModalMap = ({ onClick, selectedOption, onChangeSelected, city, handleOptio
 		<div className="fixed inset-0 bg-black bg-opacity-60">
 			<div className="fixed inset-0 md:top-8 flex justify-center max-md:block overflow-auto">
 				<div className={`w-11/12 max-w-screen-2xl h-fit max-md:w-full max-md:h-full ${theme.bg100} dark:bg-neutral-900
-				max-md:dark:bg-opacity-50 p-6 pt-4 max-md:p-2 rounded-xl max-md:rounded-none`}>
+				max-md:bg-opacity-90 p-6 pt-4 max-md:p-2 rounded-xl max-md:rounded-none`}>
 					<div className="flex max-md:flex-col-reverse items-start justify-between gap-2 mb-6 max-md:mb-5">
 						<Form
 							selectedOption={selectedOption}
@@ -56,7 +56,7 @@ const ModalMap = ({ onClick, selectedOption, onChangeSelected, city, handleOptio
 								  className={`${theme.border} ${theme.borderDark} mt-2 max-md:mt-0
 								  rounded-md max-md:self-end`} >
 							<IoClose
-								size={(windowWidth <= 768 || windowWidth >= 1440) ? 30 : 25}
+								size={(windowWidth <= 768 || windowWidth >= 1440) ? 30 : 26}
 								color={isDark ? theme.hexColorDark : theme.hexColor} />
 						</button>
 					</div>

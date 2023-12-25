@@ -18,25 +18,23 @@ const Header = ({ handleOptionChange, selectedOption, weather, onChangeSelected,
 					<ThemeSelector onChangeTheme={onChangeTheme} />
 				}
 			</div>
-			<div className="flex items-center gap-5 max-md:gap-3">
-				<SelectComponent
-					handleOptionChange={handleOptionChange}
-					selectedOption={selectedOption}
-				/>
+			<div className="flex items-center gap-5 max-md:gap-4">
 				{ windowWidth > 768 &&
-					<Map
-						selectedOption={selectedOption}
+					<SelectComponent
 						handleOptionChange={handleOptionChange}
-						onChangeSelected={onChangeSelected}
-						city={city} />
+						selectedOption={selectedOption}
+					/>
 				}
+				<Map
+					selectedOption={selectedOption}
+					handleOptionChange={handleOptionChange}
+					onChangeSelected={onChangeSelected}
+					city={city} />
 				{ windowWidth <= 768 &&
 					<MobileMenu
-						selectedOption={selectedOption}
-						handleOptionChange={handleOptionChange}
-						onChangeSelected={onChangeSelected}
-						city={city}
 						onChangeTheme={onChangeTheme}
+						handleOptionChange={handleOptionChange}
+						selectedOption={selectedOption}
 					/>
 				}
 			</div>

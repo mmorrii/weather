@@ -2,14 +2,15 @@ import {IoClose} from "react-icons/io5";
 import {useContext} from "react";
 import {IsDarkContext, ThemeContext} from "../../App";
 import ThemeSelector from "../theme/ThemeSelector";
-import MenuList from "./MenuList";
+import SelectComponent from "../header/SelectComponent";
 
-const ModalMenu = ({ onModalClose, onChangeTheme, selectedOption, onChangeSelected, city, isModalOpen, handleOptionChange }) => {
+const ModalMenu = ({ onModalClose, onChangeTheme, handleOptionChange, selectedOption }) => {
 	const theme = useContext(ThemeContext)
 	const isDark = useContext(IsDarkContext)
 	
 	return (
-		<div className={`fixed inset-0 w-full h-full ${theme.bg100} dark:bg-neutral-900 dark:text-neutral-50`}>
+		<div className={`fixed inset-0 w-full h-full ${theme.bg100} dark:bg-neutral-900 dark:text-neutral-50
+		max-md:bg-opacity-90`}>
 			<div className="p-2">
 				<div className="flex justify-end mb-4">
 					<button onClick={onModalClose}
@@ -21,14 +22,12 @@ const ModalMenu = ({ onModalClose, onChangeTheme, selectedOption, onChangeSelect
 					World Weather
 				</div>
 				<ThemeSelector onChangeTheme={onChangeTheme} />
-				<MenuList
-					isModalOpen={isModalOpen}
-					onModalClose={onModalClose}
-					selectedOption={selectedOption}
-					onChangeSelected={onChangeSelected}
-					handleOptionChange={handleOptionChange}
-					city={city}
-				/>
+				<div className="flex justify-center">
+					<SelectComponent
+						handleOptionChange={handleOptionChange}
+						selectedOption={selectedOption}
+					/>
+				</div>
 			</div>
 		</div>
 	)

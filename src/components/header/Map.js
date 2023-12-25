@@ -22,7 +22,7 @@ const Map = ({ selectedOption, onChangeSelected, city, handleOptionChange }) => 
 	return (
 		<>
 			<button
-				className="w-11 h-11"
+				className="w-11 h-11 max-md:w-12 max-md:h-12"
 				onClick={handleOpenModal}
 			>
 				<MapIcon color={isDark ? theme.hexColorDark : theme.hexColor} />

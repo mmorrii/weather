@@ -16,7 +16,7 @@ const Cards = ({ requests, handleOptionChange }) => {
 					>
 						<Card className={`${theme.bgHover50} dark:hover:bg-neutral-700 dark:text-neutral-50`}>
 							<div className="flex flex-col gap-1 items-center">
-								<p>{r.location}</p>
+								<p className="truncate">{r.location}</p>
 								<div className="flex gap-2 text-sm opacity-50 max-w-[200px]">
 									<p className="truncate">Ш: {r.latitude}</p>
 									<p className="truncate">Д: {r.longitude}</p>
