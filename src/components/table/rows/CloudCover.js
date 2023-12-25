@@ -2,12 +2,16 @@ import {useContext} from "react";
 import {IsDarkContext, ThemeContext} from "../../../App";
 import {displaySomeElements} from "../../../utils/utils";
 import CloudIcon from "../../../icons/CloudIcon";
+import {useResize} from "../../../hooks/useResize";
 
-const CloudCover = ({ weather, selectedCardIndex }) => {
+const CloudCover = ({ weather, selectedCardIndex, pageIndex }) => {
 	const theme = useContext(ThemeContext)
 	const isDark = useContext(IsDarkContext)
+	const windowWidth = useResize()
 	
-	const cloudCover = displaySomeElements(weather.hourly?.cloud_cover_low, selectedCardIndex)
+	const cloudCoverData = displaySomeElements(weather.hourly?.cloud_cover_low, selectedCardIndex)
+	const cloudCover = (windowWidth <= 1050 && windowWidth > 590) ? cloudCoverData?.slice(pageIndex * 4, pageIndex * 4 + 4) :
+		(windowWidth <= 590) ? cloudCoverData?.slice(pageIndex * 2, pageIndex * 2 + 2) : cloudCoverData
 	
 	return (
 		<tr className={`border-y border-solid ${theme.borderColor} ${theme.bg50} dark:bg-neutral-800`}>

@@ -44,8 +44,8 @@ const ModalMap = ({ onClick, selectedOption, onChangeSelected, city, handleOptio
 	return (
 		<div className="fixed inset-0 bg-black bg-opacity-60">
 			<div className="fixed inset-0 md:top-8 flex justify-center max-md:block overflow-auto">
-				<div className={`w-11/12 max-w-screen-2xl h-fit max-md:w-full max-md:h-full ${theme.bg100} dark:bg-neutral-900 p-6 pt-4
-				 max-md:p-2 rounded-xl max-md:rounded-none`}>
+				<div className={`w-11/12 max-w-screen-2xl h-fit max-md:w-full max-md:h-full ${theme.bg100} dark:bg-neutral-900
+				max-md:dark:bg-opacity-50 p-6 pt-4 max-md:p-2 rounded-xl max-md:rounded-none`}>
 					<div className="flex max-md:flex-col-reverse items-start justify-between gap-2 mb-6 max-md:mb-5">
 						<Form
 							selectedOption={selectedOption}

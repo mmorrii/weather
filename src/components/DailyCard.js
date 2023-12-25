@@ -2,13 +2,13 @@ import {DateTime} from "luxon";
 import {useContext} from "react";
 import {ThemeContext} from "../App";
 
-const DailyCard = ({ weather, selectedCardIndex, onSelectedCardIndex }) => {
+const DailyCard = ({ weather, selectedCardIndex, onSelectedCardIndex, className }) => {
 	const theme = useContext(ThemeContext)
 	
 	const date = weather.daily?.time
 	
 	return (
-		<div className="w-full overflow-hidden max-md:px-3">
+		<div className={`w-full overflow-hidden ${className}`}>
 			<div className="flex justify-center max-[625px]:justify-start gap-6 max-[830px]:gap-2
 			max-[625px]:overflow-y-auto hideScrollbar">
 				{date?.map((d, index) => (

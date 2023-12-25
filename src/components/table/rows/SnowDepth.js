@@ -2,12 +2,16 @@ import {useContext} from "react";
 import {IsDarkContext, ThemeContext} from "../../../App";
 import {displaySomeElements} from "../../../utils/utils";
 import SnowDepthIcon from "../../../icons/SnowDepthIcon";
+import {useResize} from "../../../hooks/useResize";
 
-const SnowDepth = ({ weather, selectedCardIndex }) => {
+const SnowDepth = ({ weather, selectedCardIndex, pageIndex }) => {
 	const theme = useContext(ThemeContext)
 	const isDark = useContext(IsDarkContext)
+	const windowWidth = useResize()
 	
-	const depth = displaySomeElements(weather.hourly?.snow_depth, selectedCardIndex)
+	const depthData = displaySomeElements(weather.hourly?.snow_depth, selectedCardIndex)
+	const depth = (windowWidth <= 1050 && windowWidth > 590) ? depthData?.slice(pageIndex * 4, pageIndex * 4 + 4) :
+		(windowWidth <= 590) ? depthData?.slice(pageIndex * 2, pageIndex * 2 + 2) : depthData
 	
 	return (
 		<tr className={`border-y border-solid ${theme.borderColor} ${theme.bg50} dark:bg-neutral-800`}>

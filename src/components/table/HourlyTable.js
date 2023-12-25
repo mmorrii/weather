@@ -1,6 +1,6 @@
 import {DateTime} from "luxon";
 import {useContext, useState} from "react";
-import {ThemeContext} from "../../App";
+import {IsDarkContext, ThemeContext} from "../../App";
 import {displaySomeElements} from "../../utils/utils";
 import DailyCard from "../DailyCard";
 import SnowDepth from "./rows/SnowDepth";
@@ -9,18 +9,27 @@ import CloudCover from "./rows/CloudCover";
 import Visibility from "./rows/Visibility";
 import {currentPattern} from "../../utils/current-pattern";
 import ChristmasLightIcon from "../../icons/ChristmasLightIcon";
+import {FaArrowLeft, FaArrowRight} from "react-icons/fa";
+import {useResize} from "../../hooks/useResize";
 
 const HourlyTable = ({ weather, selectedOption, season }) => {
 	const theme = useContext(ThemeContext)
+	const isDark = useContext(IsDarkContext)
+	const windowWidth = useResize()
+	const [pageIndex, setPageIndex] = useState(0)
 	const [selectedCardIndex, setSelectedCardIndex] = useState(0)
 	
-	const time = displaySomeElements(weather.hourly?.time, selectedCardIndex)
-	const timezone = weather.timezone
-	const currentTime = DateTime.now().setZone(timezone).toFormat('HH:mm')
-	const currentTimeIndex = time.findIndex(t => DateTime.fromISO(t).toFormat('HH:mm') > currentTime)
+	const timeData = displaySomeElements(weather?.hourly?.time, selectedCardIndex)
+	const time = (windowWidth <= 1050 && windowWidth > 590) ? timeData?.slice(pageIndex * 4, pageIndex * 4 + 4) :
+		(windowWidth <= 590) ? timeData?.slice(pageIndex * 2, pageIndex * 2 + 2) : timeData
+	const length = (windowWidth <= 1050 && windowWidth > 590) ? Math.round(timeData?.length / 4) :
+		Math.round(timeData?.length / 2)
+	
+	const timeZone = weather?.timezone
+	const currentTime = DateTime.now().setZone(timeZone).toFormat('HH:mm')
+	const currentTimeIndex = timeData.findIndex(t => DateTime.fromISO(t).toFormat('HH:mm') > currentTime)
 	
 	const weatherCode = weather?.current?.weather_code
-	const timeZone = weather?.timezone
 	const latitude = selectedOption.latitude
 	const bgImg = currentPattern(weatherCode, timeZone, latitude)
 	
@@ -38,9 +47,9 @@ const HourlyTable = ({ weather, selectedOption, season }) => {
 						{time && time.map((t, index) => (
 							<th
 								key={t}
-								className={`p-2 ${(index === currentTimeIndex - 1 && selectedCardIndex === 0) ?
+								className={`p-2 ${(windowWidth > 1050 && (index === currentTimeIndex - 1 && selectedCardIndex === 0)) ?
 									theme.bg900 : ''}`}
-								style={(index === currentTimeIndex - 1 && selectedCardIndex === 0) ?
+								style={(windowWidth > 1050 && (index === currentTimeIndex - 1 && selectedCardIndex === 0)) ?
 									{backgroundImage: bgImg, backgroundSize: '250%'} : {}}
 							>
 								{ DateTime.fromISO(t).toFormat('HH:mm') }
@@ -50,11 +59,11 @@ const HourlyTable = ({ weather, selectedOption, season }) => {
 				</thead>
 				<tbody>
 				{ season === "winter" &&
-					<SnowDepth weather={weather} selectedCardIndex={selectedCardIndex} />
+					<SnowDepth weather={weather} selectedCardIndex={selectedCardIndex} pageIndex={pageIndex} />
 				}
-					<Pressure weather={weather} selectedCardIndex={selectedCardIndex} />
-					<CloudCover weather={weather} selectedCardIndex={selectedCardIndex} />
-					<Visibility weather={weather} selectedCardIndex={selectedCardIndex} />
+					<Pressure weather={weather} selectedCardIndex={selectedCardIndex} pageIndex={pageIndex} />
+					<CloudCover weather={weather} selectedCardIndex={selectedCardIndex} pageIndex={pageIndex} />
+					<Visibility weather={weather} selectedCardIndex={selectedCardIndex} pageIndex={pageIndex} />
 				</tbody>
 			</table>
 			<DailyCard
@@ -62,6 +71,26 @@ const HourlyTable = ({ weather, selectedOption, season }) => {
 				selectedCardIndex={selectedCardIndex}
 				onSelectedCardIndex={(i) => setSelectedCardIndex(i)}
 			/>
+			{ windowWidth <= 1050 &&
+				<div className="flex justify-end mt-2">
+					<div className="flex gap-3">
+						<button
+							onClick={() => setPageIndex(prevState => prevState - 1 )}
+							disabled={pageIndex === 0}
+							className={`${theme.border} ${theme.borderDark} p-1.5 rounded-md disabled:opacity-50`}
+						>
+							<FaArrowLeft size={22} color={isDark ? theme.hexColorDark : theme.hexColor} />
+						</button>
+						<button
+							onClick={() => setPageIndex(prevState => prevState + 1)}
+							disabled={pageIndex === length - 1}
+							className={`${theme.border} ${theme.borderDark} p-1.5 rounded-md disabled:opacity-50`}
+						>
+							<FaArrowRight size={22} color={isDark ? theme.hexColorDark : theme.hexColor} />
+						</button>
+					</div>
+				</div>
+			}
 		</div>
 	)
 }

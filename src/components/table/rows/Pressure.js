@@ -2,12 +2,16 @@ import {useContext} from "react";
 import {IsDarkContext, ThemeContext} from "../../../App";
 import {displaySomeElements} from "../../../utils/utils";
 import PressureIcon from "../../../icons/PressureIcon";
+import {useResize} from "../../../hooks/useResize";
 
-const Pressure = ({ weather, selectedCardIndex }) => {
+const Pressure = ({ weather, selectedCardIndex, pageIndex }) => {
 	const theme = useContext(ThemeContext)
 	const isDark = useContext(IsDarkContext)
+	const windowWidth = useResize()
 	
-	const pressure = displaySomeElements(weather.hourly?.pressure_msl, selectedCardIndex)
+	const pressureData = displaySomeElements(weather.hourly?.pressure_msl, selectedCardIndex)
+	const pressure = (windowWidth <= 1050 && windowWidth > 590) ? pressureData?.slice(pageIndex * 4, pageIndex * 4 + 4) :
+		(windowWidth <= 590) ? pressureData?.slice(pageIndex * 2, pageIndex * 2 + 2) : pressureData
 	
 	return (
 		<tr className={`border-y border-solid ${theme.borderColor} ${theme.bg50} dark:bg-neutral-800`}>

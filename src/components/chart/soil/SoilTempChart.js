@@ -73,6 +73,7 @@ const SoilTempChart = ({weather}) => {
 				/>
 			</div>
 			<DailyCard
+				className="max-md:px-3"
 				weather={weather}
 				selectedCardIndex={selectedCardIndex}
 				onSelectedCardIndex={(i) => setSelectedCardIndex(i)}
