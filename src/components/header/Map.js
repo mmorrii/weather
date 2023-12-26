@@ -4,7 +4,7 @@ import ModalMap from "../modal-map/ModalMap";
 import {IsDarkContext, ThemeContext} from "../../App";
 import MapIcon from "../../icons/MapIcon";
 
-const Map = ({ selectedOption, onChangeSelected, city, handleOptionChange }) => {
+const Map = ({ selectedOption, city, changeSelectedOption }) => {
 	const theme = useContext(ThemeContext)
 	const isDark = useContext(IsDarkContext)
 	const [isModalOpen, setIsModalOpen] = useState(false)
@@ -31,8 +31,7 @@ const Map = ({ selectedOption, onChangeSelected, city, handleOptionChange }) => 
 				createPortal(
 					<ModalMap onClick={handleCloseModal}
 								 selectedOption={selectedOption}
-								 onChangeSelected={onChangeSelected}
-								 handleOptionChange={handleOptionChange}
+								 changeSelectedOption={changeSelectedOption}
 								 city={city}
 					/>, document.body )
 			}

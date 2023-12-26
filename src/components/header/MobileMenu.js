@@ -4,7 +4,7 @@ import {IsDarkContext, ThemeContext} from "../../App";
 import {createPortal} from "react-dom";
 import ModalMenu from "../modal-menu/ModalMenu";
 
-const MobileMenu = ({ onChangeTheme, handleOptionChange, selectedOption }) => {
+const MobileMenu = ({ onChangeTheme, changeSelectedOption, selectedOption }) => {
 	const isDark = useContext(IsDarkContext)
 	const theme = useContext(ThemeContext)
 	const [isModalOpen, setIsModalOpen] = useState(false)
@@ -32,7 +32,7 @@ const MobileMenu = ({ onChangeTheme, handleOptionChange, selectedOption }) => {
 					<ModalMenu
 						onModalClose={handleModalClose}
 						onChangeTheme={onChangeTheme}
-						handleOptionChange={handleOptionChange}
+						changeSelectedOption={changeSelectedOption}
 						selectedOption={selectedOption}
 					/>, document.body )
 			}

@@ -4,7 +4,7 @@ import {useContext} from "react";
 import {IsDarkContext, ThemeContext} from "../../App";
 import {useResize} from "../../hooks/useResize";
 
-const SelectComponent =	({ selectedOption, handleOptionChange }) => {
+const SelectComponent =	({ selectedOption, changeSelectedOption }) => {
 	const themeContext = useContext(ThemeContext)
 	const isDark = useContext(IsDarkContext)
 	const windowWidth = useResize()
@@ -70,7 +70,7 @@ const SelectComponent =	({ selectedOption, handleOptionChange }) => {
 			styles={customStyles}
 			theme={theme}
 			value={selectedOption}
-			onChange={handleOptionChange}
+			onChange={changeSelectedOption}
 			options={coords}
 			isSearchable={true}
 			// defaultMenuIsOpen={true}

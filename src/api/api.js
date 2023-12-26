@@ -4,7 +4,7 @@ export const fetchWeather = (latitude, longitude, setWeather) => {
 	fetch(`${WEATHER}&latitude=${latitude}&longitude=${longitude}`)
 		.then((response) => response.json())
 		.then((data) => {
-			console.log(data)
+			// console.log(data)
 			setWeather(data)
 		})
 		.catch((err) => {
@@ -16,7 +16,7 @@ export const fetchCity = (latitude, longitude, setCity) => {
 	fetch(`https://api.opencagedata.com/geocode/v1/json?q=${latitude}+${longitude}&key=f3e8fbecaaac42db92e867477a633953&language=ru&no_annotations=1&pretty=1`)
 		.then((response) => response.json())
 		.then((data) => {
-			console.log(data)
+			// console.log(data)
 			setCity(data)
 		})
 		.catch((err) => {

@@ -5,7 +5,7 @@ import ThemeSelector from "../theme/ThemeSelector";
 import {useResize} from "../../hooks/useResize";
 import MobileMenu from "./MobileMenu";
 
-const Header = ({ handleOptionChange, selectedOption, weather, onChangeSelected, onChangeTheme, city }) => {
+const Header = ({ changeSelectedOption, selectedOption, weather, onChangeTheme, city }) => {
 	const windowWidth = useResize()
 	
 	const isDay = weather?.current?.is_day === 1
@@ -21,19 +21,18 @@ const Header = ({ handleOptionChange, selectedOption, weather, onChangeSelected,
 			<div className="flex items-center gap-5 max-md:gap-4">
 				{ windowWidth > 768 &&
 					<SelectComponent
-						handleOptionChange={handleOptionChange}
+						changeSelectedOption={changeSelectedOption}
 						selectedOption={selectedOption}
 					/>
 				}
 				<Map
 					selectedOption={selectedOption}
-					handleOptionChange={handleOptionChange}
-					onChangeSelected={onChangeSelected}
+					changeSelectedOption={changeSelectedOption}
 					city={city} />
 				{ windowWidth <= 768 &&
 					<MobileMenu
 						onChangeTheme={onChangeTheme}
-						handleOptionChange={handleOptionChange}
+						changeSelectedOption={changeSelectedOption}
 						selectedOption={selectedOption}
 					/>
 				}

@@ -15,15 +15,15 @@ export const ThemeContext = createContext({})
 export const IsDarkContext = createContext(false)
 
 function App() {
+	const [selectedOption, setSelectedOption] = useLocalStorage("selectedOption", coords[2].options[1])
 	const [weather, setWeather] = useState({})
 	const [city, setCity] = useState({})
 	const [isDark, setIsDark] = useLocalStorage("isDarkTheme",false)
-	const [selectedOption, setSelectedOption] = useLocalStorage("selectedOption", coords[2].options[1])
 	
 	useEffect(() => {
-		fetchWeather(selectedOption.latitude, selectedOption.longitude, setWeather);
-		// const intervalId = setInterval(fetchWeather, 60 * 60 * 1000);
-		// return () => clearInterval(intervalId);
+		fetchWeather(selectedOption.latitude, selectedOption.longitude, setWeather)
+		// const intervalId = setInterval(fetchWeather, 60 * 60 * 1000)
+		// return () => clearInterval(intervalId)
 		fetchCity(selectedOption.latitude, selectedOption.longitude, setCity)
 	}, [selectedOption])
 	
@@ -39,15 +39,6 @@ function App() {
 		document.documentElement.classList.remove("dark")
 	}
 	
-	const handleInputChange = (key, value) => {
-		setSelectedOption(prevState => ({
-			...prevState,
-			[key]: value,
-			value: city?.results?.[0]?.components?.country,
-			label: city?.results?.[0]?.components?.country,
-		}))
-	}
-	
 	return (
 		<div className={`${!isDark && seasonsTheme.bg} dark:bg-neutral-900 dark:text-neutral-50 min-h-screen`}>
 			<div className="max-w-[1500px] font-sans p-4 max-sm:px-2 max-sm:pb-0 pb-0 m-auto overflow-hidden">
@@ -56,10 +47,9 @@ function App() {
 						<Header
 							city={city}
 							onChangeTheme={(val) => setIsDark(val)}
-							handleOptionChange={(s) => setSelectedOption(s)}
+							changeSelectedOption={(val) => setSelectedOption(val)}
 							selectedOption={selectedOption}
 							weather={weather}
-							onChangeSelected={(field, value) => handleInputChange(field, value)}
 						/>
 						<main>
 							<CurrentWeather

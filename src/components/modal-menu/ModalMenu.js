@@ -4,13 +4,13 @@ import {IsDarkContext, ThemeContext} from "../../App";
 import ThemeSelector from "../theme/ThemeSelector";
 import SelectComponent from "../header/SelectComponent";
 
-const ModalMenu = ({ onModalClose, onChangeTheme, handleOptionChange, selectedOption }) => {
+const ModalMenu = ({ onModalClose, onChangeTheme, changeSelectedOption, selectedOption }) => {
 	const theme = useContext(ThemeContext)
 	const isDark = useContext(IsDarkContext)
 	
 	return (
 		<div className={`fixed inset-0 w-full h-full ${theme.bg100} dark:bg-neutral-900 dark:text-neutral-50
-		max-md:bg-opacity-90`}>
+		max-md:bg-opacity-90 max-md:dark:bg-opacity-90`}>
 			<div className="p-2">
 				<div className="flex justify-end mb-4">
 					<button onClick={onModalClose}
@@ -24,7 +24,7 @@ const ModalMenu = ({ onModalClose, onChangeTheme, handleOptionChange, selectedOp
 				<ThemeSelector onChangeTheme={onChangeTheme} />
 				<div className="flex justify-center">
 					<SelectComponent
-						handleOptionChange={handleOptionChange}
+						changeSelectedOption={changeSelectedOption}
 						selectedOption={selectedOption}
 					/>
 				</div>

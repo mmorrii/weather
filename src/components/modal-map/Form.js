@@ -5,13 +5,12 @@ import {IoClose} from "react-icons/io5";
 import ErrorText from "./ErrorText";
 import {useResize} from "../../hooks/useResize";
 
-const Form = ({ selectedOption, onChangeSelected, onChangeRequest }) => {
+const Form = ({ selectedOption, onAddRequest, city, changeSelectedOption }) => {
 	const theme = useContext(ThemeContext)
 	const isDark = useContext(IsDarkContext)
 	const windowWidth = useResize()
 	const [formData, setFormData] = useState(`${selectedOption.latitude}, ${selectedOption.longitude}`)
 	const [isError, setIsError] = useState('')
-	console.log(selectedOption)
 	
 	const handleSubmit = (e) => {
 		e.preventDefault()
@@ -25,9 +24,31 @@ const Form = ({ selectedOption, onChangeSelected, onChangeRequest }) => {
 		}
 		setIsError('')
 		const [latitude, longitude] = formData.split(', ')
-		onChangeSelected("latitude", latitude)
-		onChangeSelected("longitude", longitude)
-		onChangeRequest()
+		changeSelectedOption({
+			"latitude": latitude,
+			"longitude": longitude,
+			"value": city?.results?.[0]?.components?.country,
+			"label": city?.results?.[0]?.components?.country
+		})
+		onAddRequest()
+	}
+	
+	const handleGetGeolocation = () => {
+		if ("geolocation" in navigator) {
+			navigator.geolocation.getCurrentPosition( (position) => {
+				setFormData(`${position.coords.latitude}, ${position.coords.longitude}`)
+				const [latitude, longitude] = formData.split(', ')
+				changeSelectedOption({
+					"latitude": latitude,
+					"longitude": longitude,
+					"value": city?.results?.[0]?.components?.country,
+					"label": city?.results?.[0]?.components?.country
+				})
+			})
+		} else {
+			console.log("Невозможно получить местоположение")
+		}
+		
 	}
 	
 	return (
@@ -61,6 +82,7 @@ const Form = ({ selectedOption, onChangeSelected, onChangeRequest }) => {
 						<FaCheck />
 					</button>
 					<button type="button"
+							  onClick={handleGetGeolocation}
 							  className={`${theme.bg800andWhTxt} max-md:basis-4/12 p-3 rounded ${theme.bgHover900} flex justify-center`}>
 						<FaMapMarkerAlt  />
 					</button>

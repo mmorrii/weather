@@ -36,7 +36,7 @@ const HourlyTable = ({ weather, selectedOption, season }) => {
 	return (
 		<div className="mb-6 relative">
 			{ season === "winter" &&
-				<div className="absolute -top-[2.95rem] max-md:-top-[3.20rem] -left-6">
+				<div className="absolute -top-[2.95rem] max-[768px]:-top-[3.20rem] min-[1440px]:-top-[2.60rem] -left-6">
 					<ChristmasLightIcon />
 				</div>
 			}
