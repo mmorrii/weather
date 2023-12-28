@@ -10,6 +10,7 @@ import DailyWeather from "./components/DailyWeather";
 import HourlyWeather from "./components/HourlyWeather";
 import Footer from "./components/Footer";
 import InfoBlock from "./components/InfoBlock";
+import Loader from "./components/loader/Loader";
 
 export const ThemeContext = createContext({})
 export const IsDarkContext = createContext(false)
@@ -19,6 +20,17 @@ function App() {
 	const [weather, setWeather] = useState({})
 	const [city, setCity] = useState({})
 	const [isDark, setIsDark] = useLocalStorage("isDarkTheme",false)
+	const [isLoading, setIsLoading] = useState(true)
+	
+	useEffect(() => {
+		const handleLoader = () => {
+			setTimeout(() => {
+				setIsLoading(false)
+			}, 3000)
+		}
+
+		handleLoader()
+	})
 	
 	useEffect(() => {
 		fetchWeather(selectedOption.latitude, selectedOption.longitude, setWeather)
@@ -39,7 +51,9 @@ function App() {
 		document.documentElement.classList.remove("dark")
 	}
 	
-	return (
+	return isLoading ? (
+		<Loader />
+		) : (
 		<div className={`${!isDark && seasonsTheme.bg} dark:bg-neutral-900 dark:text-neutral-50 min-h-screen`}>
 			<div className="max-w-[1500px] font-sans p-4 max-sm:px-2 max-sm:pb-0 pb-0 m-auto overflow-hidden">
 				<ThemeContext.Provider value={seasonsTheme}>
@@ -66,7 +80,7 @@ function App() {
 				</ThemeContext.Provider>
 			</div>
 		</div>
-	);
+	)
 }
 
 export default App;

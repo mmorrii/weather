@@ -46,8 +46,8 @@ const DailyTable = ({ weather, season }) => {
 			<Caption className="mb-1">
 				Преобладающее направление ветра и суточный максимум{' '}
 				<a href="https://www.who.int/news-room/questions-and-answers/item/radiation-the-ultraviolet-(uv)-index"
-					rel="noopener noreferrer"
 					target="_blank"
+					rel="noopener noreferrer"
 					className="opacity-100 text-blue-800 dark:text-blue-500 hover:underline"
 				>
 					УФ-индекса
