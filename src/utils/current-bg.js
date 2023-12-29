@@ -1,4 +1,5 @@
 import {currentSeason} from "./current-season";
+import {BASE_URL} from "../settings/baseUrl";
 
 export const weatherImgBg = ( code, tz, lat, isDay, windowWidth ) => {
 	const season = currentSeason(code, tz, lat)
@@ -9,7 +10,7 @@ export const weatherImgBg = ( code, tz, lat, isDay, windowWidth ) => {
 		case 1:
 		case 2:
 			return {
-				backgroundImage: `url('/images/bg/${season}_clearly_${dayOrNight}.jpg')`,
+				backgroundImage: `url('${BASE_URL}/images/bg/${season}_clearly_${dayOrNight}.jpg')`,
 				backgroundSize: "cover",
 				backgroundPosition: (windowWidth > 1250) ? "0 -315px" :
 					(windowWidth <= 1250 && windowWidth > 1060) ? "0 -215px" :
@@ -18,7 +19,7 @@ export const weatherImgBg = ( code, tz, lat, isDay, windowWidth ) => {
 			}
 		case 3:
 			return {
-				backgroundImage:`url('/images/bg/${season}_cloudy_${dayOrNight}.jpg')`,
+				backgroundImage:`url('${BASE_URL}/images/bg/${season}_cloudy_${dayOrNight}.jpg')`,
 				backgroundSize: "cover",
 				backgroundPosition: (windowWidth > 1250) ? "0 -355px" :
 					(windowWidth <= 1250 && windowWidth > 1060) ? "0 -255px" :
@@ -28,7 +29,7 @@ export const weatherImgBg = ( code, tz, lat, isDay, windowWidth ) => {
 		case 45:
 		case 48:
 			return {
-				backgroundImage:`url('/images/bg/${season}_fog_${dayOrNight}.jpg')`,
+				backgroundImage:`url('${BASE_URL}/images/bg/${season}_fog_${dayOrNight}.jpg')`,
 				backgroundSize: "cover",
 				backgroundPosition: (windowWidth > 1200) ? "0 -315px" :
 					(windowWidth <= 1200 && windowWidth > 1020) ? "0 -215px" :
@@ -48,7 +49,7 @@ export const weatherImgBg = ( code, tz, lat, isDay, windowWidth ) => {
 		case 81:
 		case 82:
 			return {
-				backgroundImage:`url('/images/bg/${season}_rainy_${dayOrNight}.jpg')`,
+				backgroundImage:`url('${BASE_URL}/images/bg/${season}_rainy_${dayOrNight}.jpg')`,
 				backgroundSize: "cover",
 				backgroundPosition: (windowWidth > 1200) ? "0 -300px" :
 					(windowWidth <= 1200 && windowWidth > 1024) ? "0 -200px" : "center",
@@ -58,7 +59,7 @@ export const weatherImgBg = ( code, tz, lat, isDay, windowWidth ) => {
 		case 75:
 		case 77:
 			return {
-				backgroundImage:`url('/images/bg/winter_snow_${dayOrNight}.jpg')`,
+				backgroundImage:`url('${BASE_URL}/images/bg/winter_snow_${dayOrNight}.jpg')`,
 				backgroundSize: "cover",
 				backgroundPosition: (windowWidth > 1350) ? "0 -285px" :
 					(windowWidth <= 1350 && windowWidth > 1100) ? "0 -185px" : "center",
@@ -66,21 +67,21 @@ export const weatherImgBg = ( code, tz, lat, isDay, windowWidth ) => {
 		case 85:
 		case 86:
 			return {
-				backgroundImage:`url('/images/bg/winter_snow_with_rain_${dayOrNight}.jpg')`,
+				backgroundImage:`url('${BASE_URL}/images/bg/winter_snow_with_rain_${dayOrNight}.jpg')`,
 				backgroundSize: "cover",
 				backgroundPosition: (windowWidth > 1200) ? "0 -285px" :
 					(windowWidth <= 1200 && windowWidth > 960) ? "0 -185px" : "center",
 			}
 		case 95:
 			return {
-				backgroundImage: `url('/images/bg/thunder.jpg')`,
+				backgroundImage: `url('${BASE_URL}/images/bg/thunder.jpg')`,
 				backgroundSize: "cover",
 				backgroundPosition: (windowWidth > 790) ? "0 -24px" : "50% 0",
 			}
 		case 96:
 		case 99:
 			return {
-				backgroundImage: `url('/images/bg/thunder_with_shower_rain.jpg')`,
+				backgroundImage: `url('${BASE_URL}/images/bg/thunder_with_shower_rain.jpg')`,
 				backgroundSize: "cover",
 				backgroundPosition: (windowWidth > 1200) ? "0 -255px" : "center",
 			}
