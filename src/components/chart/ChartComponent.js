@@ -8,6 +8,7 @@ import Card from "../../common/Card";
 import HumidityChart from "./humidity/HumidityChart";
 import {Figcaption} from "../../common/Caption";
 import NavBar from "./NavBar";
+import {motion} from "framer-motion";
 
 const ChartComponent = ({ weather, selectedCardIndex, onSelectedCardIndex }) => {
 	const [navBarIndex, setNavBarIndex] = useState(0)
@@ -21,7 +22,12 @@ const ChartComponent = ({ weather, selectedCardIndex, onSelectedCardIndex }) => 
 	const textColor = isDark ? theme.textDark : theme.text
 	
 	return (
-		<figure className="w-full">
+		<motion.figure
+			className="w-full"
+			initial={{ opacity: 0, y: 10 }}
+			animate={{ opacity: 1, y: 0 }}
+			transition={{ duration: 0.4, ease: "easeIn", delay: 0.9 }}
+		>
 			<Card className="max-md:px-2">
 				<div className="flex justify-between max-md:px-3">
 					<NavBar
@@ -82,7 +88,7 @@ const ChartComponent = ({ weather, selectedCardIndex, onSelectedCardIndex }) => 
 				{ navBarIndex === 2 && `Скорость ветра на высоте ${windSpeedHeight} м над землей. Стандартная высота – 10 м`}
 				{ navBarIndex === 3 && "Относительная влажность на высоте 2 м над землей"}
 			</Figcaption>
-		</figure>
+		</motion.figure>
 	)
 }
 

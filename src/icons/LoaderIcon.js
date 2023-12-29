@@ -6,13 +6,13 @@ const LoaderIcon = () => {
 			<g id="logo-icon">
 				<motion.g id="cloud"
 							 initial={{ opacity: 0, scale: 0.5 }}
-							 animate={{ opacity: 1, scale: 1, transition: { duration: 1, delay: 0.5}}}
+							 animate={{ opacity: 1, scale: 1, transition: { duration: 0.8, delay: 0.5}}}
 				>
 					<path id="Vector 1" d="M182.501 89.4992C97.0006 34.4998 56.5008 122 72.001 167.499C11 179.5 -37.9998 317.5 86.5006 351H426.501C566.501 291 492.501 144.999 398.001 144.999C406.179 -36.9925 209.237 -14.4103 182.501 89.4992Z" fill="#00AEEF" stroke="black" strokeWidth="18" strokeLinecap="round" strokeLinejoin="round"/>
 				</motion.g>
 				<motion.g id="sphere"
 					 initial={{x: -50, opacity: 0}}
-					 animate={{ x: 0, opacity: 1, transition: { duration: 1, delay: 1.5 } }}
+					 animate={{ x: 0, opacity: 1, transition: { duration: 0.8, delay: 1.5 } }}
 				>
 					<g id="Vector">
 						<mask id="path-2-inside-1_37_15" fill="white">

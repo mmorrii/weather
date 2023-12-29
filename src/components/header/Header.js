@@ -4,6 +4,7 @@ import Map from "./Map";
 import ThemeSelector from "../theme/ThemeSelector";
 import {useResize} from "../../hooks/useResize";
 import MobileMenu from "./MobileMenu";
+import {motion} from "framer-motion";
 
 const Header = ({ changeSelectedOption, selectedOption, weather, onChangeTheme, city }) => {
 	const windowWidth = useResize()
@@ -11,7 +12,12 @@ const Header = ({ changeSelectedOption, selectedOption, weather, onChangeTheme, 
 	const isDay = weather?.current?.is_day === 1
 	
 	return (
-		<header className="flex justify-between items-center mb-4 max-sm:mb-2">
+		<motion.header
+			className="flex justify-between items-center mb-4 max-sm:mb-2"
+			initial={{ opacity: 0, y: -10 }}
+			animate={{ opacity: 1, y: 0 }}
+			transition={{ duration: 0.4, ease: "easeIn" }}
+		>
 			<div className="flex items-center gap-3">
 				<Logo isDay={isDay} />
 				{ windowWidth > 768 &&
@@ -37,7 +43,7 @@ const Header = ({ changeSelectedOption, selectedOption, weather, onChangeTheme, 
 					/>
 				}
 			</div>
-		</header>
+		</motion.header>
 	)
 }
 
