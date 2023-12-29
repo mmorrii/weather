@@ -1,1 +1,1 @@
-export const BASE_URL = "https://mmorrii.github.io"
+export const BASE_URL = window.location.href
