@@ -1,43 +1,20 @@
 export const windDirection = (w) => {
-	if ((w >= 0 && w <= 10) || (w >= 350 && w <= 360)) {
-		return {
-			text: "северное",
-			icon: "rotate-0"
-		}
-	} else if (w >= 11 && w <= 79) {
-		return {
-			text: "северно-восточное",
-			icon: "rotate-45"
-		}
-	} else if (w >= 80 && w <= 100) {
-		return {
-			text: "восточное",
-			icon: "rotate-90"
-		}
-	} else if (w >= 101 && w <= 169) {
-		return {
-			text: "южно-восточное",
-			icon: "rotate-[135deg]"
-		}
-	} else if (w >= 170 && w <= 190) {
-		return {
-			text: "южное",
-			icon: "rotate-180"
-		}
-	} else if (w >= 191 && w <= 259) {
-		return {
-			text: "южно-западное",
-			icon: "-rotate-[135deg]"
-		}
-	} else if (w >= 260 && w <= 280) {
-		return {
-			text: "западное",
-			icon: "-rotate-90"
-		}
-	} else if (w >= 281 && w <= 349) {
-		return {
-			text: "северно-западное",
-			icon: "-rotate-45"
-		}
-	}
+	const directions = [
+		{ range: [0, 10, 350, 360], text: "северное", icon: "rotate-0" },
+		{ range: [11, 79], text: "северно-восточное", icon: "rotate-45" },
+		{ range: [80, 100], text: "восточное", icon: "rotate-90" },
+		{ range: [101, 169], text: "южно-восточное", icon: "rotate-[135deg]" },
+		{ range: [170, 190], text: "южное", icon: "rotate-180" },
+		{ range: [191, 259], text: "южно-западное", icon: "-rotate-[135deg]" },
+		{ range: [260, 280], text: "западное", icon: "-rotate-90" },
+		{ range: [281, 349], text: "северно-западное", icon: "-rotate-45" },
+	];
+	
+	const direction = directions.find((dir) =>
+		dir.range.some((rangeValue, index, array) =>
+			(index % 2 === 0) ? w >= rangeValue && w <= array[index + 1] : false
+		)
+	)
+	
+	return direction || { text: "неверное значение", icon: "" }
 }

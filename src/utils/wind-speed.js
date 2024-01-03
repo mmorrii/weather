@@ -1,17 +1,15 @@
 export const windSpeed = (windSpeed) => {
-	let wind = Math.round(windSpeed)
+	const wind = Math.round(windSpeed);
 	
-	if (wind <= 3) {
-		return "слабый"
-	} else if (wind >= 4 && wind <= 7) {
-		return "умеренный"
-	} else if (wind >= 8 && wind <= 14) {
-		return "сильный"
-	} else if (wind >= 15 && wind <= 19) {
-		return "очень сильный"
-	} else if (wind >= 20 && wind <= 30) {
-		return "шторм"
-	} else if (wind >= 31) {
-		return "ураган"
-	}
+	const windCategories = [
+		{ max: 3, label: "слабый" },
+		{ max: 7, label: "умеренный" },
+		{ max: 14, label: "сильный" },
+		{ max: 19, label: "очень сильный" },
+		{ max: 30, label: "шторм" },
+		{ max: Infinity, label: "ураган" }
+	];
+	
+	const category = windCategories.find(category => wind <= category.max)
+	return category ? category.label : "нет данных"
 }

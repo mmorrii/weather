@@ -34,9 +34,9 @@ function App() {
 	
 	useEffect(() => {
 		fetchWeather(selectedOption.latitude, selectedOption.longitude, setWeather)
-		// const intervalId = setInterval(fetchWeather, 60 * 60 * 1000)
-		// return () => clearInterval(intervalId)
 		fetchCity(selectedOption.latitude, selectedOption.longitude, setCity)
+		const intervalId = setInterval(fetchWeather, 60 * 30 * 1000)
+		return () => clearInterval(intervalId)
 	}, [selectedOption])
 	
 	const weatherCode = weather?.current?.weather_code

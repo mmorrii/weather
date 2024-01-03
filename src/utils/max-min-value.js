@@ -8,22 +8,9 @@ const getValue = (arr) => {
 }
 
 export const getMaxValues = (arr) => {
-	const result = getValue(arr)
-	let maxArr = [];
-	for (let i = 0; i < result.length; i++) {
-		maxArr.push(Math.max(...result[i]));
-	}
-	
-	return maxArr;
+	return getValue(arr).map(val => Math.max(...val))
 }
 
 export const getMinValues = (arr) => {
-	const result = getValue(arr)
-	let minArr = [];
-	for (let i = 0; i < result.length; i++) {
-		minArr.push(Math.min(...result[i]));
-	}
-	
-	return minArr;
+	return getValue(arr).map(val => Math.min(...val))
 }
-

@@ -8,14 +8,12 @@ const seasons = {
 };
 
 const getCurrentMonth = (tz) => {
-	const now = DateTime.local().setZone(tz);
-	const month = now.c.month;
+	const month = DateTime.local().setZone(tz).c.month;
 	return Object.keys(seasons).find(season => seasons[season].includes(month));
 };
 
 const isEquatorCountries = (lat) => {
-	return Math.floor(lat) <= 25 &&
-		Math.floor(lat) >= -25;
+	return Math.abs(lat) <= 25
 }
 
 const isSnowCode = (code) => {

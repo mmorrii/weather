@@ -2,7 +2,7 @@ import Card from "../../common/Card";
 import {useContext} from "react";
 import {ThemeContext} from "../../App";
 
-const Cards = ({ requests, changeSelectedOption }) => {
+const Cards = ({ requests, changeSelectedOption, changeFormData }) => {
 	const theme = useContext(ThemeContext)
 	
 	return (
@@ -11,7 +11,10 @@ const Cards = ({ requests, changeSelectedOption }) => {
 				{requests.map((r) => (
 					<button
 						key={r.location}
-						onClick={() => changeSelectedOption(r)}
+						onClick={() => {
+							changeSelectedOption(r)
+							changeFormData(`${r.latitude}, ${r.longitude}`)
+						}}
 						className="flex-auto max-w-[232px]"
 					>
 						<Card className={`${theme.bgHover50} dark:hover:bg-neutral-700 dark:text-neutral-50`}>

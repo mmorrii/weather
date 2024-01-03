@@ -1,15 +1,17 @@
 import { IoClose } from "react-icons/io5";
-import {useContext} from "react";
+import {useContext, useState} from "react";
 import {IsDarkContext, ThemeContext} from "../../App";
 import Form from "./Form";
 import Cards from "./Cards";
 import {useLocalStorage} from "../../hooks/useLocalStorage";
 import {useResize} from "../../hooks/useResize";
+import {flushSync} from "react-dom";
 
 const ModalMap = ({ onClick, selectedOption, city, changeSelectedOption }) => {
 	const theme = useContext(ThemeContext)
 	const isDark = useContext(IsDarkContext)
 	const windowWidth = useResize()
+	const [formData, setFormData] = useState(`${selectedOption.latitude}, ${selectedOption.longitude}`)
 	const [requests, setRequests] = useLocalStorage("requests",[])
 	
 	//TODO Error: only when double-clicked it adds to the cache
@@ -27,18 +29,19 @@ const ModalMap = ({ onClick, selectedOption, city, changeSelectedOption }) => {
 			return
 		}
 		
-		const updatedRequests = [
-			{
-				value: country,
-				label: country,
-				location: newLocation,
-				latitude: selectedOption.latitude,
-				longitude: selectedOption.longitude,
-			},
-			...requests.slice(0, 4)
-		]
-		
-		setRequests(updatedRequests)
+		flushSync(() => {
+			const updatedRequests = [
+				{
+					value: country,
+					label: country,
+					location: newLocation,
+					latitude: selectedOption.latitude,
+					longitude: selectedOption.longitude,
+				},
+				...requests.slice(0, 4)
+			]
+			setRequests(updatedRequests)
+		})
 	}
 	
 	return (
@@ -52,6 +55,8 @@ const ModalMap = ({ onClick, selectedOption, city, changeSelectedOption }) => {
 							selectedOption={selectedOption}
 							changeSelectedOption={changeSelectedOption}
 							onAddRequest={handleAddRequest}
+							formData={formData}
+							changeFormData={(val) => setFormData(val)}
 						/>
 						<button onClick={onClick}
 								  className={`${theme.border} ${theme.borderDark} mt-2 max-md:mt-0
@@ -63,7 +68,11 @@ const ModalMap = ({ onClick, selectedOption, city, changeSelectedOption }) => {
 					</div>
 					<div className="mb-6">
 						<h3 className={`${theme.text} ${theme.textDark} font-semibold mb-2`}>Последние запросы</h3>
-						<Cards requests={requests} changeSelectedOption={changeSelectedOption} />
+						<Cards
+							requests={requests}
+							changeSelectedOption={changeSelectedOption}
+							changeFormData={(val) => setFormData(val)}
+						/>
 					</div>
 					<div className="-mx-6 -mb-3 max-md:-mx-2 max-md:-mb-2 bg-gray-50">
 						<iframe
