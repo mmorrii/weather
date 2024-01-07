@@ -14,7 +14,7 @@ const DailyTable = ({ weather, season }) => {
 	const windowWidth = useResize()
 	const [pageIndex, setPageIndex] = useState(0)
 	
-	const dateData = weather.daily?.time
+	const dateData = weather?.daily?.time
 	const date = (windowWidth <= 1050 && windowWidth > 590) ? dateData?.slice(pageIndex * 4, pageIndex * 4 + 4) :
 		(windowWidth <= 590) ? dateData?.slice(pageIndex * 2, pageIndex * 2 + 2) : dateData
 	const length = (windowWidth <= 1050 && windowWidth > 590) ? Math.round(dateData?.length / 4) :

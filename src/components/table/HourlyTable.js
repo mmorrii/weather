@@ -69,7 +69,7 @@ const HourlyTable = ({ weather, selectedOption, season }) => {
 			<DailyCard
 				weather={weather}
 				selectedCardIndex={selectedCardIndex}
-				onSelectedCardIndex={(i) => setSelectedCardIndex(i)}
+				onSelectedCardIndex={setSelectedCardIndex}
 			/>
 			{ windowWidth <= 1050 &&
 				<div className="flex justify-end mt-2">

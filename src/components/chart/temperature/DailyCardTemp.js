@@ -9,10 +9,10 @@ const DailyCardTemp = ({ weather, onSelectedCardIndex, selectedCardIndex,
 	const theme = useContext(ThemeContext)
 	const isDark = useContext(IsDarkContext)
 	
-	const date = weather.daily?.time
-	const weatherCode = weather.daily?.weather_code
-	const tempMin = weather.daily?.temperature_2m_min
-	const tempMax = weather.daily?.temperature_2m_max
+	const date = weather?.daily?.time
+	const weatherCode = weather?.daily?.weather_code
+	const tempMin = weather?.daily?.temperature_2m_min
+	const tempMax = weather?.daily?.temperature_2m_max
 	const color = isDark ? theme.hexColorDark : theme.hexColor
 	
 	return (

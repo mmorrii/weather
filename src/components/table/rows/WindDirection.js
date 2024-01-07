@@ -10,7 +10,7 @@ const WindDirection = ({ weather, pageIndex }) => {
 	const isDark = useContext(IsDarkContext)
 	const windowWidth = useResize()
 	
-	const winDirData = weather.daily?.wind_direction_10m_dominant
+	const winDirData = weather?.daily?.wind_direction_10m_dominant
 	const windDir = (windowWidth <= 1050 && windowWidth > 590) ? winDirData?.slice(pageIndex * 4, pageIndex * 4 + 4) :
 		(windowWidth <= 590) ? winDirData?.slice(pageIndex * 2, pageIndex * 2 + 2) : winDirData
 	

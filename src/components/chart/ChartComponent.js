@@ -17,7 +17,7 @@ const ChartComponent = ({ weather, selectedCardIndex, onSelectedCardIndex }) => 
 	const theme = useContext(ThemeContext)
 	const isDark = useContext(IsDarkContext)
 	
-	const labels = weather.hourly?.time.map(item => DateTime.fromISO(item).toFormat('HH:mm'))
+	const labels = weather?.hourly?.time.map(item => DateTime.fromISO(item).toFormat('HH:mm'))
 	const navBarData = ["температура", "вероятность осадков", "скорость ветра", "относительная влажность"]
 	const textColor = isDark ? theme.textDark : theme.text
 	

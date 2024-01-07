@@ -7,8 +7,8 @@ const DailyCardWindSpeed = ({ weather, onSelectedCardIndex, selectedCardIndex,
 										 windSpeedHeight, windSpeed80m, windSpeed120m }) => {
 	const theme = useContext(ThemeContext)
 	
-	const date = weather.daily?.time
-	const windSpeed = weather.daily?.wind_speed_10m_max.map(item => Math.round(item))
+	const date = weather?.daily?.time
+	const windSpeed = weather?.daily?.wind_speed_10m_max.map(item => Math.round(item))
 	
 	return (
 		<div className="w-full overflow-hidden max-md:px-3">

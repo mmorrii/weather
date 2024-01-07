@@ -3,7 +3,7 @@ import {coords} from "./data/coords";
 import {useLocalStorage} from "./hooks/useLocalStorage";
 import {seasonsThemes} from "./styles/styles-seasons-themes";
 import {currentSeason} from "./utils/current-season";
-import {fetchCity, fetchWeather} from "./api/api";
+import {getCity, WEATHER} from "./api/api";
 import CurrentWeather from "./components/current-weather/CurrentWeather";
 import Header from "./components/header/Header";
 import DailyWeather from "./components/DailyWeather";
@@ -11,28 +11,22 @@ import HourlyWeather from "./components/HourlyWeather";
 import Footer from "./components/Footer";
 import InfoBlock from "./components/InfoBlock";
 import Loader from "./components/loader/Loader";
+import {useData} from "./hooks/useData";
 
 export const ThemeContext = createContext({})
 export const IsDarkContext = createContext(false)
 
 function App() {
 	const [selectedOption, setSelectedOption] = useLocalStorage("selectedOption", coords[2].options[1])
-	const [weather, setWeather] = useState({})
-	const [city, setCity] = useState({})
+	const weather = useData(`${WEATHER}&latitude=${selectedOption.latitude}&longitude=${selectedOption.longitude}`)
+	const city = useData(getCity(selectedOption.latitude, selectedOption.longitude))
 	const [isDark, setIsDark] = useLocalStorage("isDarkTheme",false)
 	const [isLoading, setIsLoading] = useState(true)
 	
 	useEffect(() => {
 		const timeoutId = setTimeout( () => setIsLoading(false), 3000)
 		return () => clearTimeout(timeoutId)
-	})
-	
-	useEffect(() => {
-		fetchWeather(selectedOption.latitude, selectedOption.longitude, setWeather)
-		fetchCity(selectedOption.latitude, selectedOption.longitude, setCity)
-		const intervalId = setInterval(fetchWeather, 60 * 30 * 1000)
-		return () => clearInterval(intervalId)
-	}, [selectedOption])
+	}, [])
 	
 	const weatherCode = weather?.current?.weather_code
 	const timeZone = weather?.timezone
@@ -55,8 +49,8 @@ function App() {
 					<IsDarkContext.Provider value={isDark}>
 						<Header
 							city={city}
-							onChangeTheme={(val) => setIsDark(val)}
-							changeSelectedOption={(val) => setSelectedOption(val)}
+							onChangeTheme={setIsDark}
+							changeSelectedOption={setSelectedOption}
 							selectedOption={selectedOption}
 							weather={weather}
 						/>

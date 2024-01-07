@@ -6,7 +6,7 @@ import {IsDarkContext, ThemeContext} from "../../../App";
 const Sunset = ({ weather }) => {
 	const theme = useContext(ThemeContext)
 	const isDark = useContext(IsDarkContext)
-	const sunsetTime = weather.daily?.sunset[0]
+	const sunsetTime = weather?.daily?.sunset[0]
 	
 	return (
 		<div className="max-sm:flex-auto flex items-center gap-3">

@@ -31,7 +31,7 @@ const PrecipitationChart = ({ weather, labels, selectedCardIndex, onSelectedCard
 	const isDark = useContext(IsDarkContext)
 	const windowWidth = useResize()
 	
-	const precipitation = weather.hourly?.precipitation_probability
+	const precipitation = weather?.hourly?.precipitation_probability
 	const textColor = isDark ? "#ffffff" : "#000000"
 	
 	const data = {

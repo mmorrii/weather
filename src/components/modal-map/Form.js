@@ -9,19 +9,17 @@ import {flushSync} from "react-dom";
 const Form = ({ formData, changeFormData, onAddRequest, city, changeSelectedOption }) => {
 	const theme = useContext(ThemeContext)
 	const isDark = useContext(IsDarkContext)
-	const inputFocus = useRef(null)
+	const focusRef = useRef(null)
 	const windowWidth = useResize()
 	const [isError, setIsError] = useState('')
 	
 	const handleSubmit = (e) => {
 		e.preventDefault()
 		if (!formData) {
-			setIsError('empty')
-			return
+			return setIsError('empty')
 		}
 		if (!formData.includes(',')) {
-			setIsError('comma')
-			return
+			return setIsError('comma')
 		}
 		setIsError('')
 		const [latitude, longitude] = formData.split(', ')
@@ -63,7 +61,7 @@ const Form = ({ formData, changeFormData, onAddRequest, city, changeSelectedOpti
 						Координаты
 					</label>
 					<input
-						ref={inputFocus}
+						ref={focusRef}
 						type="text"
 						id="input"
 						placeholder="9.07745, 4.58423"
@@ -77,7 +75,7 @@ const Form = ({ formData, changeFormData, onAddRequest, city, changeSelectedOpti
 					<button onClick={() => changeFormData('')}
 						className="absolute bottom-2 right-1 max-md:bottom-1.5 max-md:right-0.5">
 						<IoClose
-							onClick={() => inputFocus.current.focus()}
+							onClick={() => focusRef.current.focus()}
 							size={windowWidth <= 768 ? 28 : 26}
 							color={isDark ? theme.hexColorDark : theme.hexColor} />
 					</button>

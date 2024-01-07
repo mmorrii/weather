@@ -17,7 +17,7 @@ const Humidity = ({ weather }) => {
 			<div>
 				<p>Относительная влажность</p>
 				<p className="font-bold">
-					{ Math.round(weather.current?.relative_humidity_2m) }%
+					{ Math.round(weather?.current?.relative_humidity_2m) }%
 				</p>
 			</div>
 		</div>

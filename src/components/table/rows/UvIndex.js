@@ -8,7 +8,7 @@ const UvIndex = ({ weather, pageIndex }) => {
 	const isDark = useContext(IsDarkContext)
 	const windowWidth = useResize()
 	
-	const uvIndexData = weather.daily?.uv_index_max
+	const uvIndexData = weather?.daily?.uv_index_max
 	const uvIndex = (windowWidth <= 1050 && windowWidth > 590) ? uvIndexData?.slice(pageIndex * 4, pageIndex * 4 + 4) :
 		(windowWidth <= 590) ? uvIndexData?.slice(pageIndex * 2, pageIndex * 2 + 2) : uvIndexData
 	

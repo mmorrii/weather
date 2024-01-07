@@ -18,9 +18,9 @@ const WindSpeed = ({ weather }) => {
 			<div>
 				<p>Скорость ветра</p>
 				<p className="font-bold">
-					{Math.round(weather.current?.wind_speed_10m)} м/с
+					{Math.round(weather?.current?.wind_speed_10m)} м/с
 					<span className="font-normal ml-1 text-xs">
-						({ windSpeed(weather.current?.wind_speed_10m) })
+						({ windSpeed(weather?.current?.wind_speed_10m) })
 					</span>
 				</p>
 			</div>

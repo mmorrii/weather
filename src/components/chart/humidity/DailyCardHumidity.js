@@ -8,7 +8,7 @@ const DailyCardHumidity = ({ weather, onSelectedCardIndex, selectedCardIndex, hu
 	const theme = useContext(ThemeContext)
 	const isDark = useContext(IsDarkContext)
 	
-	const date = weather.daily?.time
+	const date = weather?.daily?.time
 	const color = isDark ? theme.hexColorDark : theme.hexColor
 	
 	return (

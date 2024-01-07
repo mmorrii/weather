@@ -5,7 +5,7 @@ import {ThemeContext} from "../App";
 const DailyCard = ({ weather, selectedCardIndex, onSelectedCardIndex, className }) => {
 	const theme = useContext(ThemeContext)
 	
-	const date = weather.daily?.time
+	const date = weather?.daily?.time
 	
 	return (
 		<div className={`w-full overflow-hidden ${className}`}>

@@ -33,9 +33,9 @@ const WindSpeedChart = ({ weather, labels, windSpeedHeight, selectedCardIndex, o
 	const isDark = useContext(IsDarkContext)
 	const windowWidth = useResize()
 	
-	const windSpeed10m = weather.hourly?.wind_speed_10m.map(item => Math.round(item))
-	const windSpeed80m = weather.hourly?.wind_speed_80m.map(item => Math.round(item))
-	const windSpeed120m = weather.hourly?.wind_speed_120m.map(item => Math.round(item))
+	const windSpeed10m = weather?.hourly?.wind_speed_10m.map(item => Math.round(item))
+	const windSpeed80m = weather?.hourly?.wind_speed_80m.map(item => Math.round(item))
+	const windSpeed120m = weather?.hourly?.wind_speed_120m.map(item => Math.round(item))
 	const textColor = isDark ? "#ffffff" : "#000000"
 	const bgColor = isDark ? theme.hoverDarkColor : theme.hoverColor
 	

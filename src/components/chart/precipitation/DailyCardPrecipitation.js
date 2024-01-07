@@ -7,9 +7,9 @@ const DailyCardPrecipitation = ({ weather, onSelectedCardIndex, selectedCardInde
 	const theme = useContext(ThemeContext)
 	const isDark = useContext(IsDarkContext)
 	
-	const date = weather.daily?.time
-	const precipitation = weather.daily?.precipitation_probability_max
-	const tempMax = weather.daily?.temperature_2m_max
+	const date = weather?.daily?.time
+	const precipitation = weather?.daily?.precipitation_probability_max
+	const tempMax = weather?.daily?.temperature_2m_max
 	const color = isDark ? theme.hexColorDark : theme.hexColor
 	
 	return (

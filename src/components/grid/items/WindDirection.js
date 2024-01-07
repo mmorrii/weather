@@ -6,7 +6,7 @@ import {windDirection} from "../../../utils/wind-direction";
 const WindDirection = ({ weather }) => {
 	const theme = useContext(ThemeContext)
 	const isDark = useContext(IsDarkContext)
-	const windDir = windDirection(weather.current?.wind_direction_10m)
+	const windDir = windDirection(weather?.current?.wind_direction_10m)
 	
 	return (
 		<div className="flex items-center gap-3">

@@ -17,7 +17,7 @@ const Pressure = ({ weather }) => {
 			<div>
 				<p>Давление</p>
 				<p className="font-bold">
-					{Math.round(weather.current?.pressure_msl)} гПа
+					{Math.round(weather?.current?.pressure_msl)} гПа
 				</p>
 			</div>
 		</div>

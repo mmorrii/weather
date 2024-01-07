@@ -9,7 +9,7 @@ const Visibility = ({ weather, selectedCardIndex, pageIndex }) => {
 	const isDark = useContext(IsDarkContext)
 	const windowWidth = useResize()
 	
-	const visibilityData = displaySomeElements(weather.hourly?.visibility, selectedCardIndex)
+	const visibilityData = displaySomeElements(weather?.hourly?.visibility, selectedCardIndex)
 	const visibility = (windowWidth <= 1050 && windowWidth > 590) ? visibilityData?.slice(pageIndex * 4, pageIndex * 4 + 4) :
 		(windowWidth <= 590) ? visibilityData?.slice(pageIndex * 2, pageIndex * 2 + 2) : visibilityData
 	

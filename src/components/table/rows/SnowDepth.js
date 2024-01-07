@@ -9,7 +9,7 @@ const SnowDepth = ({ weather, selectedCardIndex, pageIndex }) => {
 	const isDark = useContext(IsDarkContext)
 	const windowWidth = useResize()
 	
-	const depthData = displaySomeElements(weather.hourly?.snow_depth, selectedCardIndex)
+	const depthData = displaySomeElements(weather?.hourly?.snow_depth, selectedCardIndex)
 	const depth = (windowWidth <= 1050 && windowWidth > 590) ? depthData?.slice(pageIndex * 4, pageIndex * 4 + 4) :
 		(windowWidth <= 590) ? depthData?.slice(pageIndex * 2, pageIndex * 2 + 2) : depthData
 	

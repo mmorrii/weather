@@ -31,7 +31,7 @@ const HumidityChart = ({ weather, labels, selectedCardIndex, onSelectedCardIndex
 	const isDark = useContext(IsDarkContext)
 	const windowWidth = useResize()
 	
-	const humidity = weather.hourly?.relative_humidity_2m
+	const humidity = weather?.hourly?.relative_humidity_2m
 	const textColor = isDark ? "#ffffff" : "#000000"
 	
 	const data = {

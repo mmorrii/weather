@@ -9,7 +9,7 @@ const Pressure = ({ weather, selectedCardIndex, pageIndex }) => {
 	const isDark = useContext(IsDarkContext)
 	const windowWidth = useResize()
 	
-	const pressureData = displaySomeElements(weather.hourly?.pressure_msl, selectedCardIndex)
+	const pressureData = displaySomeElements(weather?.hourly?.pressure_msl, selectedCardIndex)
 	const pressure = (windowWidth <= 1050 && windowWidth > 590) ? pressureData?.slice(pageIndex * 4, pageIndex * 4 + 4) :
 		(windowWidth <= 590) ? pressureData?.slice(pageIndex * 2, pageIndex * 2 + 2) : pressureData
 	

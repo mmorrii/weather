@@ -9,10 +9,10 @@ import {DateTime} from "luxon";
 const PrecipitationBlock = ({ weather, selectedOption, selectedCardIndex }) => {
 	const theme = useContext(ThemeContext)
 	
-	const date = weather.daily?.time
-	const pProbability = weather.daily?.precipitation_probability_max
-	const pSum = weather.daily?.precipitation_sum
-	const pHours = weather.daily?.precipitation_hours
+	const date = weather?.daily?.time
+	const pProbability = weather?.daily?.precipitation_probability_max
+	const pSum = weather?.daily?.precipitation_sum
+	const pHours = weather?.daily?.precipitation_hours
 	const weatherCode = weather?.current?.weather_code
 	const timeZone = weather?.timezone
 	const latitude = selectedOption.latitude

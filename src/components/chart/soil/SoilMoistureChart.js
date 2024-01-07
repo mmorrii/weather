@@ -28,10 +28,10 @@ ChartJS.register(
 const SoilMoistureChart = ({weather}) => {
 	const [selectedCardIndex, setSelectedCardIndex] = useState(0)
 	
-	const date = weather.hourly?.time.map(item => DateTime.fromISO(item).toFormat('HH:mm'))
-	const moisture0To1 = weather.hourly?.soil_moisture_0_to_1cm
-	const moisture1To3 = weather.hourly?.soil_moisture_1_to_3cm
-	const moisture3To9 = weather.hourly?.soil_moisture_3_to_9cm
+	const date = weather?.hourly?.time.map(item => DateTime.fromISO(item).toFormat('HH:mm'))
+	const moisture0To1 = weather?.hourly?.soil_moisture_0_to_1cm
+	const moisture1To3 = weather?.hourly?.soil_moisture_1_to_3cm
+	const moisture3To9 = weather?.hourly?.soil_moisture_3_to_9cm
 	
 	const data = {
 		labels: displaySomeElements(date, selectedCardIndex),
@@ -76,7 +76,7 @@ const SoilMoistureChart = ({weather}) => {
 				className="max-md:px-3"
 				weather={weather}
 				selectedCardIndex={selectedCardIndex}
-				onSelectedCardIndex={(i) => setSelectedCardIndex(i)}
+				onSelectedCardIndex={setSelectedCardIndex}
 			/>
 		</>
 	)

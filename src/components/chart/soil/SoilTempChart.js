@@ -28,10 +28,10 @@ ChartJS.register(
 const SoilTempChart = ({weather}) => {
 	const [selectedCardIndex, setSelectedCardIndex] = useState(0)
 	
-	const date = weather.hourly?.time.map(item => DateTime.fromISO(item).toFormat('HH:mm'))
-	const temp0 = weather.hourly?.soil_temperature_0cm
-	const temp6 = weather.hourly?.soil_temperature_6cm
-	const temp18 = weather.hourly?.soil_temperature_18cm
+	const date = weather?.hourly?.time.map(item => DateTime.fromISO(item).toFormat('HH:mm'))
+	const temp0 = weather?.hourly?.soil_temperature_0cm
+	const temp6 = weather?.hourly?.soil_temperature_6cm
+	const temp18 = weather?.hourly?.soil_temperature_18cm
 	
 	const data = {
 		labels: displaySomeElements(date, selectedCardIndex),
@@ -76,7 +76,7 @@ const SoilTempChart = ({weather}) => {
 				className="max-md:px-3"
 				weather={weather}
 				selectedCardIndex={selectedCardIndex}
-				onSelectedCardIndex={(i) => setSelectedCardIndex(i)}
+				onSelectedCardIndex={setSelectedCardIndex}
 			/>
 		</>
 	)

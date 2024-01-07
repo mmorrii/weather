@@ -56,7 +56,7 @@ const ModalMap = ({ onClick, selectedOption, city, changeSelectedOption }) => {
 							changeSelectedOption={changeSelectedOption}
 							onAddRequest={handleAddRequest}
 							formData={formData}
-							changeFormData={(val) => setFormData(val)}
+							changeFormData={setFormData}
 						/>
 						<button onClick={onClick}
 								  className={`${theme.border} ${theme.borderDark} mt-2 max-md:mt-0
@@ -71,7 +71,7 @@ const ModalMap = ({ onClick, selectedOption, city, changeSelectedOption }) => {
 						<Cards
 							requests={requests}
 							changeSelectedOption={changeSelectedOption}
-							changeFormData={(val) => setFormData(val)}
+							changeFormData={setFormData}
 						/>
 					</div>
 					<div className="-mx-6 -mb-3 max-md:-mx-2 max-md:-mb-2 bg-gray-50">
