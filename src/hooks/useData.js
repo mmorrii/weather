@@ -5,14 +5,12 @@ export const useData = (url) => {
 	
 	useEffect(() => {
 		let ignore = false;
-		console.log("эффект начал выполняться")
 		
 		fetch(url)
 			.then(response => response.json())
 			.then(json => {
 				if (!ignore) {
 					setData(json)
-					console.log("запрос получен")
 					// console.log(json)
 				}
 			})
@@ -22,7 +20,6 @@ export const useData = (url) => {
 		
 		return () => {
 			ignore = true;
-			console.log("очистка эффекта")
 		}
 	}, [url]);
 	return data;
