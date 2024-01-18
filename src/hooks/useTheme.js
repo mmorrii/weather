@@ -12,11 +12,13 @@ export const useTheme = (option) => {
 		}
 	}, [option]);
 	
-	if (isDark === true) {
-		document.documentElement.classList.add("dark")
-	} else {
-		document.documentElement.classList.remove("dark")
-	}
+	useEffect(() => {
+		if (isDark) {
+			document.documentElement.classList.add("dark")
+		} else {
+			document.documentElement.classList.remove("dark")
+		}
+	}, [isDark])
 	
 	return isDark;
 }
