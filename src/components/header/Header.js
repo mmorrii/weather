@@ -6,7 +6,7 @@ import {useResize} from "../../hooks/useResize";
 import MobileMenu from "./MobileMenu";
 import {motion} from "framer-motion";
 
-const Header = ({ changeSelectedOption, selectedOption, weather, onChangeTheme, city }) => {
+const Header = ({ changeSelectedOption, selectedOption, weather, onChangeTheme, city, themeOption }) => {
 	const windowWidth = useResize()
 	
 	const isDay = weather?.current?.is_day === 1
@@ -21,7 +21,7 @@ const Header = ({ changeSelectedOption, selectedOption, weather, onChangeTheme, 
 			<div className="flex items-center gap-3">
 				<Logo isDay={isDay} />
 				{ windowWidth > 768 &&
-					<ThemeSelector onChangeTheme={onChangeTheme} />
+					<ThemeSelector onChangeTheme={onChangeTheme} themeOption={themeOption} />
 				}
 			</div>
 			<div className="flex items-center gap-5 max-md:gap-4">
@@ -37,6 +37,7 @@ const Header = ({ changeSelectedOption, selectedOption, weather, onChangeTheme, 
 					city={city} />
 				{ windowWidth <= 768 &&
 					<MobileMenu
+						themeOption={themeOption}
 						onChangeTheme={onChangeTheme}
 						changeSelectedOption={changeSelectedOption}
 						selectedOption={selectedOption}

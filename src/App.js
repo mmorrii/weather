@@ -12,6 +12,7 @@ import Footer from "./components/Footer";
 import InfoBlock from "./components/InfoBlock";
 import Loader from "./components/loader/Loader";
 import {useData} from "./hooks/useData";
+import {useTheme} from "./hooks/useTheme";
 
 export const ThemeContext = createContext({})
 export const IsDarkContext = createContext(false)
@@ -20,25 +21,20 @@ function App() {
 	const [selectedOption, setSelectedOption] = useLocalStorage("selectedOption", coords[2].options[1])
 	const weather = useData(`${WEATHER}&latitude=${selectedOption.latitude}&longitude=${selectedOption.longitude}`)
 	const city = useData(getCity(selectedOption.latitude, selectedOption.longitude))
-	const [isDark, setIsDark] = useLocalStorage("isDarkTheme",false)
-	const [isLoading, setIsLoading] = useState(true)
+	const [themeOption, setThemeOption] = useLocalStorage("themeOption","Устройство")
+	const isDark = useTheme(themeOption)
+	const [isLoading, setIsLoading] = useState(false)
 	
-	useEffect(() => {
-		const timeoutId = setTimeout( () => setIsLoading(false), 3000)
-		return () => clearTimeout(timeoutId)
-	}, [])
+	// useEffect(() => {
+	// 	const timeoutId = setTimeout( () => setIsLoading(false), 3000)
+	// 	return () => clearTimeout(timeoutId)
+	// }, [])
 	
 	const weatherCode = weather?.current?.weather_code
 	const timeZone = weather?.timezone
 	const latitude = selectedOption.latitude
 	const seasonsTheme = seasonsThemes(weatherCode, timeZone, latitude)
 	const curSeason = currentSeason(weatherCode, timeZone, latitude)
-	
-	if (isDark === true) {
-		document.documentElement.classList.add("dark")
-	} else {
-		document.documentElement.classList.remove("dark")
-	}
 	
 	return isLoading ? (
 		<Loader />
@@ -49,7 +45,8 @@ function App() {
 					<IsDarkContext.Provider value={isDark}>
 						<Header
 							city={city}
-							onChangeTheme={setIsDark}
+							themeOption={themeOption}
+							onChangeTheme={setThemeOption}
 							changeSelectedOption={setSelectedOption}
 							selectedOption={selectedOption}
 							weather={weather}

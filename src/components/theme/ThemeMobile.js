@@ -4,7 +4,7 @@ import {useContext} from "react";
 import {IsDarkContext, ThemeContext} from "../../App";
 import ClearlyDayIcon from "../../icons/ClearlyDayIcon";
 
-const ThemeMobile = ({ options, selectedOption, onThemeChange }) => {
+const ThemeMobile = ({ options, themeOption, onChangeTheme }) => {
 	const isDark = useContext(IsDarkContext)
 	const theme = useContext(ThemeContext)
 	
@@ -22,11 +22,11 @@ const ThemeMobile = ({ options, selectedOption, onThemeChange }) => {
 				{ options.map((option, i) => (
 					<button
 						key={option}
-						className={`${selectedOption === option ? theme.bg800andWhTxt : "bg-transparent"}
+						className={`${themeOption === option ? theme.bg800andWhTxt : "bg-transparent"}
 						px-5 max-[355px]:px-3.5 py-3 rounded-3xl flex items-center gap-1`}
-						onClick={() => onThemeChange(option)}
+						onClick={() => onChangeTheme(option)}
 					>
-						<div className="w-5 h-5">{icons(selectedOption === option)[i]}</div>
+						<div className="w-5 h-5">{icons(themeOption === option)[i]}</div>
 						<p>{option}</p>
 					</button>
 				))}

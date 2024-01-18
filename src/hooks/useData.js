@@ -22,5 +22,6 @@ export const useData = (url) => {
 			ignore = true;
 		}
 	}, [url]);
+	
 	return data;
 }
