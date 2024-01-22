@@ -23,12 +23,12 @@ function App() {
 	const city = useData(getCity(selectedOption.latitude, selectedOption.longitude))
 	const [themeOption, setThemeOption] = useLocalStorage("themeOption","Устройство")
 	const isDark = useTheme(themeOption)
-	const [isLoading, setIsLoading] = useState(false)
+	const [isLoading, setIsLoading] = useState(true)
 	
-	// useEffect(() => {
-	// 	const timeoutId = setTimeout( () => setIsLoading(false), 3000)
-	// 	return () => clearTimeout(timeoutId)
-	// }, [])
+	useEffect(() => {
+		const timeoutId = setTimeout( () => setIsLoading(false), 3000)
+		return () => clearTimeout(timeoutId)
+	}, [])
 	
 	const weatherCode = weather?.current?.weather_code
 	const timeZone = weather?.timezone

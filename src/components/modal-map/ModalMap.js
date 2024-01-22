@@ -5,7 +5,6 @@ import Form from "./Form";
 import Cards from "./Cards";
 import {useLocalStorage} from "../../hooks/useLocalStorage";
 import {useResize} from "../../hooks/useResize";
-import {flushSync} from "react-dom";
 
 const ModalMap = ({ onClick, selectedOption, city, changeSelectedOption }) => {
 	const theme = useContext(ThemeContext)
@@ -14,7 +13,6 @@ const ModalMap = ({ onClick, selectedOption, city, changeSelectedOption }) => {
 	const [formData, setFormData] = useState(`${selectedOption.latitude}, ${selectedOption.longitude}`)
 	const [requests, setRequests] = useLocalStorage("requests",[])
 	
-	//TODO Error: only when double-clicked it adds to the cache
 	const handleAddRequest = () => {
 		const country = city?.results?.[0]?.components?.country
 		const cityData = city?.results?.[0]?.components?.city
@@ -22,26 +20,21 @@ const ModalMap = ({ onClick, selectedOption, city, changeSelectedOption }) => {
 		const district = city?.results?.[0]?.components?.district
 		const state = city?.results?.[0]?.components?.state
 		const newLocation = `${country}, ${cityData ? cityData : town ? town : district ? district : state}`
-		
-		const isLocationAlreadyExists = requests.some(request => (request.location === newLocation))
 
-		if (isLocationAlreadyExists) {
-			return
-		}
+		if (requests.some(request => (request.location === newLocation))) return
 		
-		flushSync(() => {
-			const updatedRequests = [
-				{
-					value: country,
-					label: country,
-					location: newLocation,
-					latitude: selectedOption.latitude,
-					longitude: selectedOption.longitude,
-				},
-				...requests.slice(0, 4)
-			]
-			setRequests(updatedRequests)
-		})
+		const [latitude, longitude] = formData.split(/,\s*/)
+		
+		setRequests(prevRequests => [
+			{
+				"value": country,
+				"label": country,
+				"location": newLocation,
+				"latitude": latitude,
+				"longitude": longitude,
+			},
+			...prevRequests.slice(0, 4)
+		]);
 	}
 	
 	return (

@@ -1,55 +1,72 @@
 import {FaCheck, FaMapMarkerAlt} from "react-icons/fa";
-import {useContext, useRef, useState} from "react";
+import {useContext, useEffect, useRef, useState} from "react";
 import {IsDarkContext, ThemeContext} from "../../App";
 import {IoClose} from "react-icons/io5";
 import ErrorText from "./ErrorText";
 import {useResize} from "../../hooks/useResize";
-import {flushSync} from "react-dom";
 
-const Form = ({ formData, changeFormData, onAddRequest, city, changeSelectedOption }) => {
+const Form = ({ formData, changeFormData, city, changeSelectedOption, onAddRequest }) => {
 	const theme = useContext(ThemeContext)
 	const isDark = useContext(IsDarkContext)
 	const focusRef = useRef(null)
 	const windowWidth = useResize()
 	const [isError, setIsError] = useState('')
+	const [isFill, setIsFill] = useState(false)
 	
-	const handleSubmit = (e) => {
-		e.preventDefault()
-		if (!formData) {
-			return setIsError('empty')
-		}
-		if (!formData.includes(',')) {
-			return setIsError('comma')
-		}
-		setIsError('')
-		const [latitude, longitude] = formData.split(', ')
-		flushSync(() => {
+	useEffect(() => {
+		let ignore = false;
+		if (formData && !ignore) {
+			const [latitude, longitude] = formData.split(/,\s*/)
 			changeSelectedOption({
 				"latitude": latitude,
 				"longitude": longitude,
 				"value": city?.results?.[0]?.components?.country,
 				"label": city?.results?.[0]?.components?.country
 			})
+			if (isFill) {
+				onAddRequest()
+				setIsFill(false)
+			}
+		}
+		
+		return () => {
+			ignore = true;
+		}
+	}, [city, isFill])
+	
+	const handleSubmit = (e) => {
+		e.preventDefault()
+		if (!formData || !formData.includes(',')) return;
+		const [latitude, longitude] = formData.split(/,\s*/)
+		changeSelectedOption({
+			"latitude": latitude,
+			"longitude": longitude,
+			"value": city?.results?.[0]?.components?.country,
+			"label": city?.results?.[0]?.components?.country
 		})
-		onAddRequest()
+	}
+	
+	const handleClickDone = () => {
+		if (!formData) setIsError('empty')
+		if (!formData.includes(',')) setIsError('comma')
+		setIsError('')
+		setIsFill(true)
 	}
 	
 	const handleGetGeolocation = () => {
 		if ("geolocation" in navigator) {
 			navigator.geolocation.getCurrentPosition( (position) => {
 				changeFormData(`${position.coords.latitude}, ${position.coords.longitude}`)
-				const [latitude, longitude] = formData.split(', ')
-				flushSync(() => {
-					changeSelectedOption({
-						"latitude": latitude,
-						"longitude": longitude,
-						"value": city?.results?.[0]?.components?.country,
-						"label": city?.results?.[0]?.components?.country
-					})
+				changeSelectedOption({
+					"latitude": position.coords.latitude,
+					"longitude": position.coords.longitude,
+					"value": city?.results?.[0]?.components?.country,
+					"label": city?.results?.[0]?.components?.country
 				})
+				onAddRequest()
 			})
 		} else {
-			console.log("Невозможно получить местоположение")
+			console.error("Невозможно получить местоположение")
 		}
 	}
 	
@@ -82,6 +99,7 @@ const Form = ({ formData, changeFormData, onAddRequest, city, changeSelectedOpti
 				</div>
 				<div className="self-end max-md:self-start flex gap-3 max-md:gap-1 max-md:w-full ">
 					<button type="submit"
+							  onClick={handleClickDone}
 							  className={`${theme.bg800andWhTxt} max-md:basis-8/12 p-3 rounded ${theme.bgHover900} flex justify-center`}>
 						<FaCheck />
 					</button>

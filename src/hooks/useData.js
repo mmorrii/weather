@@ -8,15 +8,13 @@ export const useData = (url) => {
 		
 		fetch(url)
 			.then(response => response.json())
-			.then(json => {
+			.then(data => {
 				if (!ignore) {
-					setData(json)
+					setData(data)
 					// console.log(json)
 				}
 			})
-			.catch((err) => {
-				console.log(err.message);
-			})
+			.catch((err) => console.error(err.message))
 		
 		return () => {
 			ignore = true;
