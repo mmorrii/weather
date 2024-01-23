@@ -1,6 +1,6 @@
 import Grid from "./grid/Grid";
 import PrecipitationBlock from "./PrecipitationBlock";
-import ChartComponent from "./chart/ChartComponent";
+import ChartComponent from "./charts/ChartComponent";
 import {useState} from "react";
 import {motion} from "framer-motion";
 

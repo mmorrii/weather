@@ -1,4 +1,4 @@
-import SoilChart from "./chart/SoilChart";
+import SoilChart from "./charts/SoilChart";
 import Title from "../common/Title";
 import HourlyTable from "./table/HourlyTable";
 import {motion} from "framer-motion";

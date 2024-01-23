@@ -12,7 +12,7 @@ const Footer = () => {
 			initial={{ opacity: 0 }}
 			whileInView={{ opacity: 1 }}
 			viewport={{ once: true }}
-			transition={{ duration: 0.4, ease: "easeIn"}}
+			transition={{ duration: 0.3, ease: "easeIn"}}
 		>
 			<div className="flex items-center justify-center gap-2">
 				<div className="w-8 h-8">

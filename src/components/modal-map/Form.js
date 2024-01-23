@@ -99,7 +99,7 @@ const Form = ({ formData, changeFormData, city, changeSelectedOption, onAddReque
 						onChange={ (e) => changeFormData(e.target.value) }
 						className={`pl-2.5 pr-7 max-md:pr-8 py-1.5 max-md:py-2 h-10 max-md:h-fit w-[30rem] max-[850px]:w-[28rem]
 						max-md:w-full rounded ${theme.border} ${theme.borderDark}
-								focus:outline-1 focus:outline-inherit focus:outline dark:bg-neutral-900
+						focus:outline-1 focus:outline-inherit focus:outline dark:bg-neutral-900
 								dark:text-neutral-50 ${theme.focusDarkColor}`}
 					/>
 					<button onClick={() => changeFormData('')}

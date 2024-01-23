@@ -31,14 +31,14 @@ export const multiaxisLineOption = () => {
 		},
 		// animation: {
 		// 	onProgress: (animation) => {
-		// 		const ctx = animation.chart.ctx;
-		// 		const chart = animation.chart;
+		// 		const ctx = animation.charts.ctx;
+		// 		const charts = animation.charts;
 		// 		ctx.font = '12px Arial';
 		// 		ctx.textAlign = 'center';
 		// 		ctx.textBaseline = 'bottom';
 		//
-		// 		chart.config.data.datasets.forEach((dataset, i) => {
-		// 			const meta = chart.getDatasetMeta(i);
+		// 		charts.config.data.datasets.forEach((dataset, i) => {
+		// 			const meta = charts.getDatasetMeta(i);
 		// 			if (!meta.hidden) {
 		// 				meta.data.forEach((element, index) => {
 		// 					ctx.fillText(dataset.data[index], element.x, element.y - 10); // 10 - расстояние от верхнего края до текста
