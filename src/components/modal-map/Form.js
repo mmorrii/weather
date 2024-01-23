@@ -11,7 +11,7 @@ const Form = ({ formData, changeFormData, city, changeSelectedOption, onAddReque
 	const focusRef = useRef(null)
 	const windowWidth = useResize()
 	const [isError, setIsError] = useState('')
-	const [isFill, setIsFill] = useState(false)
+	const [isCurrentPosition, setIsCurrentPosition] = useState(false)
 	
 	useEffect(() => {
 		let ignore = false;
@@ -23,16 +23,26 @@ const Form = ({ formData, changeFormData, city, changeSelectedOption, onAddReque
 				"value": city?.results?.[0]?.components?.country,
 				"label": city?.results?.[0]?.components?.country
 			})
-			if (isFill) {
-				onAddRequest()
-				setIsFill(false)
-			}
+			onAddRequest()
 		}
 		
 		return () => {
 			ignore = true;
 		}
-	}, [city, isFill])
+	}, [city])
+	
+	useEffect(() => {
+		let ignore = false;
+		if (isCurrentPosition && !ignore) {
+			handleGetGeolocation()
+		}
+		const timeoutId = setTimeout(() => setIsCurrentPosition(false), 2000)
+		
+		return () => {
+			ignore = true;
+			clearTimeout(timeoutId)
+		}
+	}, [isCurrentPosition])
 	
 	const handleSubmit = (e) => {
 		e.preventDefault()
@@ -47,10 +57,13 @@ const Form = ({ formData, changeFormData, city, changeSelectedOption, onAddReque
 	}
 	
 	const handleClickDone = () => {
-		if (!formData) setIsError('empty')
-		if (!formData.includes(',')) setIsError('comma')
+		if (!formData) {
+			return setIsError('empty')
+		}
+		if (!formData.includes(',')) {
+			return setIsError('comma')
+		}
 		setIsError('')
-		setIsFill(true)
 	}
 	
 	const handleGetGeolocation = () => {
@@ -104,7 +117,7 @@ const Form = ({ formData, changeFormData, city, changeSelectedOption, onAddReque
 						<FaCheck />
 					</button>
 					<button type="button"
-							  onClick={handleGetGeolocation}
+							  onClick={() => setIsCurrentPosition(true)}
 							  className={`${theme.bg800andWhTxt} max-md:basis-4/12 p-3 rounded ${theme.bgHover900} flex justify-center`}>
 						<FaMapMarkerAlt  />
 					</button>
