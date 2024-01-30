@@ -11,7 +11,7 @@ export const useData = (url) => {
 			.then(data => {
 				if (!ignore) {
 					setData(data)
-					// console.log(json)
+					console.log(data)
 				}
 			})
 			.catch((err) => console.error(err.message))

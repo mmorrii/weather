@@ -16,6 +16,7 @@ import {IsDarkContext, ThemeContext} from "../../../App";
 import {displaySomeElements} from "../../../utils/utils";
 import {lineOption} from "../options/line";
 import {useResize} from "../../../hooks/useResize";
+import {useLocation} from "react-router-dom";
 
 ChartJS.register(
 	CategoryScale,
@@ -29,6 +30,7 @@ ChartJS.register(
 );
 
 const TempChart = ({ weather, labels, tempHeight, selectedCardIndex, onSelectedCardIndex }) => {
+	const location = useLocation()
 	const theme = useContext(ThemeContext)
 	const isDark = useContext(IsDarkContext)
 	const windowWidth = useResize()
@@ -71,14 +73,16 @@ const TempChart = ({ weather, labels, tempHeight, selectedCardIndex, onSelectedC
 					options={lineOption(textColor, getData())}
 					data={data} />
 			</div>
-			<DailyCardTemp
-				selectedCardIndex={selectedCardIndex}
-				onSelectedCardIndex={onSelectedCardIndex}
-				weather={weather}
-				tempHeight={tempHeight}
-				temp80m={temp80m}
-				temp120m={temp120m}
-			/>
+			{ location.pathname === "/weekly" &&
+				<DailyCardTemp
+					selectedCardIndex={selectedCardIndex}
+					onSelectedCardIndex={onSelectedCardIndex}
+					weather={weather}
+					tempHeight={tempHeight}
+					temp80m={temp80m}
+					temp120m={temp120m}
+				/>
+			}
 		</>
 	)
 }

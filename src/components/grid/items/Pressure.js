@@ -8,17 +8,12 @@ const Pressure = ({ weather }) => {
 	
 	return (
 		<div className="flex items-center gap-3">
-			<div
-				className="w-11 h-11"
-				title="Атмосферное давление воздуха на среднем уровне моря"
-			>
+			<div className="w-11 h-11">
 				<PressureIcon color={isDark ? theme.hexColorDark : theme.hexColor} />
 			</div>
 			<div>
 				<p>Давление</p>
-				<p className="font-bold">
-					{Math.round(weather?.current?.pressure_msl)} гПа
-				</p>
+				<p className="font-bold">{Math.round(weather?.current?.pressure_msl)} гПа</p>
 			</div>
 		</div>
 	)

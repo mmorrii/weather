@@ -34,6 +34,21 @@ const SelectComponent =	({ selectedOption, changeSelectedOption }) => {
 			width: (windowWidth <= 768 && windowWidth >= 355) ? 335 : 280,
 			backgroundColor: isDark ? "#171717" : "white",
 		}),
+		menuList: (baseStyles) => ({
+			...baseStyles,
+			maxHeight: windowWidth <= 768 ? 400 : 350,
+			...(isDark && {
+				'&::-webkit-scrollbar': {
+					width: 12,
+				},
+				'&::-webkit-scrollbar-thumb': {
+					backgroundColor: "#464646",
+				},
+				"&::-webkit-scrollbar-track": {
+					backgroundColor: "#262626",
+				}
+			})
+		}),
 		groupHeading: (baseStyles) => ({
 			...baseStyles,
 			fontSize: 11,

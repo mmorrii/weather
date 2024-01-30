@@ -15,12 +15,11 @@ const CurrentTemp = ({ weather }) => {
 			<div className="w-16 mb-1">
 				{ weatherIcons(weatherCode, isDay, color) }
 			</div>
-			<p className="text-4xl font-semibold mb-1" title="Текущая температура воздуха">
+			<p className="text-4xl font-semibold mb-1">
 				{Math.round(weather?.current?.temperature_2m)}°C{' '}
-				<span className="text-base font-normal">
-								Ощущается как {' '}
+				<span className="text-base font-normal"> Ощущается как {' '}
 					{Math.round(weather?.current?.apparent_temperature)}°C
-						</span>
+				</span>
 			</p>
 			<p>{ weatherCodeFn(weatherCode) }</p>
 		</div>

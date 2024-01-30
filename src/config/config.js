@@ -1,1 +1,1 @@
-export const BASE_URL = window.location.href
+export const BASE_URL = "/weather"

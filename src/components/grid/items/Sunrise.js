@@ -6,6 +6,7 @@ import {IsDarkContext, ThemeContext} from "../../../App";
 const Sunrise = ({ weather }) => {
 	const theme = useContext(ThemeContext)
 	const isDark = useContext(IsDarkContext)
+	
 	const sunriseTime = weather?.daily?.sunrise[0]
 	
 	return (

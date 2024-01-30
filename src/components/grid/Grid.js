@@ -14,7 +14,7 @@ const Grid = ({ weather }) => {
 	const windowWidth = useResize()
 	
 	return (
-		<Card>
+		<Card className="w-[760px] px-6">
 			<div className="flex justify-around max-[500px]:justify-start gap-4">
 				{ (windowWidth > 1200 || (windowWidth < 1024 && windowWidth > 650) ) &&
 					<>

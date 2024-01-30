@@ -15,6 +15,7 @@ import DailyCardPrecipitation from "./DailyCardPrecipitation";
 import {displaySomeElements} from "../../../utils/utils";
 import {barOption} from "../options/bar";
 import {useResize} from "../../../hooks/useResize";
+import {useLocation} from "react-router-dom";
 
 ChartJS.register(
 	CategoryScale,
@@ -27,6 +28,7 @@ ChartJS.register(
 );
 
 const PrecipitationChart = ({ weather, labels, selectedCardIndex, onSelectedCardIndex }) => {
+	const location = useLocation()
 	const theme = useContext(ThemeContext)
 	const isDark = useContext(IsDarkContext)
 	const windowWidth = useResize()
@@ -52,11 +54,13 @@ const PrecipitationChart = ({ weather, labels, selectedCardIndex, onSelectedCard
 					options={barOption(textColor)}
 					data={data} />
 			</div>
-			<DailyCardPrecipitation
-				selectedCardIndex={selectedCardIndex}
-				onSelectedCardIndex={onSelectedCardIndex}
-				weather={weather}
-			/>
+			{ location.pathname === "/weekly" &&
+				<DailyCardPrecipitation
+					selectedCardIndex={selectedCardIndex}
+					onSelectedCardIndex={onSelectedCardIndex}
+					weather={weather}
+				/>
+			}
 		</>
 	)
 }

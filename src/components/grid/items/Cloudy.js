@@ -1,22 +1,22 @@
-import FogIcon from "../../../icons/FogIcon";
 import {useContext} from "react";
 import {IsDarkContext, ThemeContext} from "../../../App";
+import CloudIcon from "../../../icons/CloudIcon";
 
-const Humidity = ({ weather }) => {
+const Cloudy = ({ weather }) => {
 	const theme = useContext(ThemeContext)
 	const isDark = useContext(IsDarkContext)
 	
 	return (
 		<div className="flex items-center gap-3">
 			<div className="w-11 h-11">
-				<FogIcon color={isDark ? theme.hexColorDark : theme.hexColor} />
+				<CloudIcon color={isDark ? theme.hexColorDark : theme.hexColor} />
 			</div>
 			<div>
-				<p>Влажность</p>
-				<p className="font-bold">{Math.round(weather?.current?.relative_humidity_2m)}%</p>
+				<p>Облачность</p>
+				<p className="font-bold">{weather?.current?.cloud_cover}%</p>
 			</div>
 		</div>
 	)
 }
 
-export default Humidity
+export default Cloudy

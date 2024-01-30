@@ -11,10 +11,10 @@ const ThemeDesktop = ({ themeOption, options, onChangeTheme }) => {
 	
 	return (
 		<div
-			className={`relative cursor-pointer py-1.5 px-2.5 rounded ${theme.border} ${theme.borderDark}`}
+			className={`relative cursor-pointer py-1.5 px-2.5 rounded ${theme.border} ${theme.borderDark} bg-white dark:bg-inherit`}
 			onClick={() => setIsOpen(!isOpen)}
 		>
-			<div className="bg-inherit flex items-center gap-1">
+			<div className="flex items-center gap-1">
 				<div className={`w-5 h-5 ${themeOption === "Устройство" && "relative top-[1.1px]"}`}>
 					{themeOption === "Устройство" && <ComputerIcon color={isDark ? "#ffffff" : "#000000"}/>}
 					{themeOption === "Темная" && <ClearlyNightIcon color={isDark ? "#ffffff" : "#000000"}/>}

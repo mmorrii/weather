@@ -25,7 +25,7 @@ const ModalMap = ({ onClick, selectedOption, city, changeSelectedOption }) => {
 		
 		const [latitude, longitude] = formData.split(/,\s*/)
 		
-		setRequests(prevRequests => [
+		setRequests( [
 			{
 				"value": country,
 				"label": country,
@@ -33,7 +33,7 @@ const ModalMap = ({ onClick, selectedOption, city, changeSelectedOption }) => {
 				"latitude": latitude,
 				"longitude": longitude,
 			},
-			...prevRequests.slice(0, 4)
+			...requests.slice(0, 4)
 		]);
 	}
 	

@@ -1,34 +1,34 @@
 import {createContext, useEffect, useState} from "react";
 import {coords} from "./data/coords";
 import {useLocalStorage} from "./hooks/useLocalStorage";
+import {useData} from "./hooks/useData";
+import {useTheme} from "./hooks/useTheme";
 import {seasonsThemes} from "./styles/styles-seasons-themes";
 import {currentSeason} from "./utils/current-season";
 import {getCity, WEATHER} from "./api/api";
-import CurrentWeather from "./components/current-weather/CurrentWeather";
 import Header from "./components/header/Header";
 import DailyWeather from "./components/DailyWeather";
-import HourlyWeather from "./components/HourlyWeather";
 import Footer from "./components/Footer";
-import InfoBlock from "./components/InfoBlock";
 import Loader from "./components/loader/Loader";
-import {useData} from "./hooks/useData";
-import {useTheme} from "./hooks/useTheme";
+import {Route, Routes} from "react-router-dom";
+import Home from "./pages/Home";
+import Today from "./pages/Today";
 
 export const ThemeContext = createContext({})
 export const IsDarkContext = createContext(false)
 
-function App() {
+export default function App() {
 	const [selectedOption, setSelectedOption] = useLocalStorage("selectedOption", coords[2].options[1])
 	const weather = useData(`${WEATHER}&latitude=${selectedOption.latitude}&longitude=${selectedOption.longitude}`)
 	const city = useData(getCity(selectedOption.latitude, selectedOption.longitude))
 	const [themeOption, setThemeOption] = useLocalStorage("themeOption","Устройство")
 	const isDark = useTheme(themeOption)
-	const [isLoading, setIsLoading] = useState(true)
+	const [isLoading, setIsLoading] = useState(false)
 	
-	useEffect(() => {
-		const timeoutId = setTimeout( () => setIsLoading(false), 3000)
-		return () => clearTimeout(timeoutId)
-	}, [])
+	// useEffect(() => {
+	// 	const timeoutId = setTimeout( () => setIsLoading(false), 3000)
+	// 	return () => clearTimeout(timeoutId)
+	// }, [])
 	
 	const weatherCode = weather?.current?.weather_code
 	const timeZone = weather?.timezone
@@ -40,7 +40,7 @@ function App() {
 		<Loader />
 		) : (
 		<div className={`${!isDark && seasonsTheme.bg} dark:bg-neutral-900 dark:text-neutral-50 min-h-screen`}>
-			<div className="max-w-[1500px] font-sans p-4 max-sm:px-2 max-sm:pb-0 pb-0 m-auto overflow-hidden">
+			<div className="max-w-[1500px] font-sans p-4 max-sm:px-2 pb-0 m-auto flex flex-col min-h-screen overflow-hidden">
 				<ThemeContext.Provider value={seasonsTheme}>
 					<IsDarkContext.Provider value={isDark}>
 						<Header
@@ -51,16 +51,17 @@ function App() {
 							selectedOption={selectedOption}
 							weather={weather}
 						/>
-						<main>
-							<CurrentWeather
-								weather={weather}
-								selectedOption={selectedOption}
-								cityData={city}
+						<Routes>
+							<Route
+								path="/"
+								element={<Home weather={weather} selectedOption={selectedOption} cityData={city} />}
 							/>
-							<InfoBlock weather={weather} selectedOption={selectedOption} />
-							<DailyWeather weather={weather} season={curSeason} />
-							<HourlyWeather weather={weather} selectedOption={selectedOption} season={curSeason} />
-						</main>
+							<Route
+								path="/today"
+								element={<Today weather={weather} selectedOption={selectedOption} cityData={city} season={curSeason} />}
+							/>
+							<Route path="/weekly" element={<DailyWeather weather={weather} season={curSeason} />} />
+						</Routes>
 						<Footer />
 					</IsDarkContext.Provider>
 				</ThemeContext.Provider>
@@ -68,5 +69,3 @@ function App() {
 		</div>
 	)
 }
-
-export default App;

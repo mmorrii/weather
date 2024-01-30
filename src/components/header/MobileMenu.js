@@ -21,10 +21,7 @@ const MobileMenu = ({ onChangeTheme, changeSelectedOption, selectedOption, theme
 	
 	return (
 		<>
-			<button
-				className="w-10 h-10"
-				onClick={handleModalOpen}
-			>
+			<button className="w-10 h-10" onClick={handleModalOpen} >
 				<MenuIcon color={isDark ? theme.hexColorDark : theme.hexColor} />
 			</button>
 			{ isModalOpen &&

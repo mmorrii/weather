@@ -18,7 +18,7 @@ const ChartComponent = ({ weather, selectedCardIndex, onSelectedCardIndex }) => 
 	const isDark = useContext(IsDarkContext)
 	
 	const labels = weather?.hourly?.time.map(item => DateTime.fromISO(item).toFormat('HH:mm'))
-	const navBarData = ["температура", "вероятность осадков", "скорость ветра", "относительная влажность"]
+	const navBarData = ["температура", "вероятность осадков", "скорость ветра", "влажность"]
 	const textColor = isDark ? theme.textDark : theme.text
 	
 	return (
@@ -26,7 +26,7 @@ const ChartComponent = ({ weather, selectedCardIndex, onSelectedCardIndex }) => 
 			className="w-full"
 			initial={{ opacity: 0, y: 10 }}
 			animate={{ opacity: 1, y: 0 }}
-			transition={{ duration: 0.4, ease: "easeIn", delay: 0.9 }}
+			transition={{ duration: 0.4, ease: "easeIn", delay: 0.8 }}
 		>
 			<Card className="max-md:px-2">
 				<div className="flex justify-between max-md:px-3">

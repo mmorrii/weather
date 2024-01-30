@@ -15,6 +15,7 @@ import {displaySomeElements} from "../../../utils/utils";
 import {barOption} from "../options/bar";
 import DailyCardHumidity from "./DailyCardHumidity";
 import {useResize} from "../../../hooks/useResize";
+import {useLocation} from "react-router-dom";
 
 ChartJS.register(
 	CategoryScale,
@@ -27,6 +28,7 @@ ChartJS.register(
 );
 
 const HumidityChart = ({ weather, labels, selectedCardIndex, onSelectedCardIndex }) => {
+	const location = useLocation()
 	const theme = useContext(ThemeContext)
 	const isDark = useContext(IsDarkContext)
 	const windowWidth = useResize()
@@ -53,12 +55,14 @@ const HumidityChart = ({ weather, labels, selectedCardIndex, onSelectedCardIndex
 					options={barOption(textColor)}
 					data={data} />
 			</div>
-			<DailyCardHumidity
-				selectedCardIndex={selectedCardIndex}
-				onSelectedCardIndex={onSelectedCardIndex}
-				weather={weather}
-				humidity={humidity}
-			/>
+			{ location.pathname === "/weekly" &&
+				<DailyCardHumidity
+					selectedCardIndex={selectedCardIndex}
+					onSelectedCardIndex={onSelectedCardIndex}
+					weather={weather}
+					humidity={humidity}
+				/>
+			}
 		</>
 	)
 }

@@ -5,8 +5,10 @@ import ClockIcon from "../icons/ClockIcon";
 import PrecipitationIcon from "../icons/PrecipitationIcon";
 import {currentPattern} from "../utils/current-pattern";
 import {DateTime} from "luxon";
+import {useLocation} from "react-router-dom";
 
 const PrecipitationBlock = ({ weather, selectedOption, selectedCardIndex }) => {
+	const location = useLocation()
 	const theme = useContext(ThemeContext)
 	
 	const date = weather?.daily?.time
@@ -23,8 +25,11 @@ const PrecipitationBlock = ({ weather, selectedOption, selectedCardIndex }) => {
 			  style={{ backgroundImage: bgImg, backgroundSize: 'cover'}}
 		>
 			<div className="flex justify-between items-center font-semibold text-lg">
-				<h3>Суточные осадки</h3>
-				<p>{ date && DateTime.fromISO(date[selectedCardIndex]).toFormat('dd.MM') }</p>
+				<h3>Осадки</h3>
+				<p>
+					{ location.pathname === "/today" && DateTime.fromISO(date?.[0]).toFormat('dd.MM') }
+					{ location.pathname === "/weekly" && DateTime.fromISO(date?.[selectedCardIndex]).toFormat('dd.MM') }
+				</p>
 			</div>
 			<div className="justify-center flex items-center gap-1">
 				<div className="w-6 h-6">
@@ -32,8 +37,9 @@ const PrecipitationBlock = ({ weather, selectedOption, selectedCardIndex }) => {
 				</div>
 				<p>Вероятность:
 					<span className="ml-2 font-semibold text-lg">
-							{pProbability ? pProbability[selectedCardIndex] : null}%
-						</span>
+						{ location.pathname === "/today" && pProbability?.[0] }
+						{ location.pathname === "/weekly" && pProbability?.[selectedCardIndex] }%
+					</span>
 				</p>
 			</div>
 			<div className="flex max-[425px]:flex-col max-[425px]:gap-2">
@@ -43,7 +49,8 @@ const PrecipitationBlock = ({ weather, selectedOption, selectedCardIndex }) => {
 					</div>
 					<p>Кол-во часов:
 						<span className="ml-2 font-semibold text-lg text-nowrap">
-							{pHours ? pSum[selectedCardIndex] : null} ч
+							{ location.pathname === "/today" && pHours?.[0] }
+							{ location.pathname === "/weekly" && pHours?.[selectedCardIndex] } ч
 						</span>
 					</p>
 				</div>
@@ -53,7 +60,8 @@ const PrecipitationBlock = ({ weather, selectedOption, selectedCardIndex }) => {
 					</div>
 					<p>Сумма:
 						<span className="ml-2 font-semibold text-lg">
-							{pSum ? pSum[selectedCardIndex] : null} мм
+							{ location.pathname === "/today" && pSum?.[0] }
+							{ location.pathname === "/weekly" && pSum?.[selectedCardIndex] } мм
 						</span>
 					</p>
 				</div>

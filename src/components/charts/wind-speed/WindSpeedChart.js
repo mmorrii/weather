@@ -16,6 +16,7 @@ import DailyCardWindSpeed from "./DailyCardWindSpeed";
 import {lineOption} from "../options/line";
 import {displaySomeElements} from "../../../utils/utils";
 import {useResize} from "../../../hooks/useResize";
+import {useLocation} from "react-router-dom";
 
 ChartJS.register(
 	CategoryScale,
@@ -29,6 +30,7 @@ ChartJS.register(
 );
 
 const WindSpeedChart = ({ weather, labels, windSpeedHeight, selectedCardIndex, onSelectedCardIndex }) => {
+	const location = useLocation()
 	const theme = useContext(ThemeContext)
 	const isDark = useContext(IsDarkContext)
 	const windowWidth = useResize()
@@ -71,14 +73,16 @@ const WindSpeedChart = ({ weather, labels, windSpeedHeight, selectedCardIndex, o
 					options={lineOption(textColor, getData())}
 					data={data} />
 			</div>
-			<DailyCardWindSpeed
-				selectedCardIndex={selectedCardIndex}
-				onSelectedCardIndex={onSelectedCardIndex}
-				weather={weather}
-				windSpeedHeight={windSpeedHeight}
-				windSpeed80m={windSpeed80m}
-				windSpeed120m={windSpeed120m}
-			/>
+			{ location.pathname === "/weekly" &&
+				<DailyCardWindSpeed
+					selectedCardIndex={selectedCardIndex}
+					onSelectedCardIndex={onSelectedCardIndex}
+					weather={weather}
+					windSpeedHeight={windSpeedHeight}
+					windSpeed80m={windSpeed80m}
+					windSpeed120m={windSpeed120m}
+				/>
+			}
 		</>
 	)
 }
