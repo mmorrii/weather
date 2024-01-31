@@ -45,7 +45,7 @@ const TodayTemp = ({ weather, selectedCardIndex }) => {
 					{location.pathname === "/weekly" && Math.round(weather?.daily?.apparent_temperature_min[selectedCardIndex])}°C
 				</span>
 			</p>
-			<p>{weatherCodeFn(weatherCode)}</p>
+			<p className="text-lg">{weatherCodeFn(weatherCode)}</p>
 		</div>
 	)
 }
