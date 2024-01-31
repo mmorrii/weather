@@ -51,8 +51,7 @@ const ModalMap = ({ onClick, selectedOption, city, changeSelectedOption }) => {
 							formData={formData}
 							changeFormData={setFormData}
 						/>
-						<button onClick={onClick}
-								  className={`${theme.border} ${theme.borderDark} mt-2 max-md:mt-0
+						<button onClick={onClick} className={`${theme.border} ${theme.borderDark} mt-2 max-md:mt-0
 								  rounded-md max-md:self-end`} >
 							<IoClose
 								size={(windowWidth <= 768 || windowWidth >= 1440) ? 30 : 26}
@@ -69,10 +68,9 @@ const ModalMap = ({ onClick, selectedOption, city, changeSelectedOption }) => {
 					</div>
 					<div className="-mx-6 -mb-3 max-md:-mx-2 max-md:-mb-2 bg-gray-50">
 						<iframe
-							src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d379319.1190642297!2d27.531297373405586!
-            			3d53.87706841700748!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sru!2sua!4v1702112319373!5m2!1sru!2sua"
+							src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d2441495.896646227!2d28.047788457460744!3d53.30255088687391!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sru!2sua!4v1706719990471!5m2!1sru!2sua"
 							width={"100%"} height={windowWidth <= 768 ? "300" : "350"} style={{border:0}} allowFullScreen="" loading="lazy"
-							referrerPolicy="no-referrer-when-downgrade" title="Frame Google Map">
+							referrerPolicy="no-referrer-when-downgrade" title="Google Map iframe">
 						</iframe>
 					</div>
 				</div>

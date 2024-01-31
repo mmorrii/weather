@@ -1,6 +1,6 @@
 import {DateTime} from "luxon";
 import {useContext} from "react";
-import {ThemeContext} from "../App";
+import {ThemeContext} from "../../App";
 
 const DailyCard = ({ weather, selectedCardIndex, onSelectedCardIndex, className }) => {
 	const theme = useContext(ThemeContext)

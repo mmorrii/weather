@@ -17,13 +17,14 @@ const ChartComponent = ({ weather, selectedCardIndex, onSelectedCardIndex }) => 
 	const theme = useContext(ThemeContext)
 	const isDark = useContext(IsDarkContext)
 	
+	
 	const labels = weather?.hourly?.time.map(item => DateTime.fromISO(item).toFormat('HH:mm'))
 	const navBarData = ["температура", "вероятность осадков", "скорость ветра", "влажность"]
 	const textColor = isDark ? theme.textDark : theme.text
 	
 	return (
 		<motion.figure
-			className="w-full"
+			className="w-full mb-4"
 			initial={{ opacity: 0, y: 10 }}
 			animate={{ opacity: 1, y: 0 }}
 			transition={{ duration: 0.4, ease: "easeIn", delay: 0.8 }}

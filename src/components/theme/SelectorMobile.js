@@ -4,7 +4,7 @@ import {useContext} from "react";
 import {IsDarkContext, ThemeContext} from "../../App";
 import ClearlyDayIcon from "../../icons/ClearlyDayIcon";
 
-const ThemeMobile = ({ options, themeOption, onChangeTheme }) => {
+const SelectorMobile = ({ options, themeOption, onChangeTheme }) => {
 	const isDark = useContext(IsDarkContext)
 	const theme = useContext(ThemeContext)
 	
@@ -35,4 +35,4 @@ const ThemeMobile = ({ options, themeOption, onChangeTheme }) => {
 	)
 }
 
-export default ThemeMobile
+export default SelectorMobile

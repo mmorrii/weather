@@ -6,7 +6,7 @@ import CurrentBg from "./CurrentBg";
 import {useLocation} from "react-router-dom";
 import TodayTemp from "./TodayTemp";
 
-const CurrentWeather = ({ selectedOption, weather, cityData }) => {
+const CurrentWeather = ({ selectedOption, weather, cityData, selectedCardIndex }) => {
 	const location = useLocation()
 	
 	const timeUpdate = weather?.current?.time
@@ -30,8 +30,8 @@ const CurrentWeather = ({ selectedOption, weather, cityData }) => {
 				</BlackBg>
 			</div>
 			<div className="flex items-end justify-between max-[530px]:flex-col max-[530px]:items-start max-[530px]:gap-2">
-				{ location.pathname === "/" && <CurrentTemp weather={weather} />}
-				{ location.pathname === "/today" && <TodayTemp weather={weather} />}
+				{location.pathname === "/" ? <CurrentTemp weather={weather} /> :
+					<TodayTemp weather={weather} selectedCardIndex={selectedCardIndex} />}
 				<BlackBg>
 					<p className="text-sm">
 						Последнее обновление:

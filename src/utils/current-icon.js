@@ -11,7 +11,7 @@ import SnowRainIcon from "../icons/SnowRainIcon";
 import ThunderIcon from "../icons/ThunderIcon";
 
 
-const icons = (code, isDay=true, color) => {
+const icons = (code, isDay= true, color)=> {
 	return {
 		'0,1': {
 			day: <ClearlyDayIcon color={color}/>,
@@ -53,7 +53,7 @@ const icons = (code, isDay=true, color) => {
 };
 
 export const weatherIcons = (code, isDay, color) => {
-	const icon = icons(code, isDay=true, color)
+	const icon = icons(code, isDay, color)
 	const weatherCode = Object.keys(icon).find(key => key.split(',').includes(code?.toString()));
 	const getIcon = weatherCode ? icon[weatherCode] : {};
 	

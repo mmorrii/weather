@@ -7,12 +7,12 @@ import {seasonsThemes} from "./styles/styles-seasons-themes";
 import {currentSeason} from "./utils/current-season";
 import {getCity, WEATHER} from "./api/api";
 import Header from "./components/header/Header";
-import DailyWeather from "./components/DailyWeather";
 import Footer from "./components/Footer";
 import Loader from "./components/loader/Loader";
 import {Route, Routes} from "react-router-dom";
-import Home from "./pages/Home";
-import Today from "./pages/Today";
+import Home from "./components/pages/Home";
+import Today from "./components/pages/Today";
+import Weekly from "./components/pages/Weekly";
 
 export const ThemeContext = createContext({})
 export const IsDarkContext = createContext(false)
@@ -23,12 +23,12 @@ export default function App() {
 	const city = useData(getCity(selectedOption.latitude, selectedOption.longitude))
 	const [themeOption, setThemeOption] = useLocalStorage("themeOption","Устройство")
 	const isDark = useTheme(themeOption)
-	const [isLoading, setIsLoading] = useState(false)
+	const [isLoading, setIsLoading] = useState(true)
 	
-	// useEffect(() => {
-	// 	const timeoutId = setTimeout( () => setIsLoading(false), 3000)
-	// 	return () => clearTimeout(timeoutId)
-	// }, [])
+	useEffect(() => {
+		const timeoutId = setTimeout( () => setIsLoading(false), 3000)
+		return () => clearTimeout(timeoutId)
+	}, [])
 	
 	const weatherCode = weather?.current?.weather_code
 	const timeZone = weather?.timezone
@@ -60,7 +60,10 @@ export default function App() {
 								path="/today"
 								element={<Today weather={weather} selectedOption={selectedOption} cityData={city} season={curSeason} />}
 							/>
-							<Route path="/weekly" element={<DailyWeather weather={weather} season={curSeason} />} />
+							<Route
+								path="/weekly"
+								element={<Weekly weather={weather} selectedOption={selectedOption} cityData={city} season={curSeason} />}
+							/>
 						</Routes>
 						<Footer />
 					</IsDarkContext.Provider>

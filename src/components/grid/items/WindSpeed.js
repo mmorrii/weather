@@ -4,13 +4,22 @@ import {useContext} from "react";
 import {IsDarkContext, ThemeContext} from "../../../App";
 import {useLocation} from "react-router-dom";
 
-const WindSpeed = ({ weather }) => {
+const WindSpeed = ({ weather, selectedCardIndex }) => {
 	const location = useLocation()
 	const theme = useContext(ThemeContext)
 	const isDark = useContext(IsDarkContext)
 	
-	const currentWindSpeed = weather?.current?.wind_speed_10m
-	const todayWindSpeed = weather?.daily?.wind_speed_10m_max[0]
+	const getWindSpeed = (speed) => (
+		<p className="font-bold">{Math.round(speed)} м/с
+			<span className="font-normal ml-1 text-xs">({windSpeed(speed)})</span>
+		</p>
+	)
+	
+	const windSpeedText = {
+		"/": getWindSpeed(weather?.current?.wind_speed_10m),
+		"/today": getWindSpeed(weather?.daily?.wind_speed_10m_max[0]),
+		"/weekly": getWindSpeed(weather?.daily?.wind_speed_10m_max[selectedCardIndex])
+	}
 	
 	return (
 		<div className="flex items-center gap-3">
@@ -19,16 +28,7 @@ const WindSpeed = ({ weather }) => {
 			</div>
 			<div>
 				<p>Скорость ветра</p>
-				{ location.pathname === "/" &&
-					<p className="font-bold">{Math.round(currentWindSpeed)} м/с
-						<span className="font-normal ml-1 text-xs">({windSpeed(currentWindSpeed)})</span>
-					</p>
-				}
-				{ location.pathname === "/today" &&
-					<p className="font-bold">{Math.round(todayWindSpeed)} м/с
-						<span className="font-normal ml-1 text-xs">({windSpeed(todayWindSpeed)})</span>
-					</p>
-				}
+				{ windSpeedText[location.pathname] }
 			</div>
 		</div>
 	)

@@ -13,8 +13,7 @@ const ModalMenu = ({ onModalClose, onChangeTheme, changeSelectedOption, selected
 		max-md:bg-opacity-90 max-md:dark:bg-opacity-90`}>
 			<div className="p-2">
 				<div className="flex justify-end mb-4">
-					<button onClick={onModalClose}
-							  className={`border border-solid border-2 ${theme.border} ${theme.borderDark} rounded-md`} >
+					<button onClick={onModalClose} className={`${theme.border} ${theme.borderDark} rounded-md`} >
 						<IoClose size={30} color={isDark ? theme.hexColorDark : theme.hexColor} />
 					</button>
 				</div>

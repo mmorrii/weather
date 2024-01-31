@@ -2,12 +2,14 @@ import {DateTime} from "luxon";
 import SunsetIcon from "../../../icons/SunsetIcon";
 import {useContext} from "react";
 import {IsDarkContext, ThemeContext} from "../../../App";
+import {useLocation} from "react-router-dom";
 
-const Sunset = ({ weather }) => {
+const Sunset = ({ weather, selectedCardIndex }) => {
+	const location= useLocation()
 	const theme = useContext(ThemeContext)
 	const isDark = useContext(IsDarkContext)
 	
-	const sunsetTime = weather?.daily?.sunset[0]
+	const sunset = location.pathname === "/today" ? weather?.daily?.sunset[0] : weather?.daily?.sunset[selectedCardIndex]
 	
 	return (
 		<div className="max-sm:flex-auto flex items-center gap-3">
@@ -17,7 +19,7 @@ const Sunset = ({ weather }) => {
 			<div>
 				<p>Закат</p>
 				<p className="font-bold">
-					{ DateTime.fromISO(sunsetTime).toFormat('HH:mm') }
+					{ DateTime.fromISO(sunset).toFormat('HH:mm') }
 				</p>
 			</div>
 		</div>

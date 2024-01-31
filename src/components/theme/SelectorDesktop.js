@@ -4,7 +4,7 @@ import ClearlyDayIcon from "../../icons/ClearlyDayIcon";
 import {useContext, useState} from "react";
 import {IsDarkContext, ThemeContext} from "../../App";
 
-const ThemeDesktop = ({ themeOption, options, onChangeTheme }) => {
+const SelectorDesktop = ({ themeOption, options, onChangeTheme }) => {
 	const theme = useContext(ThemeContext)
 	const isDark = useContext(IsDarkContext)
 	const [isOpen, setIsOpen] = useState(false)
@@ -38,4 +38,4 @@ const ThemeDesktop = ({ themeOption, options, onChangeTheme }) => {
 	)
 }
 
-export default ThemeDesktop
+export default SelectorDesktop

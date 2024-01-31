@@ -1,12 +1,12 @@
 import {Link} from "react-router-dom";
 import {useContext, useState} from "react";
 import {ThemeContext} from "../../App";
+import {useLocalStorage} from "../../hooks/useLocalStorage";
 
 const Navbar = () => {
 	const theme = useContext(ThemeContext)
-	const [isActive, setIsActive] = useState(0)
+	const [isActive, setIsActive] = useLocalStorage("headerNavIndex",0)
 	
-	//TODO: change to NavLink
 	return (
 		<nav className="flex justify-center items-center gap-4 max-sm:gap-2">
 			<Link

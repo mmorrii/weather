@@ -2,7 +2,7 @@ import {DateTime} from "luxon";
 import {useContext, useState} from "react";
 import {IsDarkContext, ThemeContext} from "../../App";
 import {displaySomeElements} from "../../utils/utils";
-import DailyCard from "../DailyCard";
+import DailyCard from "./DailyCard";
 import SnowDepth from "./rows/SnowDepth";
 import Pressure from "./rows/Pressure";
 import CloudCover from "./rows/CloudCover";
@@ -11,8 +11,10 @@ import {currentPattern} from "../../utils/current-pattern";
 import ChristmasLightIcon from "../../icons/ChristmasLightIcon";
 import {FaArrowLeft, FaArrowRight} from "react-icons/fa";
 import {useResize} from "../../hooks/useResize";
+import {useLocation} from "react-router-dom";
 
 const HourlyTable = ({ weather, selectedOption, season }) => {
+	const location = useLocation()
 	const theme = useContext(ThemeContext)
 	const isDark = useContext(IsDarkContext)
 	const windowWidth = useResize()
@@ -34,7 +36,7 @@ const HourlyTable = ({ weather, selectedOption, season }) => {
 	const bgImg = currentPattern(weatherCode, timeZone, latitude)
 	
 	return (
-		<div className="mb-6 relative">
+		<div className="relative">
 			{ season === "winter" &&
 				<div className="absolute -top-[2.95rem] max-[768px]:-top-[3.20rem] min-[1440px]:-top-[2.60rem] -left-6">
 					<ChristmasLightIcon />
@@ -66,11 +68,13 @@ const HourlyTable = ({ weather, selectedOption, season }) => {
 					<Visibility weather={weather} selectedCardIndex={selectedCardIndex} pageIndex={pageIndex} />
 				</tbody>
 			</table>
-			<DailyCard
-				weather={weather}
-				selectedCardIndex={selectedCardIndex}
-				onSelectedCardIndex={setSelectedCardIndex}
-			/>
+			{ location.pathname === "/weekly" &&
+				<DailyCard
+					weather={weather}
+					selectedCardIndex={selectedCardIndex}
+					onSelectedCardIndex={setSelectedCardIndex}
+				/>
+			}
 			{ windowWidth <= 1050 &&
 				<div className="flex justify-end mt-2">
 					<div className="flex gap-3">

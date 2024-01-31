@@ -10,7 +10,7 @@ const NavBar = ({ navBarData, onChangeIndex, navBarIndex, textColor }) => {
 	return (
 		<>
 			{ windowWidth > 700 &&
-				<div className="flex gap-2 text-base">
+				<nav className="flex gap-2 text-base">
 					{ navBarData.map((item, index) => (
 						<Fragment key={item}>
 							<button
@@ -22,7 +22,7 @@ const NavBar = ({ navBarData, onChangeIndex, navBarIndex, textColor }) => {
 							{ index !== navBarData.length - 1 && <div className="opacity-50">|</div> }
 						</Fragment >
 					))}
-				</div>
+				</nav>
 			}
 			{ windowWidth <= 700 &&
 				<div
@@ -31,7 +31,7 @@ const NavBar = ({ navBarData, onChangeIndex, navBarIndex, textColor }) => {
 					onClick={() => setIsOpen(!isOpen)}
 				>
 					<p className="truncate">{navBarData[navBarIndex]}</p>
-					{ isOpen && <ul className={`absolute mt-3 left-0 z-10 w-fit ${theme.bg50} dark:bg-neutral-900 py-1.5 rounded-md`}>
+					{ isOpen && <ul className={`absolute mt-3 left-[4.5px] z-10 w-fit ${theme.bg50} dark:bg-neutral-900 py-1.5 rounded-md`}>
 						{navBarData.map((item, index) => (
 							<li
 								key={item}

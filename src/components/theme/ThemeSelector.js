@@ -1,6 +1,6 @@
 import {useResize} from "../../hooks/useResize";
-import ThemeDesktop from "./ThemeDesktop";
-import ThemeMobile from "./ThemeMobile";
+import SelectorDesktop from "./SelectorDesktop";
+import SelectorMobile from "./SelectorMobile";
 
 const ThemeSelector = ({ onChangeTheme, themeOption }) => {
 	const windowWidth = useResize()
@@ -10,14 +10,14 @@ const ThemeSelector = ({ onChangeTheme, themeOption }) => {
 	return (
 		<>
 			{ windowWidth > 768 &&
-				<ThemeDesktop
+				<SelectorDesktop
 					options={options}
 					themeOption={themeOption}
 					onChangeTheme={onChangeTheme}
 				/>
 			}
 			{ windowWidth <= 768 &&
-				<ThemeMobile
+				<SelectorMobile
 					options={options}
 					themeOption={themeOption}
 					onChangeTheme={onChangeTheme}

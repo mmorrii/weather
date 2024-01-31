@@ -4,13 +4,18 @@ import {IsDarkContext, ThemeContext} from "../../../App";
 import {windDirection} from "../../../utils/wind-direction";
 import {useLocation} from "react-router-dom";
 
-const WindDirection = ({ weather }) => {
+const WindDirection = ({ weather, selectedCardIndex }) => {
 	const location = useLocation()
 	const theme = useContext(ThemeContext)
 	const isDark = useContext(IsDarkContext)
 	
-	let currentData = location.pathname === "/" ? weather?.current?.wind_direction_10m : weather?.daily?.wind_direction_10m_dominant[0]
-	const windDir = windDirection(currentData)
+	const currentData = {
+		"/": weather?.current?.wind_direction_10m,
+		"/today": weather?.daily?.wind_direction_10m_dominant[0],
+		"/weekly": weather?.daily?.wind_direction_10m_dominant[selectedCardIndex]
+	}
+	
+	const windDir = windDirection(currentData[location.pathname])
 	
 	return (
 		<div className="flex items-center gap-3">

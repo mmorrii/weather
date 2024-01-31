@@ -2,12 +2,14 @@ import SunriseIcon from "../../../icons/SunriseIcon";
 import {DateTime} from "luxon";
 import {useContext} from "react";
 import {IsDarkContext, ThemeContext} from "../../../App";
+import {useLocation} from "react-router-dom";
 
-const Sunrise = ({ weather }) => {
+const Sunrise = ({ weather, selectedCardIndex }) => {
+	const location= useLocation()
 	const theme = useContext(ThemeContext)
 	const isDark = useContext(IsDarkContext)
 	
-	const sunriseTime = weather?.daily?.sunrise[0]
+	const sunrise = location.pathname === "/today" ? weather?.daily?.sunrise[0] : weather?.daily?.sunrise[selectedCardIndex]
 	
 	return (
 		<div className="max-sm:flex-auto flex items-center gap-3">
@@ -17,7 +19,7 @@ const Sunrise = ({ weather }) => {
 			<div>
 				<p>Восход</p>
 				<p className="font-bold">
-					{ DateTime.fromISO(sunriseTime).toFormat('HH:mm') }
+					{ DateTime.fromISO(sunrise).toFormat('HH:mm') }
 				</p>
 			</div>
 		</div>

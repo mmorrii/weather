@@ -2,7 +2,7 @@ import MenuIcon from "../../icons/MenuIcon";
 import {useContext, useState} from "react";
 import {IsDarkContext, ThemeContext} from "../../App";
 import {createPortal} from "react-dom";
-import ModalMenu from "../modal-menu/ModalMenu";
+import ModalMenu from "../modals/ModalMenu";
 
 const MobileMenu = ({ onChangeTheme, changeSelectedOption, selectedOption, themeOption }) => {
 	const isDark = useContext(IsDarkContext)
