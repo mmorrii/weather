@@ -23,10 +23,10 @@ export default function App() {
 	const city = useData(getCity(selectedOption.latitude, selectedOption.longitude))
 	const [themeOption, setThemeOption] = useLocalStorage("themeOption","Устройство")
 	const isDark = useTheme(themeOption)
-	const [isLoading, setIsLoading] = useState(true)
+	const [isLoading, setIsLoading] = useState(false)
 	
 	useEffect(() => {
-		const timeoutId = setTimeout( () => setIsLoading(false), 3000)
+		const timeoutId = setTimeout( () => setIsLoading(false), 2500)
 		return () => clearTimeout(timeoutId)
 	}, [])
 	
@@ -39,7 +39,7 @@ export default function App() {
 	return isLoading ? (
 		<Loader />
 		) : (
-		<div className={`${!isDark && seasonsTheme.bg} dark:bg-neutral-900 dark:text-neutral-50 min-h-screen`}>
+		<div className={`${!isDark && seasonsTheme.bg} dark:bg-neutral-900 dark:text-neutral-50 min-h-screen transition`}>
 			<div className="max-w-[1500px] font-sans p-4 max-sm:px-2 pb-0 m-auto flex flex-col min-h-screen overflow-hidden">
 				<ThemeContext.Provider value={seasonsTheme}>
 					<IsDarkContext.Provider value={isDark}>

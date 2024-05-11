@@ -1,7 +1,7 @@
 import {DateTime} from "luxon";
 import {useContext} from "react";
 import {IsDarkContext, ThemeContext} from "../../../App";
-import {weatherIcons} from "../../../utils/current-icon";
+import {weatherIcons} from "../../../utils/current-icon.jsx";
 import {getMaxValues, getMinValues} from "../../../utils/max-min-value";
 
 const DailyCardTemp = ({ weather, onSelectedCardIndex, selectedCardIndex,

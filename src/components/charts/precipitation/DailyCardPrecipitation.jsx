@@ -1,7 +1,7 @@
 import {DateTime} from "luxon";
 import {useContext} from "react";
 import {IsDarkContext, ThemeContext} from "../../../App";
-import {precipitationIcon} from "../../../utils/precipitation-icon";
+import {precipitationIcon} from "../../../utils/precipitation-icon.jsx";
 
 const DailyCardPrecipitation = ({ weather, onSelectedCardIndex, selectedCardIndex }) => {
 	const theme = useContext(ThemeContext)

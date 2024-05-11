@@ -1,4 +1,4 @@
-import {weatherIcons} from "../../utils/current-icon";
+import {weatherIcons} from "../../utils/current-icon.jsx";
 import {weatherCodeFn} from "../../utils/interpretation-weather-codes";
 import {IsDarkContext} from "../../App";
 import {useContext} from "react";

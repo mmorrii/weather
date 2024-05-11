@@ -7,7 +7,8 @@ import {BrowserRouter} from "react-router-dom";
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
 	<StrictMode>
-		<BrowserRouter basename="/weather">
+		{/* basename="/weather" */}
+		<BrowserRouter>
 			<App />
 		</BrowserRouter>
 	</StrictMode>

@@ -55,19 +55,17 @@ const Grid = ({ weather, selectedCardIndex }) => {
 					</>
 				}
 				{ windowWidth <= 424 &&
-					<>
-						<div className="flex flex-col gap-4 w-full">
-							<div className="flex gap-2">
-								<Sunrise weather={weather} selectedCardIndex={selectedCardIndex} />
-								<Sunset weather={weather} selectedCardIndex={selectedCardIndex} />
-							</div>
-							<WindSpeed weather={weather} selectedCardIndex={selectedCardIndex} />
-							<WindDirection weather={weather} selectedCardIndex={selectedCardIndex} />
-							<Pressure weather={weather} />
-							{location.pathname === "/" ? <Humidity weather={weather} /> :
-								<UvIndex weather={weather} selectedCardIndex={selectedCardIndex} />}
+					<div className="flex flex-col gap-4 w-full">
+						<div className="flex gap-2">
+							<Sunrise weather={weather} selectedCardIndex={selectedCardIndex} />
+							<Sunset weather={weather} selectedCardIndex={selectedCardIndex} />
 						</div>
-					</>
+						<WindSpeed weather={weather} selectedCardIndex={selectedCardIndex} />
+						<WindDirection weather={weather} selectedCardIndex={selectedCardIndex} />
+						<Pressure weather={weather} />
+						{location.pathname === "/" ? <Humidity weather={weather} /> :
+							<UvIndex weather={weather} selectedCardIndex={selectedCardIndex} />}
+					</div>
 				}
 			</div>
 		</Card>
