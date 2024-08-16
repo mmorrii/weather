@@ -1,5 +1,4 @@
 import {currentSeason} from "./current-season";
-import {BASE_URL} from "../config/config";
 
 const weatherImages = (code, tz, lat, isDay, windowWidth) => {
 	const season = currentSeason(code, tz, lat);

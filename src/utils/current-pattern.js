@@ -1,5 +1,4 @@
 import {currentSeason} from "./current-season";
-import {BASE_URL} from "../config/config";
 
 const patterns = {
 	"summer": "url(/images/pattern/summer.png)",
