@@ -5,10 +5,11 @@ import autoprefixer from 'autoprefixer'
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [react()],
-  css: {
-    postcss: {
-      plugins: [tailwindcss, autoprefixer],
+    plugins: [react()],
+    base: "weather",
+    css: {
+        postcss: {
+            plugins: [tailwindcss, autoprefixer],
+        },
     },
-  },
 })
