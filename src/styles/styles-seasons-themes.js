@@ -28,6 +28,7 @@ export const seasonsThemes = (code, tz, lat) => {
 				hexColorDark: "#3b82f6",
 				hoverColor: "#E0F2FE",
 				hoverDarkColor: "rgba(59,130,246,0.2)",
+				focusElem: "dark:focus:outline dark:focus:outline-offset-1 dark:focus:outline-blue-500 dark:focus:outline-2 focus:outline focus:outline-offset-1 focus:outline-blue-800 focus:outline-2"
 			}
 		case "spring":
 			return {
@@ -53,6 +54,7 @@ export const seasonsThemes = (code, tz, lat) => {
 				hexColorDark: "#22c55e",
 				hoverColor: "#DCFCE7",
 				hoverDarkColor: "rgba(34,197,94,0.2)",
+				focusElem: "dark:focus:outline dark:focus:outline-offset-1 dark:focus:outline-green-500 dark:focus:outline-2 focus:outline focus:outline-offset-1 focus:outline-green-800 focus:outline-2"
 			}
 		case "summer":
 			return {
@@ -78,6 +80,7 @@ export const seasonsThemes = (code, tz, lat) => {
 				hexColorDark: "#14b8a6",
 				hoverColor: "#CCFBF1",
 				hoverDarkColor: "rgba(20,184,166,0.2)",
+				focusElem: "dark:focus:outline dark:focus:outline-offset-1 dark:focus:outline-teal-500 dark:focus:outline-2 focus:outline focus:outline-offset-1 focus:outline-teal-800 focus:outline-2"
 			}
 		case "autumn":
 			return {
@@ -103,6 +106,7 @@ export const seasonsThemes = (code, tz, lat) => {
 				hexColorDark: "#ef4444",
 				hoverColor: "#FEE2E2",
 				hoverDarkColor: "rgba(239,68,68,0.2)",
+				focusElem: "dark:focus:outline dark:focus:outline-offset-1 dark:focus:outline-red-500 dark:focus:outline-2 focus:outline focus:outline-offset-1 focus:outline-red-800 focus:outline-2"
 			}
 		default:
 			return {}
