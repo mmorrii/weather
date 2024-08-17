@@ -11,7 +11,6 @@
     },
     "dependencies": {
         "@nextui-org/react": "^2.4.6",
-        "@uidotdev/usehooks": "^2.4.1",
         "chart.js": "^4.4.3",
         "framer-motion": "^11.3.28",
         "lucide-react": "^0.428.0",
