@@ -1,19 +1,12 @@
 import {useContext} from "react";
-import {ThemeContext} from "../App";
-import GitHubIcon from "../icons/GitHubIcon";
-import {motion} from "framer-motion";
+import {ThemeContext} from "../App.jsx";
+import GitHubIcon from "../icons/GitHubIcon.jsx";
 
 const Footer = () => {
 	const theme = useContext(ThemeContext)
 	
 	return (
-		<motion.footer
-			className={`${theme.bg800andWhTxt} p-3 2xl:rounded-t-xl max-2xl:-mx-4`}
-			initial={{ opacity: 0 }}
-			whileInView={{ opacity: 1 }}
-			viewport={{ once: true }}
-			transition={{ duration: 0.3, ease: "easeIn"}}
-		>
+		<footer className={`${theme.bg800andWhTxt} p-3 2xl:rounded-t-xl max-2xl:-mx-4`}>
 			<div className="flex items-center justify-center gap-2">
 				<div className="w-8 h-8">
 					<a href="https://github.com/mmorrii/weather" rel="noopener noreferrer" target="_blank">
@@ -22,7 +15,7 @@ const Footer = () => {
 				</div>
 				<p>mmorrii</p>
 			</div>
-		</motion.footer>
+		</footer>
 	)
 }
 

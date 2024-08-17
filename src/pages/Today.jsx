@@ -1,7 +1,7 @@
-import CurrentWeather from "../current-weather/CurrentWeather";
-import InfoBlock from "../InfoBlock";
-import HourlyWeather from "../HourlyWeather";
-import ChartComponent from "../charts/ChartComponent";
+import CurrentWeather from "../components/current-weather/CurrentWeather.jsx";
+import InfoBlock from "../components/InfoBlock.jsx";
+import HourlyWeather from "../components/HourlyWeather.jsx";
+import ChartComponent from "../components/charts/ChartComponent.jsx";
 
 const Today = ({ weather, selectedOption, cityData, season }) => {
 	return (

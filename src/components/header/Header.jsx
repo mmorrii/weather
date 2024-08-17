@@ -7,7 +7,7 @@ import MobileMenu from "./MobileMenu";
 import {motion} from "framer-motion";
 import Navbar from "./Navbar";
 
-const Header = ({ changeSelectedOption, selectedOption, weather, onChangeTheme, city, themeOption }) => {
+const Header = ({ changeSelectedOption, selectedOption, weather, city }) => {
 	const windowWidth = useResize()
 	
 	const isDay = weather?.current?.is_day === 1

@@ -1,6 +1,6 @@
-import CurrentWeather from "../current-weather/CurrentWeather";
-import GridNow from "../grid/GridNow";
-import PrecipitationBlockNow from "../PrecipitationBlockNow";
+import CurrentWeather from "../components/current-weather/CurrentWeather.jsx";
+import GridNow from "../components/grid/GridNow.jsx";
+import PrecipitationBlockNow from "../components/PrecipitationBlockNow.jsx";
 import {motion} from "framer-motion";
 
 const Home = ({ weather, selectedOption, cityData }) => {

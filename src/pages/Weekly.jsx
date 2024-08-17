@@ -1,8 +1,8 @@
-import CurrentWeather from "../current-weather/CurrentWeather";
-import InfoBlock from "../InfoBlock";
-import HourlyWeather from "../HourlyWeather";
+import CurrentWeather from "../components/current-weather/CurrentWeather.jsx";
+import InfoBlock from "../components/InfoBlock.jsx";
+import HourlyWeather from "../components/HourlyWeather.jsx";
 import {useState} from "react";
-import ChartComponent from "../charts/ChartComponent";
+import ChartComponent from "../components/charts/ChartComponent.jsx";
 
 const Weekly = ({ weather, selectedOption, season, cityData }) => {
 	const [selectedCardIndex, setSelectedCardIndex] = useState(0)

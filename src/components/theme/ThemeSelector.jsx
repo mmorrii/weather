@@ -5,7 +5,7 @@ import SelectorMobile from "./SelectorMobile";
 const ThemeSelector = ({ onChangeTheme, themeOption }) => {
 	const windowWidth = useResize()
 	
-	const options = ["Устройство", "Темная", "Светлая"]
+	const options = ["device", "dark", "light"]
 	
 	return (
 		<>
