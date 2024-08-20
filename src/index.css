@@ -29,33 +29,3 @@ body {
       font-size: 18px;
    }
 }
-
-/* Общие стили для всех браузеров */
-.dark::-webkit-scrollbar,
-.dark::-webkit-scrollbar-thumb {
-   background-color: #464646; /* Цвет ползунка */
-}
-
-.dark::-webkit-scrollbar-track {
-   background-color: #262626; /* Цвет трека (фона полосы прокрутки) */
-}
-
-/* стили для Firefox */
-html.dark {
-   scrollbar-color: #464646 #262626;
-}
-
-/* стили для Internet Explorer (Edge) */
-.dark::-ms-scrollbar-thumb {
-   background-color: #464646;
-}
-
-.dark::-ms-scrollbar-track {
-   background-color: #262626;
-}
-
-html.hideScrollbar,
-.hideScrollbar::-webkit-scrollbar {
-   display: none;
-}
-
