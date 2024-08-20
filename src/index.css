@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer utilities {
+   .textGray {
+      @apply text-zinc-100/60
+   }
+}
+
 * {
    padding: 0;
    margin: 0;
