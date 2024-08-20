@@ -11,6 +11,8 @@ const Header = () => {
                 <div className="w-[3.4rem] stroke-zinc-100">
                     <img className="stroke-zinc-100" src="/weather/src/assets/logo.svg" alt=""/>
                 </div>
+                    <div className="w-[3.2rem]">
+                        <Logo/>
 
                 <div className="flex items-center gap-[4px]">
                     <MapPin size="1.33rem" strokeWidth="1.5"/>
