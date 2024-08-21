@@ -9,7 +9,7 @@ const Header = () => {
 
     return (
         <header className="py-[2px] max-w-7xl w-full m-auto">
-            <div className="flex justify-between items-center gap-[30px]">
+            <div className="grid grid-cols-3 items-center gap-[30px]">
                 <div className="flex items-center gap-[30px]">
                     <div className="w-[3.2rem]">
                         <Logo/>
@@ -21,11 +21,12 @@ const Header = () => {
                     </div>
                 </div>
 
-                <div className="relative w-80">
+                <div className="justify-self-center w-80">
                     <SearchField/>
                 </div>
 
                 <Switch
+                    className="justify-self-end"
                     defaultSelected size="sm"
                     color="default"
                     thumbIcon={({isSelected, className}) =>
