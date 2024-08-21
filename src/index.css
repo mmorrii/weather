@@ -3,17 +3,16 @@
 @tailwind utilities;
 
 @layer utilities {
-   .textGray {
-      @apply text-zinc-100/60
-   }
+   .textGray { @apply dark:text-zinc-100/60 }
+
+   .borderDefault { @apply border-1.5 border-zinc-600/40 }
+   .borderError { @apply border-1.5 border-red-600 }
 }
 
 * {
    padding: 0;
    margin: 0;
-   border: 0;
    outline: none;
-   box-sizing: border-box;
 }
 
 @media (max-width: 768px) {
