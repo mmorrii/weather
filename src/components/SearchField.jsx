@@ -1,8 +1,8 @@
-import {Search, CircleX} from "lucide-react";
+import {Search, CircleX, OctagonAlert} from "lucide-react";
 import {useEffect, useRef, useState} from "react";
 import {createPortal} from "react-dom";
 import {AnimatePresence, motion} from "framer-motion";
-import {button, CircularProgress} from "@nextui-org/react";
+import {button, CircularProgress, Tooltip} from "@nextui-org/react";
 import styles from "./button.module.css"
 
 const SearchField = () => {
@@ -51,7 +51,7 @@ const SearchField = () => {
         <>
             <form onSubmit={handleSubmit} className="relative">
                 <input
-                    className={`w-full dark:bg-zinc-600/40 rounded-full p-[2px_1.88rem_5px_2.22rem] placeholder:text-sm borderDefault ${error ? "borderError" : "borderDefault"}`}
+                    className={`w-full dark:bg-zinc-600/40 rounded-full p-[2px_1.88rem_5px_2.22rem] placeholder:text-sm duration-200 ${error ? "borderError" : "borderDefault"}`}
                     type="text" id="search" placeholder="Type to search..." ref={inputRef}
                     value={value} onChange={(e) => setValue(e.target.value)}
                     onFocus={() => setModalOpen(true)}
@@ -68,18 +68,23 @@ const SearchField = () => {
                         <Search size="1.33rem"/>
                     }
                 </label>
-                {xVisible &&
-                    <button
-                        type="button"
-                        onClick={() => {
-                            setValue("")
-                            inputRef.current.focus()
-                        }}
-                        className="absolute top-1/2 -translate-y-1/2 right-[8px] opacity-50 hover:opacity-100 duration-100"
-                    >
-                        <CircleX size="1.2rem" />
-                    </button>
-                }
+
+                <button
+                    type="button" onClick={() => { setValue(""); inputRef.current.focus() }}
+                    className="absolute top-1/2 -translate-y-1/2 right-[8px]"
+                >
+                    {xVisible && <CircleX size="1.2rem" className="opacity-50 hover:opacity-100 duration-100" />}
+                    {error &&
+                        <Tooltip showArrow={true} radius="sm" content="Поле не может быть пустым" placement="right" offset={10}
+                             classNames={{
+                                 base: ["dark:before:bg-zinc-700" ],
+                                 content: [ "dark:bg-zinc-700" ],
+                             }}
+                        >
+                            <OctagonAlert size="1.2rem" className="stroke-red-500"/>
+                        </Tooltip>
+                    }
+                </button>
             </form>
             <AnimatePresence>
                 {modalOpen && (<>{createPortal(<Modal data={data} onModalOpen={setModalOpen} />, document.body)}</>)}
@@ -98,7 +103,7 @@ const Modal = ({data, onModalOpen}) => {
             animate={{opacity: 1, y: 0, transition: {duration: 0.6}}}
             exit={{opacity: 0, y: 1000, transition: {duration: 0.6, ease: "easeIn"}}}
         >
-            <div className="max-w-7xl w-full m-auto pt-[42px] relative">
+            <div className="max-w-7xl w-full m-auto pt-[42px] pb-[20px] relative">
                 <CloseButton onModalOpen={onModalOpen} />
                 <div className="overflow-hidden overflow-y-auto">
                     <ul className="flex flex-wrap gap-[10px]">
