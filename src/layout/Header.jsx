@@ -9,19 +9,19 @@ const Header = () => {
 
     return (
         <header className="py-[2px] max-w-7xl w-full m-auto">
-            <div className="grid grid-cols-3 items-center gap-[30px]">
+            <div className="grid grid-cols-[34%_1fr_34%] items-center gap-[30px]">
                 <div className="flex items-center gap-[30px]">
-                    <div className="w-[3.2rem]">
+                    <div className="flex-[0_0_auto] w-[3.2rem]">
                         <Logo/>
                     </div>
 
-                    <div className="flex items-center gap-[4px]">
-                        <MapPin size="1.33rem" strokeWidth="1.5"/>
-                        <p>Australia</p>
+                    <div className="flex items-center gap-[4px] overflow-hidden">
+                        <div><MapPin size="1.33rem" strokeWidth="1.5"/></div>
+                        <p className="truncate">Australia</p>
                     </div>
                 </div>
 
-                <div className="justify-self-center w-80">
+                <div className="justify-self-center w-full">
                     <SearchField/>
                 </div>
 
