@@ -3,9 +3,11 @@ import {Switch} from "@nextui-org/react";
 import {useDarkMode} from "../hooks/useDarkMode.js";
 import Logo from "../assets/Logo.jsx";
 import SearchField from "../components/SearchField.jsx";
+import {useLocation} from "../hooks/useLocation.js";
 
 const Header = () => {
     const {darkMode, setDarkMode} = useDarkMode()
+    const {location} = useLocation()
 
     return (
         <header className="py-[2px] max-w-7xl w-full m-auto">
@@ -17,7 +19,7 @@ const Header = () => {
 
                     <div className="flex items-center gap-[4px] overflow-hidden">
                         <div><MapPin size="1.33rem" strokeWidth="1.5"/></div>
-                        <p className="truncate">Australia</p>
+                        <p className="truncate">{location?.name || "N/A"}</p>
                     </div>
                 </div>
 
@@ -27,8 +29,7 @@ const Header = () => {
 
                 <Switch
                     className="justify-self-end"
-                    defaultSelected size="sm"
-                    color="default"
+                    defaultSelected size="sm" color="default"
                     thumbIcon={({isSelected, className}) =>
                         isSelected ? (
                             <Sun className={className}/>
@@ -36,8 +37,8 @@ const Header = () => {
                             <Moon className={className}/>
                         )
                     }
-                    isSelected={darkMode}
-                    onValueChange={setDarkMode}
+                    classNames={{}}
+                    isSelected={darkMode} onValueChange={setDarkMode}
                 />
             </div>
         </header>
