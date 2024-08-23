@@ -5,7 +5,7 @@
 @layer utilities {
    .textGray { @apply dark:text-zinc-100/60 }
 
-   .borderDefault { @apply border-1.5 border-zinc-600/40 }
+   .borderDefault { @apply border-1.5 border-transparent }
    .borderError { @apply border-1.5 border-red-600 }
 }
 
