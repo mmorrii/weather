@@ -1,9 +1,9 @@
 import {Search, CircleX, OctagonAlert} from "lucide-react";
 import {useEffect, useRef, useState} from "react";
 import {createPortal} from "react-dom";
-import {AnimatePresence, motion} from "framer-motion";
+import {AnimatePresence} from "framer-motion";
 import {button, CircularProgress, Tooltip} from "@nextui-org/react";
-import styles from "./button.module.css"
+import {SearchModal} from "./SearchModal.jsx";
 
 const SearchField = () => {
     const [modalOpen, setModalOpen] = useState(false)
@@ -35,14 +35,12 @@ const SearchField = () => {
             headers: {
                 "Content-Type": "application/json",
                 "Authorization": "Bearer xS9W6HOMQnQKipQ6K_ewl4umZBHlP-",
-                "Accept-Language": "ru"
             }
         })
             .then(response => response.json())
             .then(data => {
                 setIsLoading(false)
                 setData(data)
-                console.log(data)
             })
             .catch((err) => console.error(err.message))
     }
@@ -87,68 +85,10 @@ const SearchField = () => {
                 </button>
             </form>
             <AnimatePresence>
-                {modalOpen && (<>{createPortal(<Modal data={data} onModalOpen={setModalOpen} />, document.body)}</>)}
+                {modalOpen && (<>{createPortal(<SearchModal data={data} onModalOpen={setModalOpen} />, document.body)}</>)}
             </AnimatePresence>
         </>
     )
 }
 
 export default SearchField
-
-const Modal = ({data, onModalOpen}) => {
-    return (
-        <motion.div
-            className="w-screen h-scren bg-black/80 fixed inset-0 top-[3.055rem]"
-            initial={{opacity: 0, y: 1000}}
-            animate={{opacity: 1, y: 0, transition: {duration: 0.6}}}
-            exit={{opacity: 0, y: 1000, transition: {duration: 0.6, ease: "easeIn"}}}
-        >
-            <div className="max-w-7xl w-full m-auto pt-[42px] pb-[20px] relative">
-                <CloseButton onModalOpen={onModalOpen} />
-                <div className="overflow-hidden overflow-y-auto">
-                    <ul className="flex flex-wrap gap-[10px]">
-                        {data?.map(d => (
-                            <li key={d.id} className="flex-auto h-auto dark:bg-zinc-600/30 dark:hover:bg-zinc-600/45 min-w-[240px] rounded p-[6px_10px] cursor-pointer">
-                                <h2 className="truncate">
-                                    {d.name},<span className="text-[0.8rem] textGray ml-[5px]">{d.type}</span>
-                                </h2>
-
-                                <div className="text-[0.8rem] flex gap-[6px] textGray">
-                                    <p className="flex-[1_1_50%] truncate">
-                                        Ш:<span className="ml-[4px] dark:text-blue-500">{d.latitude}</span>
-                                    </p>
-                                    <p className="flex-[1_1_50%] truncate">
-                                        Д:<span className="ml-[4px] dark:text-green-500">{d.longitude}</span>
-                                    </p>
-                                </div>
-
-                                {d?.parentRegions?.length > 0 && (
-                                    <p className="dark:text-pink-500 text-[0.8rem] truncate">
-                                        {d?.parentRegions?.map((region, index) => (
-                                            <span key={region.id}>{region.name}
-                                                {/* add ", " except for the last element */}
-                                                {index < d.parentRegions.length - 1 && ", "}
-                                            </span>
-                                        ))}
-                                    </p>
-                                )}
-                            </li>
-                        ))}
-                    </ul>
-                </div>
-            </div>
-        </motion.div>
-    )
-}
-
-const CloseButton = ({onModalOpen}) => {
-    return (
-        <button
-            className={`absolute top-[10px] py-[8px] left-1/2 -translate-x-1/2 flex ${styles.button}`}
-            onClick={() => onModalOpen(false)}
-        >
-            <span className="h-[5px] w-[60px] bg-zinc-600 rounded translate-x-[2px]"></span>
-            <span className="h-[5px] w-[60px] bg-zinc-600 rounded -translate-x-[2px]"></span>
-        </button>
-    )
-}
