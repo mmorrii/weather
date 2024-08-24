@@ -1,4 +1,4 @@
-import {LocationContext} from "../hooks/useLocation.js";
+import {LocationContext} from "../hooks/useLocality.js";
 import {useEffect, useState} from "react";
 
 export const LocationProvider = ({ children }) => {
