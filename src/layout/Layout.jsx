@@ -1,22 +1,19 @@
-import Header from "./Header.jsx";
-import {Divider} from "@nextui-org/react";
+import {Header} from "./Header.jsx";
 import {LocationProvider} from "../components/LocationProvider.jsx";
 import {ForecastProvider} from "../components/ForecastProvider.jsx";
+import {Outlet} from "react-router-dom";
 
-const Layout = ({ children }) => {
+export const Layout = () => {
     return (
         <LocationProvider>
             <ForecastProvider>
                 <div className="w-screen h-screen dark:bg-zinc-900 bg-neutral-100 duration-200">
                     <Header/>
-                    <Divider/>
-                    <main>
-                        {children}
+                    <main className="fixedWidth">
+                        <Outlet/>
                     </main>
                 </div>
             </ForecastProvider>
         </LocationProvider>
     )
 }
-
-export default Layout

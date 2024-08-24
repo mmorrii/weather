@@ -3,7 +3,9 @@
 @tailwind utilities;
 
 @layer utilities {
-   .textGray { @apply dark:text-zinc-100/60 }
+   .fixedWidth { @apply max-w-7xl w-full m-auto }
+
+   .textGray { @apply dark:text-zinc-200/60 }
 
    .borderDefault { @apply border-1.5 border-transparent }
    .borderError { @apply border-1.5 border-red-600 }
@@ -15,16 +17,16 @@
    outline: none;
 }
 
-@media (max-width: 768px) {
-   html,
-   body {
-      font-size: 0.875rem;
-   }
-}
+/*@media (max-width: 768px) {*/
+/*   html,*/
+/*   body {*/
+/*      font-size: 0.875rem;*/
+/*   }*/
+/*}*/
 
-@media (min-width: 1440px) {
-   html,
-   body {
-      font-size: 1.125rem;
-   }
-}
+/*@media (min-width: 1440px) {*/
+/*   html,*/
+/*   body {*/
+/*      font-size: 1.125rem;*/
+/*   }*/
+/*}*/
