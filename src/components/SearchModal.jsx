@@ -1,12 +1,12 @@
 import {motion, useDragControls, useMotionValue} from "framer-motion";
 import {button} from "@nextui-org/react";
 import styles from "./button.module.css";
-import {useLocation} from "../hooks/useLocation.js";
+import {useLocality} from "../hooks/useLocality.js";
 
 export const SearchModal = ({data, onModalOpen}) => {
     const dragControls = useDragControls()
     const y = useMotionValue(0)
-    const {setLocation} = useLocation()
+    const {setLocation} = useLocality()
 
     const test = [
         { name: "Australia", type: "city", latitude: 52, longitude: 41 }
