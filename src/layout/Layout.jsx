@@ -6,14 +6,14 @@ import {Outlet} from "react-router-dom";
 export const Layout = () => {
     return (
         <LocationProvider>
-            <ForecastProvider>
                 <div className="w-screen h-screen dark:bg-zinc-900 bg-neutral-100 duration-200">
                     <Header/>
                     <main className="fixedWidth">
-                        <Outlet/>
+                        <ForecastProvider>
+                            <Outlet/>
+                        </ForecastProvider>
                     </main>
                 </div>
-            </ForecastProvider>
         </LocationProvider>
     )
 }
