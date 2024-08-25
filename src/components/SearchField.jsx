@@ -42,7 +42,7 @@ const SearchField = () => {
                 setIsLoading(false)
                 setData(data)
             })
-            .catch((err) => console.error(err.message))
+            .catch((err) => console.log(err))
     }
 
     return (
