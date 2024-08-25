@@ -1,7 +1,7 @@
 import ArrowIcon from "../../../icons/ArrowIcon";
 import {useContext} from "react";
 import {IsDarkContext, ThemeContext} from "../../../App";
-import {windDirection} from "../../../utils/wind-direction";
+import {windDirection} from "../../../utils/windDirection.js";
 import {useLocation} from "react-router-dom";
 
 const WindDirection = ({ weather, selectedCardIndex }) => {
