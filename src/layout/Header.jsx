@@ -1,7 +1,7 @@
 import { MapPin, Sun, Moon } from 'lucide-react';
 import {Divider, Switch} from "@nextui-org/react";
 import {useDarkMode} from "../hooks/useDarkMode.js";
-import Logo from "../assets/Logo.jsx";
+import Logo from "../icons/Logo.jsx";
 import SearchField from "../components/SearchField.jsx";
 import {useLocality} from "../hooks/useLocality.js";
 import {NavLink} from "react-router-dom";
