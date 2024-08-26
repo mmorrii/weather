@@ -3,6 +3,7 @@ import {useLocation} from "react-router-dom";
 import {formatTime} from "../utils/formatTime.js";
 import {getWindDirection} from "../utils/windDirection.js";
 import {WeatherIcon} from "../components/WeatherIcon.jsx";
+import {MoveUp} from "lucide-react";
 
 export const Week = () => {
     const forecast = useForecast()
@@ -16,14 +17,16 @@ export const Week = () => {
         <div className="mt-[30px]">
             <ul className="flex gap-[10px] overflow-x-auto">
                 {arr.map(i => (
-                    <li key={i} className="flex-[0_0_auto] dark:bg-zinc-600/40 rounded p-[4px_10px_6px] mb-[8px]">
+                    <li key={i} className="flex-[0_0_auto] relative dark:bg-zinc-600/40 rounded p-[4px_10px_6px] mb-[8px]">
                         <header className="mb-[4px]">
                             <h2>{formatTime(forecast?.daily?.time[i], "cccc", {uppercase: true})}</h2>
                         </header>
 
                         <p className="font-bold text-4xl mb-[8px]">{Math.round(forecast?.daily?.temperature_2m_max[i])}&deg;</p>
 
-                        <div><WeatherIcon code={forecast?.daily?.weather_code[i]} /></div>
+                        <div className="size-[6rem] absolute top-[30px] right-[20px]">
+                            <WeatherIcon code={forecast?.daily?.weather_code[i]} isDay={!!forecast?.current?.is_day} />
+                        </div>
 
                         <div className="text-[0.8125rem] font-extralight flex items-end gap-[8px]">
                             <div className="flex-[0_0_auto] flex flex-col gap-[4px]">
@@ -42,9 +45,11 @@ export const Week = () => {
                                         className="font-medium">{forecast?.daily?.precipitation_probability_max[i]}%</span>
                                 </p>
 
-                                <p>Ветер: {getWindDirection(forecast?.daily?.wind_direction_10m_dominant[i])},{' '}
-                                    <span
-                                        className="font-medium">{Math.round(forecast?.daily?.wind_speed_10m_max[i])} км/ч</span>
+                                <p className="flex items-center gap-[2px]">Ветер:
+                                    <div className="w-fit">
+                                        <MoveUp size="0.8125rem" style={{transform: `rotate(${getWindDirection(forecast?.daily?.wind_direction_10m_dominant[i])?.angle}deg)`}} />
+                                    </div>
+                                    <span className="font-medium">{Math.round(forecast?.daily?.wind_speed_10m_max[i])} км/ч</span>
                                 </p>
 
                                 <p>УФ-индекс:{' '}
