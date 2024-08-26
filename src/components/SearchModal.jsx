@@ -14,7 +14,7 @@ export const SearchModal = ({data, onModalOpen}) => {
 
     return (
         <motion.div
-            className="w-screen h-scren bg-black/80 fixed z-20 inset-0 top-[3.055rem]"
+            className="w-screen h-scren bg-black/80 backdrop-blur-lg fixed z-20 inset-0 top-[3.085rem]"
             initial={{opacity: 0, y: "100%"}}
             animate={{opacity: 1, y: 0, transition: {duration: 0.6}}}
             exit={{opacity: 0, y: "100%", transition: {duration: 0.4, ease: "easeInOut"}}}
