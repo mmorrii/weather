@@ -1,18 +1,20 @@
 import {createBrowserRouter, Route, Routes} from "react-router-dom";
 import {Layout} from "./layout/Layout.jsx";
-import {Home2} from "./pages/Home2.jsx";
-import {Tomorrow} from "./pages/Tomorrow.jsx";
-import {Week} from "./pages/Week.jsx";
-import {TwoWeek} from "./pages/TwoWeek.jsx";
+import {lazy} from "react";
+
+const HomePage = lazy(() => import("./pages/HomePage.jsx"))
+const TomorrowPage = lazy(() => import("./pages/TomorrowPage.jsx"))
+const WeekPage = lazy(() => import("./pages/WeekPage.jsx"))
+const TwoWeekPage = lazy(() => import("./pages/TwoWeekPage.jsx"))
 
 export const App2 = () => {
     return (
         <Routes>
             <Route path="/" element={<Layout />}>
-                <Route path="/" element={<Home2 />} />
-                <Route path="/tomorrow" element={<Tomorrow />} />
-                <Route path="/week" element={<Week />} loader={() => fetch(7)} />
-                <Route path="/two-week" element={<TwoWeek />} />
+                <Route path="/" element={<HomePage />} />
+                <Route path="/tomorrow" element={<TomorrowPage />} />
+                <Route path="/week" element={<WeekPage />} />
+                <Route path="/two-week" element={<TwoWeekPage />} />
             </Route>
         </Routes>
     )
@@ -25,20 +27,20 @@ export const router = createBrowserRouter([
         children: [
             {
                 index: true,
-                element: <Home2 />,
+                element: <HomePage />,
             },
             {
                 path: "tomorrow",
-                element: <Tomorrow />,
+                element: <TomorrowPage />,
             },
             {
                 path: "week",
-                element: <Week />,
+                element: <WeekPage />,
                 // loader: () => fetch(7),
             },
             {
                 path: "two-week",
-                element: <TwoWeek />,
+                element: <TwoWeekPage />,
             },
         ],
     }
