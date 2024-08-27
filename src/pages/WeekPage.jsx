@@ -8,15 +8,14 @@ import {MoveUp} from "lucide-react";
 const WeekPage = () => {
     const {forecast} = useForecast()
     const {state} = useLocation()
+    const arr = [...Array(state.timeStamp).keys()]
 
     console.log(forecast)
-
-    const arr = [...Array(state.timeStamp).keys()]
 
     return (
         <div className="mt-[30px]">
             <ul className="flex gap-[10px] overflow-x-auto">
-                {arr.map(i => (
+                {forecast?.daily?.weather_code[state.timeStamp - 1] && arr.map(i => (
                     <li key={i} className="flex-[0_0_auto] relative dark:bg-zinc-600/40 rounded p-[4px_10px_6px] mb-[8px]">
                         <header className="mb-[4px]">
                             <h2>{formatTime(forecast?.daily?.time[i], "cccc", {uppercase: true})}</h2>

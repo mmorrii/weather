@@ -7,7 +7,7 @@ import {useRest} from "../hooks/useRest.js";
 export const ForecastProvider = ({ children }) => {
     const {location} = useLocality()
     const {state} = useLocation()
-    const {data: forecast, get} = useRest()
+    const {data: forecast, state: status, get} = useRest()
 
     useEffect(() => {
         if (location && state) {
@@ -16,7 +16,7 @@ export const ForecastProvider = ({ children }) => {
     }, [location, state])
 
     return (
-        <ForecastContext.Provider value={ forecast }>
+        <ForecastContext.Provider value={{ forecast, status }}>
             { children }
         </ForecastContext.Provider>
     )
