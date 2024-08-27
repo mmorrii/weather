@@ -45,9 +45,9 @@ const WeekPage = () => {
                                 </p>
 
                                 <p className="flex items-center gap-[2px]">Ветер:
-                                    <div className="w-fit">
-                                        <MoveUp size="0.8125rem" style={{transform: `rotate(${getWindDirection(forecast?.daily?.wind_direction_10m_dominant[i])?.angle}deg)`}} />
-                                    </div>
+                                    <span className="block w-fit">
+                                        <MoveUp size="0.8125rem" style={{transform: `rotate(${getWindDirection(forecast?.daily?.wind_direction_10m_dominant[i])?.angle || 0}deg)`}} />
+                                    </span>
                                     <span className="font-medium">{Math.round(forecast?.daily?.wind_speed_10m_max[i])} км/ч</span>
                                 </p>
 
