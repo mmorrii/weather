@@ -5,8 +5,8 @@ import {getWindDirection} from "../utils/windDirection.js";
 import {WeatherIcon} from "../components/WeatherIcon.jsx";
 import {MoveUp} from "lucide-react";
 
-export const Week = () => {
-    const forecast = useForecast()
+const WeekPage = () => {
+    const {forecast} = useForecast()
     const {state} = useLocation()
 
     console.log(forecast)
@@ -72,3 +72,5 @@ export const Week = () => {
         </div>
     )
 }
+
+export default WeekPage
