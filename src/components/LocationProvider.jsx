@@ -8,7 +8,7 @@ export const LocationProvider = ({ children }) => {
         fetch('https://api.ipify.org?format=json')
             .then(res => res.json())
             .then(result => {
-                return fetch(`https://data-api.oxilor.com/rest/network?ip=${result.ip}`, {
+                return fetch(`https://data-api.oxilor.com/rest/network?ip=${String(result.ip)}`, {
                     headers: {
                         "Content-Type": "application/json",
                         "Authorization": "Bearer xS9W6HOMQnQKipQ6K_ewl4umZBHlP-"
