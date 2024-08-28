@@ -4,16 +4,19 @@ import {MoveUp} from "lucide-react";
 import {getWindDirection} from "../utils/windDirection.js";
 import {useForecast} from "../hooks/useForecast.js";
 import {useLocation} from "react-router-dom";
+import {useHorizontalScroll} from "../hooks/useHorizontalScroll.js";
 
 export const CardsSlider = ({ openCard, setOpenCard }) => {
     const {forecast} = useForecast()
     const {state} = useLocation()
+    const scrollRef = useHorizontalScroll();
+
     const arr = [...Array(state.timeStamp).keys()]
 
     console.log(forecast)
 
     return (
-        <ul className="flex gap-[10px] overflow-x-auto">
+        <ul className="flex gap-[10px] overflow-x-auto" ref={scrollRef}>
             {arr.map(i => (
                 openCard === i ? <OpenCard key={i} forecast={forecast} i={i} /> : <CloseCard key={i} forecast={forecast} i={i} setOpenCard={setOpenCard} />
             ))}
