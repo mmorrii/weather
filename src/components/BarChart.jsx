@@ -1,6 +1,6 @@
 import {useForecast} from "../hooks/useForecast.js";
 import {useMemo} from "react";
-import {chartDataGeneration} from "../utils/getPaginatedItems.js";
+import {chartDataGeneration} from "../utils/chartDataUtils.js";
 import {ResponsiveBar, ResponsiveBarCanvas} from "@nivo/bar";
 
 export const BarChart = ({ openCard }) => {
