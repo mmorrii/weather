@@ -1,5 +1,6 @@
 import {CardsSlider} from "../components/CardsSlider.jsx";
 import {useState} from "react";
+import {BarChart} from "../components/BarChart.jsx";
 
 const WeekPage = () => {
     const [openCard, setOpenCard] = useState(0)
@@ -10,7 +11,10 @@ const WeekPage = () => {
                 <div className="flex-[1_1_70%] overflow-hidden">
                     <CardsSlider openCard={openCard} setOpenCard={setOpenCard}/>
                 </div>
-                <div className="flex-[0_0_30%] overflow-hidden"></div>
+
+                <div className="flex-[0_0_30%] overflow-hidden">
+                    <BarChart openCard={openCard} />
+                </div>
             </div>
         </div>
     )
