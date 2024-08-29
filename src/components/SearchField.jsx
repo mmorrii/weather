@@ -34,7 +34,7 @@ const SearchField = () => {
         fetch(`https://data-api.oxilor.com/rest/search-regions?searchTerm=${value}`, {
             headers: {
                 "Content-Type": "application/json",
-                "Authorization": "Bearer xS9W6HOMQnQKipQ6K_ewl4umZBHlP-",
+                "Authorization": import.meta.env.VITE_AUTH_KEY,
             }
         })
             .then(response => response.json())

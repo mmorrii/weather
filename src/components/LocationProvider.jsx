@@ -11,7 +11,7 @@ export const LocationProvider = ({ children }) => {
                 return fetch(`https://data-api.oxilor.com/rest/network?ip=${String(result.ip)}`, {
                     headers: {
                         "Content-Type": "application/json",
-                        "Authorization": "Bearer xS9W6HOMQnQKipQ6K_ewl4umZBHlP-"
+                        "Authorization": import.meta.env.VITE_AUTH_KEY
                     }
                 })
             })
