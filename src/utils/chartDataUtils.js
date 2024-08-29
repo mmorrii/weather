@@ -14,7 +14,7 @@ export const chartDataGeneration = (x, y, index) => {
     const arr = []
 
     for (let i = 0; i < 24; i++) {
-        let formatData = formatTime(visibleXData[i], "T")
+        let formatData = formatTime(visibleXData[i], "HH")
         arr.push({x: formatData, y: visibleYData[i]})
     }
 
