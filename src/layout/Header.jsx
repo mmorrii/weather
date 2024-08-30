@@ -4,11 +4,18 @@ import {useDarkMode} from "../hooks/useDarkMode.js";
 import Logo from "../icons/Logo.jsx";
 import SearchField from "../components/SearchField.jsx";
 import {useLocality} from "../hooks/useLocality.js";
-import {NavLink} from "react-router-dom";
+import {NavLink, useLocation, useNavigate} from "react-router-dom";
+import {useEffect} from "react";
 
 export const Header = () => {
     const {darkMode, setDarkMode} = useDarkMode()
     const {location} = useLocality()
+    const {state} = useLocation()
+    const navigate = useNavigate()
+
+    useEffect(() => {
+        if (!state) navigate("/", { state: {timeStamp: 1} })
+    }, [])
 
     return (
         <>
