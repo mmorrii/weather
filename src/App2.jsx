@@ -26,7 +26,7 @@ export const router = createBrowserRouter([
         element: <Layout />,
         children: [
             {
-                index: true,
+                path: "/",
                 element: <HomePage />,
             },
             {
@@ -44,4 +44,4 @@ export const router = createBrowserRouter([
             },
         ],
     }
-], { basename: "/weather" })
+], { basename: import.meta.env.BASE_URL })
