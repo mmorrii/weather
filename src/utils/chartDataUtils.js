@@ -1,20 +1,28 @@
 import {formatTime} from "./formatTime.js";
+import {DateTime} from "luxon";
 
-export const chartDataUtils = (array, index) => {
-    const startIndex = index * 24
-    const endIndex = startIndex + 24
+export const getPaginatedItems = (array, index) => {
+    let startIndex, endIndex
+
+    if (index === 0) {
+        startIndex = parseInt(formatTime(DateTime.now().toISO(), "HH"), 10)
+        endIndex = startIndex + 24
+    } else {
+        startIndex = index * 24
+        endIndex = startIndex + 24
+    }
 
     return array.slice(startIndex, endIndex)
 }
 
 export const chartDataGeneration = (x, y, index) => {
-    const visibleXData = chartDataUtils(x, index)
-    const visibleYData = chartDataUtils(y, index)
+    const visibleXData = getPaginatedItems(x, index)
+    const visibleYData = getPaginatedItems(y, index)
 
     const arr = []
 
     for (let i = 0; i < 24; i++) {
-        let formatData = formatTime(visibleXData[i], "HH")
+        const formatData = formatTime(visibleXData[i], "HH")
         arr.push({x: formatData, y: visibleYData[i]})
     }
 
