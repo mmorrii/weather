@@ -7,7 +7,7 @@ import {CustomSuspense} from "../components/CustomSuspense.jsx";
 export const Layout = () => {
     return (
         <LocationProvider>
-            <div className="w-screen h-screen dark:bg-zinc-900 bg-neutral-100 duration-200">
+            <div className="min-w-screen min-h-screen dark:bg-zinc-900 bg-neutral-100 duration-200">
                 <Header/>
                 <main className="fixedWidth">
                     <ForecastProvider>
