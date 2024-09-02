@@ -36,6 +36,10 @@ export const InteractiveMap = () => {
         >
             <FullscreenControl/>
             <Marker longitude={location.longitude} latitude={location.latitude} color="red"/>
+            {coords && <Marker longitude={coords?.lng} latitude={coords?.lat} draggable={true} color="green"
+                onDrag={({lngLat}) => setCoords(lngLat)}
+            />
+            }
             <NavigationControl position="top-left"/>
             <ScaleControl position="bottom-left"/>
             {coords && <Modal coords={coords} setCoords={setCoords} />}
