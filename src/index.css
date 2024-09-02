@@ -7,6 +7,8 @@
 @layer utilities {
    .fixedWidth { @apply max-w-7xl w-full m-auto }
 
+   .fontSize13 { @apply text-[0.8125rem] leading-[1.125rem]}
+
    .textGray { @apply dark:text-zinc-200/60 }
 
    .borderDefault { @apply border-1.5 border-transparent }
