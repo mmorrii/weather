@@ -7,6 +7,10 @@ import {useLocality} from "../hooks/useLocality.js";
 import {NavLink, useLocation, useNavigate} from "react-router-dom";
 import {useEffect} from "react";
 
+const getLocationName = (location) => {
+    return location?.city || location?.town || location?.village || "N/A"
+}
+
 export const Header = () => {
     const {darkMode, setDarkMode} = useDarkMode()
     const {location} = useLocality()
@@ -28,7 +32,9 @@ export const Header = () => {
 
                         <div className="flex items-center gap-[4px] overflow-hidden">
                             <div><MapPin size="1.33rem" strokeWidth="1.5"/></div>
-                            <p className="truncate">{location?.name || "N/A"}</p>
+                            <p className="truncate">
+                                {!location?.address ? location?.name : getLocationName(location?.address)}
+                            </p>
                         </div>
                     </div>
 
