@@ -13,8 +13,6 @@ export const CardsSlider = ({ openCard, setOpenCard }) => {
 
     const arr = [...Array(state.timeStamp).keys()]
 
-    console.log(forecast)
-
     return (
         <ul className="flex gap-[10px] overflow-x-auto" ref={scrollRef}>
             {arr.map(i => (
