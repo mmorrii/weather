@@ -1,5 +1,5 @@
 import {useForecast} from "../hooks/useForecast.js";
-import {useMemo} from "react";
+import {useEffect, useState} from "react";
 import {chartDataGeneration} from "../utils/chartDataUtils.js";
 import {BarChart, Bar, ResponsiveContainer, XAxis, YAxis, CartesianGrid} from 'recharts';
 import {useHorizontalScroll} from "../hooks/useHorizontalScroll.js";
@@ -8,7 +8,12 @@ export const ChartBar = ({ openCard }) => {
     const {forecast} = useForecast()
     const scrollRef = useHorizontalScroll()
 
-    const data = useMemo(() => chartDataGeneration(forecast?.hourly?.time, forecast?.hourly?.precipitation_probability, openCard), [openCard])
+    const [data, setData] = useState([])
+
+    useEffect(() => {
+        const result = chartDataGeneration(forecast?.hourly?.time, forecast?.hourly?.precipitation_probability, openCard)
+        setData(result)
+    }, [forecast, openCard]);
 
     return (
         <div className="w-full h-full overflow-x-auto" ref={scrollRef}>
@@ -16,7 +21,7 @@ export const ChartBar = ({ openCard }) => {
                 <ResponsiveContainer width="100%" height="100%">
                     <BarChart
                         data={data} barSize={8}
-                        margin={{ top: 5, right: 0, left: 0, bottom: 6 }}
+                        margin={{ top: 15, right: 0, left: 0, bottom: 6 }}
                     >
                         <CartesianGrid strokeDasharray="5" vertical={false} stroke={"#E4E4E735"} />
                         <XAxis dataKey="x" height={20} axisLine={false} tick={{fontSize: 13, fontWeight: 400, fill: "#E4E4E759"}} />
