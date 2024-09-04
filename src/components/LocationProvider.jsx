@@ -17,7 +17,7 @@ export const LocationProvider = ({ children }) => {
             })
             .then((res) => res.json())
             .then((data) => setLocation(data.region))
-            .catch(error => console.log('Error: ', error))
+            .catch(error => console.log('Error current location: ', error))
     }, []);
 
     return (
