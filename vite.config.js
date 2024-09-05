@@ -9,7 +9,7 @@ export default defineConfig(({ mode }) => {
 
     return {
         plugins: [react()],
-        base: "/weather",
+        base: env.BASE_URL,
         css: {
             postcss: {
                 plugins: [tailwindcss, autoprefixer],
