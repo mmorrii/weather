@@ -14,7 +14,7 @@ export const CardsSlider = ({ openCard, setOpenCard }) => {
     const arr = [...Array(state.timeStamp).keys()]
 
     return (
-        <ul className="flex gap-[10px] overflow-x-auto" ref={scrollRef}>
+        <ul className="flex gap-[10px] overflow-x-auto scrollbar" ref={scrollRef}>
             {arr.map(i => (
                 openCard === i ? <OpenCard key={i} forecast={forecast} i={i} /> : <CloseCard key={i} forecast={forecast} i={i} setOpenCard={setOpenCard} />
             ))}

@@ -13,13 +13,13 @@
 
    .borderDefault { @apply border-1.5 border-transparent }
    .borderError { @apply border-1.5 border-red-600 }
+
+   .scrollbar::-webkit-scrollbar { width: 10px; height: 10px; }
+   .scrollbar::-webkit-scrollbar-track { @apply rounded-full dark:bg-zinc-600/25 }
+   .scrollbar::-webkit-scrollbar-thumb { @apply rounded-full dark:bg-zinc-600/70 }
 }
 
-* {
-   padding: 0;
-   margin: 0;
-   outline: none;
-}
+* { outline: none; }
 
 body {
    font-family: "Exo 2", sans-serif;
