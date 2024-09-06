@@ -6,7 +6,7 @@ import {useForecast} from "../hooks/useForecast.js";
 import {useLocation} from "react-router-dom";
 import {useHorizontalScroll} from "../hooks/useHorizontalScroll.js";
 
-export const CardsSlider = ({ openCard, setOpenCard }) => {
+export const CardsSlider = ({ openCard, setOpenCard, sliderHeightRef }) => {
     const {forecast} = useForecast()
     const {state} = useLocation()
     const scrollRef = useHorizontalScroll();
@@ -14,15 +14,18 @@ export const CardsSlider = ({ openCard, setOpenCard }) => {
     const arr = [...Array(state.timeStamp).keys()]
 
     return (
-        <ul className="flex gap-[10px] overflow-x-auto scrollbar" ref={scrollRef}>
-            {arr.map(i => (
-                openCard === i ? <OpenCard key={i} forecast={forecast} i={i} /> : <CloseCard key={i} forecast={forecast} i={i} setOpenCard={setOpenCard} />
-            ))}
-        </ul>
+        <div className="overflow-x-auto scrollbar" ref={scrollRef}>
+            <ul className="flex gap-[10px]" ref={sliderHeightRef}>
+                {arr.map(i => (
+                    openCard === i ? <OpenCard key={i} forecast={forecast} i={i}/> :
+                        <CloseCard key={i} forecast={forecast} i={i} setOpenCard={setOpenCard}/>
+                ))}
+            </ul>
+        </div>
     )
 }
 
-const OpenCard = ({ forecast, i }) => {
+const OpenCard = ({forecast, i}) => {
     return (
         <li className="flex-[0_0_auto] relative dark:bg-zinc-600/40 rounded-lg p-[4px_10px_8px] mb-[8px]">
             <header className="mb-[4px] text-lg">
