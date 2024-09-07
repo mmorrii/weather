@@ -4,14 +4,14 @@ import {chartDataGeneration} from "../utils/chartDataUtils.js";
 import {BarChart, Bar, ResponsiveContainer, XAxis, YAxis, CartesianGrid} from 'recharts';
 import {useHorizontalScroll} from "../hooks/useHorizontalScroll.js";
 
-export const ChartBar = ({ openCard, height }) => {
+export const ChartBar = ({ openCard = 0, height, timeTrack = true }) => {
     const {forecast} = useForecast()
     const scrollRef = useHorizontalScroll()
 
     const [data, setData] = useState([])
 
     useEffect(() => {
-        const result = chartDataGeneration(forecast?.hourly?.time, forecast?.hourly?.precipitation_probability, openCard)
+        const result = chartDataGeneration(forecast?.hourly?.time, forecast?.hourly?.precipitation_probability, openCard, {timeTrack: timeTrack})
         setData(result)
     }, [forecast, openCard]);
 

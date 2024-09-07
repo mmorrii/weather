@@ -1,10 +1,10 @@
 import {formatTime} from "./formatTime.js";
 import {DateTime} from "luxon";
 
-export const getPaginatedItems = (array, index) => {
+export const getPaginatedItems = (array, index, opt = {timeTrack: true}) => {
     let startIndex, endIndex
 
-    if (index === 0) {
+    if (index === 0 && opt.timeTrack) {
         startIndex = parseInt(formatTime(DateTime.now().toISO(), "HH"), 10)
         endIndex = startIndex + 24
     } else {
@@ -15,9 +15,9 @@ export const getPaginatedItems = (array, index) => {
     return array.slice(startIndex, endIndex)
 }
 
-export const chartDataGeneration = (x, y, index) => {
-    const visibleXData = getPaginatedItems(x, index)
-    const visibleYData = getPaginatedItems(y, index)
+export const chartDataGeneration = (x, y, index, opt) => {
+    const visibleXData = getPaginatedItems(x, index, opt)
+    const visibleYData = getPaginatedItems(y, index, opt)
 
     const arr = []
 
