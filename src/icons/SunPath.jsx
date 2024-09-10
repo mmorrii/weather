@@ -29,7 +29,7 @@ export const SunPath = () => {
     const y = 50 - radius * Math.sin((angle * Math.PI) / 180)
 
     return (
-        <div className="flex flex-col justify-between gap-[8px] h-full">
+        <div className="flex flex-col justify-between gap-[4px] h-full">
             <div className="flex-[1_0_auto]">
                 <svg width="100%" height="100%" viewBox="0 0 100 50">
                     {/* Semicircular path */}
@@ -48,14 +48,9 @@ export const SunPath = () => {
                         <use href="#ray" transform="rotate(270)"/>
                         <use href="#ray" transform="rotate(315)"/>
                     </svg>
-
-                    {/* Sunrise and sunset times */}
-                    {/*<g fontSize={5} fill="white" fontFamily="inherit">*/}
-                    {/*    <text x="0" y="50" dy={6}>Sunrise: 5:50 AM</text>*/}
-                    {/*    <text x="100" y="50">Sunset: 6:30 PM</text>*/}
-                    {/*</g>*/}
                 </svg>
             </div>
+
             <div className="flex justify-between gap-[4px]">
                 <div className="fontSize13">
                     <p>Восход</p>
