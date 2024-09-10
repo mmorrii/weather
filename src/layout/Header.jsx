@@ -64,11 +64,6 @@ export const Header = () => {
                     Today
                 </NavLink>
 
-                <NavLink to="/tomorrow" state={{timeStamp: 3}}
-                     className={({isActive}) => isActive ? "dark:text-zinc-200" : "hover:dark:text-zinc-200/70 duration-200"}>
-                    Tomorrow
-                </NavLink>
-
                 <NavLink to="/week" state={{timeStamp: 7}}
                      className={({isActive}) => isActive ? "dark:text-zinc-200" : "hover:dark:text-zinc-200/70 duration-200"}>
                     Next 7 days

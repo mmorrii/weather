@@ -3,7 +3,6 @@ import {Layout} from "./layout/Layout.jsx";
 import {lazy} from "react";
 
 const HomePage = lazy(() => import("./pages/HomePage.jsx"))
-const TomorrowPage = lazy(() => import("./pages/TomorrowPage.jsx"))
 const WeekPage = lazy(() => import("./pages/WeekPage.jsx"))
 const TwoWeekPage = lazy(() => import("./pages/TwoWeekPage.jsx"))
 
@@ -12,7 +11,6 @@ export const App2 = () => {
         <Routes>
             <Route path="/" element={<Layout />}>
                 <Route path="/" element={<HomePage />} />
-                <Route path="/tomorrow" element={<TomorrowPage />} />
                 <Route path="/week" element={<WeekPage />} />
                 <Route path="/two-week" element={<TwoWeekPage />} />
             </Route>
