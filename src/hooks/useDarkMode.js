@@ -1,17 +1,17 @@
-import {useEffect, useState} from "react";
+import {useEffect} from "react";
 import { useLocalStorage } from "@uidotdev/usehooks";
 
 export const useDarkMode = () => {
 	const [darkMode, setDarkMode] = useLocalStorage("darkMode", true)
 	
 	useEffect(() => {
-		if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+		if (localStorage.darkMode || (!("darkMode" in localStorage) && window.matchMedia("(prefers-color-scheme: dark)").matches)) {
 			setDarkMode(true)
 		} else {
 			setDarkMode(false)
 		}
 	}, [])
-	
+
 	useEffect(() => {
 		if (darkMode) {
 			document.documentElement.classList.add("dark")
