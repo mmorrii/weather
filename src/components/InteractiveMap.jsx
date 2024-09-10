@@ -3,6 +3,7 @@ import 'maplibre-gl/dist/maplibre-gl.css';
 import {useLocality} from "../hooks/useLocality.js";
 import {Suspense, useEffect, useRef, useState} from "react";
 import { Check, X } from 'lucide-react';
+import {useDarkMode} from "../hooks/useDarkMode.js";
 
 export const InteractiveMap = () => {
     const {location, setLocation} = useLocality()
@@ -10,6 +11,17 @@ export const InteractiveMap = () => {
 
     const [coords, setCoords] = useState(null)
     const [action, setAction] = useState(false)
+
+    const [mapStyle, setMapStyle] = useState('')
+    const {darkMode} = useDarkMode()
+
+    useEffect(() => {
+        const style = darkMode
+            ? `https://api.maptiler.com/maps/ch-swisstopo-lbm-dark/style.json?key=${import.meta.env.VITE_MAP_STYLE_KEY}`
+            : `https://api.maptiler.com/maps/ch-swisstopo-lbm-grey/style.json?key=${import.meta.env.VITE_MAP_STYLE_KEY}`
+
+        setMapStyle(style)
+    }, [darkMode]);
 
     useEffect(() => {
         if (location.latitude && location.longitude) {
@@ -42,12 +54,12 @@ export const InteractiveMap = () => {
             <Map
                 ref={mapRef}
                 initialViewState={{
-                    longitude: location.longitude,
-                    latitude: location.latitude,
+                    longitude: location?.longitude,
+                    latitude: location?.latitude,
                     zoom: 8
                 }}
                 dragRotate={true} style={{width: "100%", height: "100%"}}
-                mapStyle={`https://api.maptiler.com/maps/ch-swisstopo-lbm-dark/style.json?key=${import.meta.env.VITE_MAP_STYLE_KEY}`}
+                mapStyle={mapStyle}
                 onContextMenu={handleClick}
             >
                 <FullscreenControl/>
