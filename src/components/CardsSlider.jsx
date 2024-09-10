@@ -27,7 +27,7 @@ export const CardsSlider = ({ openCard, setOpenCard, sliderHeightRef }) => {
 
 const OpenCard = ({forecast, i}) => {
     return (
-        <li className="flex-[0_0_auto] relative dark:bg-blue-300/90 text-black rounded-lg p-[4px_10px_8px] mb-[8px]">
+        <li className="flex-[0_0_auto] relative dark:bg-zinc-600/40 rounded-lg p-[4px_10px_8px] mb-[8px]">
             <header className="mb-[4px] text-lg">
                 <h2>{formatTime(forecast?.daily?.time[i], "cccc", {uppercase: true})}</h2>
             </header>

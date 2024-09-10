@@ -30,7 +30,7 @@ export const SunPath = () => {
 
     return (
         <div className="flex flex-col justify-between gap-[4px] h-full">
-            <div className="flex-[1_0_auto]">
+            <div className="w-full h-fit">
                 <svg width="100%" height="100%" viewBox="0 0 100 50">
                     {/* Semicircular path */}
                     <path d="M 6,50 A 45,50 0 0,1 94,50" strokeLinecap="round" strokeWidth={0.6} fill="none" className="stroke-yellow-400/80" strokeDasharray={4.5}/>

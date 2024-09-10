@@ -28,10 +28,6 @@ export const router = createBrowserRouter([
                 element: <HomePage />,
             },
             {
-                path: "tomorrow",
-                element: <TomorrowPage />,
-            },
-            {
                 path: "week",
                 element: <WeekPage />,
                 // loader: () => fetch(7),
