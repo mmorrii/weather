@@ -1,27 +1,27 @@
 import Map, {FullscreenControl, Marker, NavigationControl, ScaleControl} from 'react-map-gl/maplibre';
 import 'maplibre-gl/dist/maplibre-gl.css';
 import {useLocality} from "../hooks/useLocality.js";
-import {Suspense, useEffect, useRef, useState} from "react";
+import {memo, Suspense, useEffect, useMemo, useRef, useState} from "react";
 import { Check, X } from 'lucide-react';
 import {useDarkMode} from "../hooks/useDarkMode.js";
 
-export const InteractiveMap = () => {
+const getMapStyle = (isDark) => {
+    return isDark
+        ? `https://api.maptiler.com/maps/ch-swisstopo-lbm-dark/style.json?key=${import.meta.env.VITE_MAP_STYLE_KEY}`
+        : `https://api.maptiler.com/maps/ch-swisstopo-lbm-grey/style.json?key=${import.meta.env.VITE_MAP_STYLE_KEY}`
+}
+
+export const InteractiveMap = memo(function InteractiveMap() {
     const {location, setLocation} = useLocality()
     const mapRef = useRef()
+
+    console.log(mapRef)
 
     const [coords, setCoords] = useState(null)
     const [action, setAction] = useState(false)
 
-    const [mapStyle, setMapStyle] = useState('')
     const {darkMode} = useDarkMode()
-
-    useEffect(() => {
-        const style = darkMode
-            ? `https://api.maptiler.com/maps/ch-swisstopo-lbm-dark/style.json?key=${import.meta.env.VITE_MAP_STYLE_KEY}`
-            : `https://api.maptiler.com/maps/ch-swisstopo-lbm-grey/style.json?key=${import.meta.env.VITE_MAP_STYLE_KEY}`
-
-        setMapStyle(style)
-    }, [darkMode]);
+    const mapStyle = useMemo(() => getMapStyle(darkMode), [darkMode])
 
     useEffect(() => {
         if (location.latitude && location.longitude) {
@@ -63,7 +63,7 @@ export const InteractiveMap = () => {
                 onContextMenu={handleClick}
             >
                 <FullscreenControl/>
-                <Marker longitude={location.longitude ?? location?.lon} latitude={location.latitude ?? location?.lat} color={"#dc2626"} />
+                <Marker longitude={location?.longitude ?? location?.lon} latitude={location?.latitude ?? location?.lat} color={"#dc2626"} />
                 {coords && <Marker longitude={coords?.lng} latitude={coords?.lat} draggable={true} color={"#16a34a"}
                                    onDrag={({lngLat}) => setCoords(lngLat)} />
                 }
@@ -74,7 +74,7 @@ export const InteractiveMap = () => {
         </Suspense>
 
     )
-}
+})
 
 const Modal = ({ coords, setCoords, setAction, mapRef }) => {
     return (
