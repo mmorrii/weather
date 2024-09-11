@@ -6,22 +6,20 @@ import {useForecast} from "../hooks/useForecast.js";
 import {useLocation} from "react-router-dom";
 import {useHorizontalScroll} from "../hooks/useHorizontalScroll.js";
 
-export const CardsSlider = ({ openCard, setOpenCard, sliderHeightRef }) => {
+export const CardsSlider = ({ openCard, setOpenCard }) => {
     const {forecast} = useForecast()
     const {state} = useLocation()
-    const scrollRef = useHorizontalScroll();
+    const scrollRef = useHorizontalScroll()
 
     const arr = [...Array(state.timeStamp).keys()]
 
     return (
-        <div className="overflow-x-auto scrollbar" ref={scrollRef}>
-            <ul className="flex gap-[10px]" ref={sliderHeightRef}>
-                {arr.map(i => (
-                    openCard === i ? <OpenCard key={i} forecast={forecast} i={i}/> :
-                        <CloseCard key={i} forecast={forecast} i={i} setOpenCard={setOpenCard}/>
-                ))}
-            </ul>
-        </div>
+        <ul className="flex gap-[10px] overflow-x-auto scrollbar" ref={scrollRef}>
+            {arr.map(i => ( openCard === i
+                    ? <OpenCard key={i} forecast={forecast} i={i}/>
+                    : <CloseCard key={i} forecast={forecast} i={i} setOpenCard={setOpenCard}/>
+            ))}
+        </ul>
     )
 }
 
@@ -43,23 +41,20 @@ const OpenCard = ({forecast, i}) => {
             <div className="text-[0.8125rem] font-extralight flex items-end gap-[8px]">
                 <div className="flex-[0_0_auto] flex flex-col gap-[4px]">
                     <p>Ночью:{' '}
-                        <span
-                            className="font-medium">{Math.round(forecast?.daily?.temperature_2m_min[i])}&deg;</span>
+                        <span className="font-medium">{Math.round(forecast?.daily?.temperature_2m_min[i])}&deg;</span>
                     </p>
 
                     <p>Осадки:{' '}
-                        <span
-                            className="font-medium">{forecast?.daily?.precipitation_probability_max[i]}%</span>
+                        <span className="font-medium">{forecast?.daily?.precipitation_probability_max[i]}%</span>
                     </p>
 
                     <p className="flex items-center gap-[2px]">Ветер:
                         <span className="block w-fit">
-                                <MoveUp size="0.8125rem"
-                                        style={{transform: `rotate(${getWindDirection(forecast?.daily?.wind_direction_10m_dominant[i])?.angle || 0}deg)`}}
-                                />
+                            <MoveUp size="0.8125rem"
+                                    style={{transform: `rotate(${getWindDirection(forecast?.daily?.wind_direction_10m_dominant[i])?.angle || 0}deg)`}}
+                            />
                         </span>
-                        <span
-                            className="font-medium">{Math.round(forecast?.daily?.wind_speed_10m_max[i])} км/ч</span>
+                        <span className="font-medium">{Math.round(forecast?.daily?.wind_speed_10m_max[i])} км/ч</span>
                     </p>
 
                     <p>УФ-индекс:{' '}

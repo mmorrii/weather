@@ -4,7 +4,7 @@ import {chartDataGeneration} from "../utils/chartDataUtils.js";
 import {BarChart, Bar, ResponsiveContainer, XAxis, YAxis, CartesianGrid} from 'recharts';
 import {useHorizontalScroll} from "../hooks/useHorizontalScroll.js";
 
-export const ChartBar = ({ openCard = 0, height, timeTrack = true }) => {
+export const ChartBar = ({ openCard = 0, timeTrack = true }) => {
     const {forecast} = useForecast()
     const scrollRef = useHorizontalScroll()
 
@@ -17,7 +17,7 @@ export const ChartBar = ({ openCard = 0, height, timeTrack = true }) => {
 
     return (
         <div className="w-full h-full overflow-x-auto scrollbar" ref={scrollRef}>
-            <div className={`w-[820px] ${height ? `h-[${height}]` : "h-full"}`}>
+            <div className="w-[820px] h-full">
                 <ResponsiveContainer width="100%" height="100%">
                     <BarChart
                         data={data} barSize={8}
