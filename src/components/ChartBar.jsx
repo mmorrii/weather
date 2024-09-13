@@ -18,7 +18,7 @@ export const ChartBar = ({ openCard = 0, timeTrack = true }) => {
     return (
         <div className="w-full h-full overflow-x-auto scrollbar" ref={scrollRef}>
             <div className="w-[820px] h-full">
-                <ResponsiveContainer width="100%" height="100%">
+                <ResponsiveContainer>
                     <BarChart
                         data={data} barSize={8}
                         margin={{ top: 15, right: 0, left: 0, bottom: 6 }}
