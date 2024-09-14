@@ -1,4 +1,4 @@
-import {createBrowserRouter, Route, Routes} from "react-router-dom";
+import {Route, Routes} from "react-router-dom";
 import {Layout} from "./layout/Layout.jsx";
 import {lazy} from "react";
 
@@ -17,25 +17,3 @@ export const App2 = () => {
         </Routes>
     )
 }
-
-export const router = createBrowserRouter([
-    {
-        path: "/",
-        element: <Layout />,
-        children: [
-            {
-                path: "/",
-                element: <HomePage />,
-            },
-            {
-                path: "week",
-                element: <WeekPage />,
-                // loader: () => fetch(7),
-            },
-            {
-                path: "two-week",
-                element: <TwoWeekPage />,
-            },
-        ],
-    }
-], { basename: import.meta.env.BASE_URL })
