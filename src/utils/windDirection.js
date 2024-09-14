@@ -1,4 +1,15 @@
-
+/**
+ * Function for obtaining the value and angle of the wind direction
+ *
+ * The function normalizes the input degree to a value between 0 and 360
+ * and then determines the closest cardinal direction based on standard
+ * wind directions in 45-degree increments.
+ *
+ * @param {number} degree - The wind direction in degrees, which can be any number (positive or negative).
+ *
+ * @returns {{angle: string, value: string}} - An object containing the value of the direction (e.g., "С", "В")
+ * and the corresponding angle in degrees (e.g., "0", "90")
+ */
 export const getWindDirection = (degree) => {
 	const directions = [
 		{value: "С", angle: "0"},
