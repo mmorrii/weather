@@ -9,8 +9,9 @@ export const CustomSuspense = ({ children }) => {
 
     return (
         <Suspense fallback={<CircularProgress label="Loading..." className="m-auto mt-[30px]" />}>
-            { (status !== "success" && !forecast?.daily?.weather_code[state.timeStamp - 1]) ?
-                <CircularProgress label="Loading..." className="m-auto mt-[30px]" /> : children
+            { (status !== "success" && !forecast?.daily?.weather_code[state.timeStamp - 1])
+                ? <CircularProgress label="Loading..." className="m-auto mt-[30px]" />
+                : children
             }
         </Suspense>
     )

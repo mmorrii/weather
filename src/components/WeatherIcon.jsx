@@ -2,16 +2,16 @@ export const WeatherIcon = ({code, isDay = false}) => {
     switch (code) {
         case 0:
             return <div className="size-full">
-                {isDay ? <img src={`${import.meta.env.BASE_URL}/clear-sky-day.svg`} title="Ясно" alt="Ясно"/> :
-                    <img src={`${import.meta.env.BASE_URL}/clear-sky-night.svg`} title="Ясно" alt="Ясно"/>
+                {isDay ? <img src={`${import.meta.env.BASE_URL}/clear-sky-day.svg`} title="Ясно" alt="Ясно"/>
+                    : <img src={`${import.meta.env.BASE_URL}/clear-sky-night.svg`} title="Ясно" alt="Ясно"/>
                 }
             </div>
 
         case 1:
         case 2:
             return <div className="size-full">
-                {isDay ? <img src={`${import.meta.env.BASE_URL}/cloudy-day.svg`} title="Облачно" alt="Облачно"/> :
-                    <img src={`${import.meta.env.BASE_URL}/cloudy-night.svg`} title="Облачно" alt="Облачно"/>
+                {isDay ? <img src={`${import.meta.env.BASE_URL}/cloudy-day.svg`} title="Облачно" alt="Облачно"/>
+                    : <img src={`${import.meta.env.BASE_URL}/cloudy-night.svg`} title="Облачно" alt="Облачно"/>
                 }
             </div>
 
