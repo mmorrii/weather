@@ -6,7 +6,7 @@ const HomePage = lazy(() => import("./pages/HomePage.jsx"))
 const WeekPage = lazy(() => import("./pages/WeekPage.jsx"))
 const TwoWeekPage = lazy(() => import("./pages/TwoWeekPage.jsx"))
 
-export const App2 = () => {
+export const App = () => {
     return (
         <Routes>
             <Route path="/" element={<Layout />}>
