@@ -1,5 +1,5 @@
-import {formatTime} from "./formatTime.js";
-import {DateTime} from "luxon";
+import { formatTime } from "./formatTime.js"
+import { DateTime } from "luxon"
 
 /**
  * Returns a slice of the array based on the pagination index, with an option to track time for the first page.
@@ -15,7 +15,7 @@ import {DateTime} from "luxon";
  *
  * @returns {Array} - A slice of the array, containing up to 24 items starting from the calculated index.
  */
-export const getPaginatedItems = (array, index, opt = {timeTrack: true}) => {
+const getPaginatedItems = (array, index, opt = { timeTrack: true }) => {
     let startIndex, endIndex
 
     if (index === 0 && opt.timeTrack) {
@@ -36,6 +36,8 @@ export const getPaginatedItems = (array, index, opt = {timeTrack: true}) => {
  * pairs each `x` value with its corresponding `y` value. The result is an array of objects where each object
  * contains an `x` (formatted time) and `y` value.
  *
+ * Used by {@link ../components/ChartBar.jsx ChartBar.jsx}
+ *
  * @param {Array} x - The array representing the x-axis data (typically timestamps or time-related data).
  * @param {Array} y - The array representing the y-axis data.
  * @param {number} index - The current pagination index.
@@ -52,7 +54,7 @@ export const chartDataGeneration = (x, y, index, opt) => {
 
     for (let i = 0; i < 24; i++) {
         const formatData = formatTime(visibleXData[i], "HH")
-        arr.push({x: formatData, y: visibleYData[i]})
+        arr.push({ x: formatData, y: visibleYData[i] })
     }
 
     return arr

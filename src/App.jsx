@@ -1,6 +1,6 @@
-import {Route, Routes} from "react-router-dom";
-import {Layout} from "./layout/Layout.jsx";
-import {lazy} from "react";
+import { Route, Routes } from "react-router-dom"
+import { Layout } from "./layout/Layout.jsx"
+import { lazy } from "react"
 
 const HomePage = lazy(() => import("./pages/HomePage.jsx"))
 const WeekPage = lazy(() => import("./pages/WeekPage.jsx"))

@@ -1,27 +1,27 @@
-import {TodayForecastCard} from "../components/TodayForecastCard.jsx";
-import {ChartBar} from "../components/ChartBar.jsx";
-import {SunPath} from "../icons/SunPath.jsx";
-import {InteractiveMap} from "../components/InteractiveMap.jsx";
+import { TodayForecastCard } from "../components/TodayForecastCard.jsx"
+import { ChartBar } from "../components/ChartBar.jsx"
+import { SunPath } from "../icons/SunPath.jsx"
+import { InteractiveMap } from "../components/InteractiveMap.jsx"
 
 const HomePage = () => {
     return (
         <div className="mt-[30px]">
             <div className="flex gap-[30px] mb-[30px]">
                 <div className="flex-[0_0_auto]">
-                    <TodayForecastCard/>
+                    <TodayForecastCard />
                 </div>
 
                 <div className="flex-[0_0_19rem]">
-                    <SunPath/>
+                    <SunPath />
                 </div>
 
                 <div className="flex-[0_1_auto] overflow-hidden">
-                    <ChartBar timeTrack={false}/>
+                    <ChartBar timeTrack={false} />
                 </div>
             </div>
 
             <div className="w-full h-[300px] rounded-lg overflow-hidden">
-                <InteractiveMap/>
+                <InteractiveMap />
             </div>
         </div>
     )

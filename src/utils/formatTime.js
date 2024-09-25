@@ -1,4 +1,4 @@
-import {DateTime} from "luxon";
+import { DateTime } from "luxon"
 
 /**
  * Formats a given date string into a specified format using Luxon, with options for locale and capitalization.
@@ -17,7 +17,7 @@ import {DateTime} from "luxon";
 export const formatTime = (date, format, opt = {}) => {
     const options = {
         locale: opt.locale || "ru",
-        uppercase: opt.uppercase || false
+        uppercase: opt.uppercase || false,
     }
 
     const dateTime = DateTime.fromISO(date).setLocale(options.locale).toFormat(format)

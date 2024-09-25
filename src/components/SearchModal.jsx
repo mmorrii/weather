@@ -1,23 +1,19 @@
-import {motion, useDragControls, useMotionValue} from "framer-motion";
-import {button} from "@nextui-org/react";
-import styles from "./button.module.css";
-import {useLocality} from "../hooks/useLocality.js";
+import { motion, useDragControls, useMotionValue } from "framer-motion"
+import { button } from "@nextui-org/react"
+import styles from "./button.module.css"
+import { useLocality } from "../hooks/useLocality.js"
 
-export const SearchModal = ({data, onModalOpen}) => {
+export const SearchModal = ({ data, onModalOpen }) => {
     const dragControls = useDragControls()
     const y = useMotionValue(0)
-    const {setLocation} = useLocality()
-
-    const test = [
-        { name: "Australia", type: "city", latitude: 52, longitude: 41 }
-    ]
+    const { setLocation } = useLocality()
 
     return (
         <motion.div
             className="w-screen h-scren bg-black/80 backdrop-blur-lg fixed z-20 inset-0 top-[3.085rem]"
-            initial={{opacity: 0, y: "100%"}}
-            animate={{opacity: 1, y: 0, transition: {duration: 0.6}}}
-            exit={{opacity: 0, y: "100%", transition: {duration: 0.4, ease: "easeInOut"}}}
+            initial={{ opacity: 0, y: "100%" }}
+            animate={{ opacity: 1, y: 0, transition: { duration: 0.6 } }}
+            exit={{ opacity: 0, y: "100%", transition: { duration: 0.4, ease: "easeInOut" } }}
             drag="y" dragControls={dragControls} dragListener={false}
             dragConstraints={{ top: 0, bottom: 0 }}
             dragElastic={{ top: 0, bottom: 0.5 }} style={{ y }}
@@ -66,7 +62,7 @@ export const SearchModal = ({data, onModalOpen}) => {
     )
 }
 
-const CloseButton = ({controls}) => {
+const CloseButton = ({ controls }) => {
     return (
         <button
             className={`absolute top-[10px] py-[8px] left-1/2 -translate-x-1/2 cursor-grab active:cursor-grabbing flex ${styles.button}`}

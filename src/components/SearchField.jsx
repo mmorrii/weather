@@ -1,9 +1,9 @@
-import {Search, CircleX, OctagonAlert} from "lucide-react";
-import {useEffect, useRef, useState} from "react";
-import {createPortal} from "react-dom";
-import {AnimatePresence} from "framer-motion";
-import {button, CircularProgress, Tooltip} from "@nextui-org/react";
-import {SearchModal} from "./SearchModal.jsx";
+import { Search, CircleX, OctagonAlert } from "lucide-react"
+import { useEffect, useRef, useState } from "react"
+import { createPortal } from "react-dom"
+import { AnimatePresence } from "framer-motion"
+import { button, CircularProgress, Tooltip } from "@nextui-org/react"
+import { SearchModal } from "./SearchModal.jsx"
 
 const SearchField = () => {
     const [modalOpen, setModalOpen] = useState(false)
@@ -35,7 +35,7 @@ const SearchField = () => {
             headers: {
                 "Content-Type": "application/json",
                 "Authorization": import.meta.env.VITE_AUTH_KEY,
-            }
+            },
         })
             .then(response => response.json())
             .then(data => {
@@ -58,28 +58,34 @@ const SearchField = () => {
                     htmlFor="search"
                     className="absolute top-1/2 -translate-y-1/2 left-[8px] cursor-text"
                 >
-                    { isLoading ?
-                        <CircularProgress
-                            aria-label="Loading..."
-                            classNames={{ svg: "w-[1.33rem] h-[1.33rem]", indicator: "stroke-blue-200", track: "stroke-white/20" }}
-                        /> :
-                        <Search size="1.33rem"/>
+                    {isLoading
+                        ? <CircularProgress aria-label="Loading..."
+                            classNames={{
+                                svg: "w-[1.33rem] h-[1.33rem]",
+                                indicator: "stroke-blue-200",
+                                track: "stroke-white/20",
+                            }}
+                        />
+                        : <Search size="1.33rem" />
                     }
                 </label>
 
-                <button
-                    type="button" onClick={() => { setValue(""); inputRef.current.focus() }}
-                    className="absolute top-1/2 -translate-y-1/2 right-[8px]"
+                <button type="button" className="absolute top-1/2 -translate-y-1/2 right-[8px]"
+                    onClick={() => {
+                        setValue("")
+                        inputRef.current.focus()
+                    }}
                 >
                     {xVisible && <CircleX size="1.2rem" className="opacity-50 hover:opacity-100 duration-100" />}
                     {error &&
-                        <Tooltip showArrow={true} radius="sm" content="Поле не может быть пустым" placement="right" offset={10}
-                             classNames={{
-                                 base: ["dark:before:bg-zinc-700" ],
-                                 content: [ "dark:bg-zinc-700" ],
-                             }}
+                        <Tooltip showArrow={true} radius="sm" content="Поле не может быть пустым" placement="right"
+                                 offset={10}
+                                 classNames={{
+                                     base: ["dark:before:bg-zinc-700"],
+                                     content: ["dark:bg-zinc-700"],
+                                 }}
                         >
-                            <OctagonAlert size="1.2rem" className="stroke-red-500"/>
+                            <OctagonAlert size="1.2rem" className="stroke-red-500" />
                         </Tooltip>
                     }
                 </button>

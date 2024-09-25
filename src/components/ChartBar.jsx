@@ -1,19 +1,19 @@
-import {useForecast} from "../hooks/useForecast.js";
-import {useEffect, useState} from "react";
-import {chartDataGeneration} from "../utils/chartDataUtils.js";
-import {BarChart, Bar, ResponsiveContainer, XAxis, YAxis, CartesianGrid} from 'recharts';
-import {useHorizontalScroll} from "../hooks/useHorizontalScroll.js";
+import { useForecast } from "../hooks/useForecast.js"
+import { useEffect, useState } from "react"
+import { chartDataGeneration } from "../utils/chartDataUtils.js"
+import { BarChart, Bar, ResponsiveContainer, XAxis, YAxis, CartesianGrid } from "recharts"
+import { useHorizontalScroll } from "../hooks/useHorizontalScroll.js"
 
 export const ChartBar = ({ openCard = 0, timeTrack = true }) => {
-    const {forecast} = useForecast()
+    const { forecast } = useForecast()
     const scrollRef = useHorizontalScroll()
 
     const [data, setData] = useState([])
 
     useEffect(() => {
-        const result = chartDataGeneration(forecast?.hourly?.time, forecast?.hourly?.precipitation_probability, openCard, {timeTrack: timeTrack})
+        const result = chartDataGeneration(forecast?.hourly?.time, forecast?.hourly?.precipitation_probability, openCard, { timeTrack: timeTrack })
         setData(result)
-    }, [forecast, openCard]);
+    }, [forecast, openCard])
 
     return (
         <div className="w-full h-full overflow-x-auto scrollbar" ref={scrollRef}>
@@ -24,7 +24,8 @@ export const ChartBar = ({ openCard = 0, timeTrack = true }) => {
                         margin={{ top: 15, right: 0, left: 0, bottom: 6 }}
                     >
                         <CartesianGrid strokeDasharray="5" vertical={false} stroke={"#E4E4E735"} />
-                        <XAxis dataKey="x" height={20} axisLine={false} tick={{fontSize: 13, fontWeight: 400, fill: "#E4E4E759"}} />
+                        <XAxis dataKey="x" height={20} axisLine={false}
+                               tick={{ fontSize: 13, fontWeight: 400, fill: "#E4E4E759" }} />
                         <YAxis domain={[0, 100]} hide={true} />
                         <Bar
                             dataKey="y"

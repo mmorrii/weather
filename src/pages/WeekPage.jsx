@@ -1,7 +1,7 @@
-import {CardsSlider} from "../components/CardsSlider.jsx";
-import {useState} from "react";
-import {ChartBar} from "../components/ChartBar.jsx";
-import {InteractiveMap} from "../components/InteractiveMap.jsx";
+import { CardsSlider } from "../components/CardsSlider.jsx"
+import { useState } from "react"
+import { ChartBar } from "../components/ChartBar.jsx"
+import { InteractiveMap } from "../components/InteractiveMap.jsx"
 
 const WeekPage = () => {
     const [openCard, setOpenCard] = useState(0)
@@ -24,7 +24,7 @@ const WeekPage = () => {
 
             <div className="flex gap-[30px] mb-[30px]">
                 <div className="flex-[0_0_70%] h-[300px] rounded-lg overflow-hidden">
-                    <InteractiveMap/>
+                    <InteractiveMap />
                 </div>
             </div>
         </div>

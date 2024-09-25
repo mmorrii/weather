@@ -1,12 +1,12 @@
-import {formatTime} from "../utils/formatTime.js";
-import {WeatherIcon} from "./WeatherIcon.jsx";
-import {MoveUp, Info} from "lucide-react";
-import {getWindDirection} from "../utils/windDirection.js";
-import {useForecast} from "../hooks/useForecast.js";
+import { formatTime } from "../utils/formatTime.js"
+import { WeatherIcon } from "./WeatherIcon.jsx"
+import { MoveUp, Info } from "lucide-react"
+import { getWindDirection } from "../utils/windDirection.js"
+import { useForecast } from "../hooks/useForecast.js"
 import { getAirQuality } from "../utils/airQuality.js"
 
 export const TodayForecastCard = () => {
-    const {forecast, airQuality} = useForecast()
+    const { forecast, airQuality } = useForecast()
 
     return (
         <div className="dark:bg-zinc-600/40 rounded-lg p-[6px_12px_8px] flex flex-col gap-[16px]">
@@ -14,14 +14,18 @@ export const TodayForecastCard = () => {
 
             <div className="flex items-center gap-[10px]">
                 <div className="size-[5rem]">
-                    <WeatherIcon code={forecast?.current?.weather_code} isDay={!!forecast?.current?.is_day}/>
+                    <WeatherIcon code={forecast?.current?.weather_code} isDay={!!forecast?.current?.is_day} />
                 </div>
 
                 <div className="flex gap-[16px]">
                     <p className="font-medium text-6xl">{Math.round(forecast?.current?.temperature_2m)}&deg;</p>
                     <div className="flex flex-col justify-between pt-[0.6rem] gap-[4px]">
-                        <p className="text-sm font-light">Ощущается как {Math.round(forecast?.current?.apparent_temperature)}&deg;</p>
-                        <p className="text-sm font-light">Ночью {Math.round(forecast?.daily?.temperature_2m_min?.[0])}&deg;</p>
+                        <p className="text-sm font-light">
+                            Ощущается как {Math.round(forecast?.current?.apparent_temperature)}&deg;
+                        </p>
+                        <p className="text-sm font-light">
+                            Ночью {Math.round(forecast?.daily?.temperature_2m_min?.[0])}&deg;
+                        </p>
                     </div>
                 </div>
             </div>
@@ -30,8 +34,7 @@ export const TodayForecastCard = () => {
                 <div className="flex flex-col items-center gap-[4px]">
                     <p className="dark:text-blue-200 font-light">Ветер</p>
                     <p className="flex items-center gap-[4px] font-semibold">
-                        <MoveUp
-                            size="0.875rem"
+                        <MoveUp size="0.875rem"
                             style={{ transform: `rotate(${getWindDirection(forecast?.current?.wind_direction_10m)?.angle || 0}deg)` }}
                         />
                         <span>{Math.round(forecast?.current?.wind_speed_10m)} км/ч</span>
@@ -56,8 +59,12 @@ export const TodayForecastCard = () => {
                 <div className="flex flex-col items-center gap-[4px]">
                     <p className="dark:text-blue-200 font-light">Качество воздуха</p>
                     <p className="font-semibold flex gap-[5px] items-center">
-                        <span className={getAirQuality(airQuality?.current?.us_aqi)?.color}>{airQuality?.current?.us_aqi}</span>
-                        <span className="cursor-pointer textGray relative top-[0.5px]" title={getAirQuality(airQuality?.current?.us_aqi)?.value}>
+                        <span className={getAirQuality(airQuality?.current?.us_aqi)?.color}>
+                            {airQuality?.current?.us_aqi}
+                        </span>
+                        <span className="cursor-pointer textGray relative top-[0.5px]"
+                            title={getAirQuality(airQuality?.current?.us_aqi)?.value}
+                        >
                             <Info size={14} />
                         </span>
                     </p>
