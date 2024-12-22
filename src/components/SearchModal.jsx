@@ -21,7 +21,12 @@ export const SearchModal = ({ data, onModalOpen }) => {
         >
             <div className="max-w-7xl w-full h-full m-auto pt-[42px] pb-[20px] relative overflow-hidden flex flex-col">
                 <CloseButton onModalOpen={onModalOpen} controls={dragControls} />
-                <div className="h-[100px]">example</div>
+
+                <div className="mb-8">
+                    <h3 className="mb-1">История поиска</h3>
+                    <p className="textGray">Нет данных</p>
+                </div>
+
                 <div className="h-full overflow-y-auto">
                     <ul className="flex flex-wrap gap-[10px]">
                         {data?.map(d => (
@@ -62,11 +67,12 @@ export const SearchModal = ({ data, onModalOpen }) => {
     )
 }
 
-const CloseButton = ({ controls }) => {
+const CloseButton = ({ controls, onModalOpen }) => {
     return (
         <button
             className={`absolute top-[10px] py-[8px] left-1/2 -translate-x-1/2 cursor-grab active:cursor-grabbing flex ${styles.button}`}
             onPointerDown={(e) => controls.start(e)}
+            onDoubleClick={() => onModalOpen(false)}
         >
             <span className="h-[5px] w-[60px] bg-zinc-600 rounded translate-x-[2px]"></span>
             <span className="h-[5px] w-[60px] bg-zinc-600 rounded -translate-x-[2px]"></span>
