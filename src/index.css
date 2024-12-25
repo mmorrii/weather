@@ -5,14 +5,12 @@
 @tailwind utilities;
 
 @layer utilities {
-   .fixedWidth { @apply max-w-7xl w-full m-auto }
+   .w-fixed { @apply max-w-8xl w-full m-auto px-6 }
 
-   .fontSize13 { @apply text-[0.8125rem] leading-[1.125rem]}
+   .text-gray { @apply dark:text-zinc-200/60 }
 
-   .textGray { @apply dark:text-zinc-200/60 }
-
-   .borderDefault { @apply border-1.5 border-transparent }
-   .borderError { @apply border-1.5 border-red-600 }
+   .border-default { @apply border-1.5 border-transparent }
+   .border-error { @apply border-1.5 border-red-600 }
 
    .scrollbar::-webkit-scrollbar { width: 10px; height: 10px; }
    .scrollbar::-webkit-scrollbar-track { @apply rounded-full dark:bg-zinc-600/25 }

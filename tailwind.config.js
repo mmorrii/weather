@@ -33,6 +33,18 @@ module.exports = {
             starGlow2: "starGlow2 1s ease-in-out infinite",
             starGlow2Reverse: "starGlow2Reverse 1s ease-in-out infinite",
          },
+         fontSize: {
+            "13": ["0.8125rem", "1.125rem"],
+         },
+         maxWidth: {
+            "8xl": "95rem",
+         },
+         margin: {
+            "7.5": "1.875rem",
+         },
+         gap: {
+            "7.5": "30px",
+         },
       },
    },
    darkMode: "class",

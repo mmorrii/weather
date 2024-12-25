@@ -7,13 +7,13 @@ const WeekPage = lazy(() => import("./pages/WeekPage.jsx"))
 const TwoWeekPage = lazy(() => import("./pages/TwoWeekPage.jsx"))
 
 export const App = () => {
-    return (
-        <Routes>
-            <Route path="/" element={<Layout />}>
-                <Route path="/" element={<HomePage />} />
-                <Route path="/week" element={<WeekPage />} />
-                <Route path="/two-week" element={<TwoWeekPage />} />
-            </Route>
-        </Routes>
-    )
+   return (
+      <Routes>
+         <Route path="/" element={<Layout />}>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/week" element={<WeekPage />} />
+            <Route path="/two-week" element={<TwoWeekPage />} />
+         </Route>
+      </Routes>
+   )
 }

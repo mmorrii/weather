@@ -97,11 +97,11 @@ export const SunPath = () => {
          </div>
 
          <div className="flex justify-between gap-[4px]">
-            <div className="fontSize13">
+            <div className="text-13">
                <p>Восход</p>
                <p>{formattedSunrise}</p>
             </div>
-            <div className="flex flex-col items-end fontSize13">
+            <div className="flex flex-col items-end text-13">
                <p>Закат</p>
                <p>{formattedSunset}</p>
             </div>

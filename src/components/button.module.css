@@ -1,13 +1,13 @@
 .button > span {
-    transition: all 0.3s ease;
+   transition: all 0.3s ease;
 }
 
 .button:hover > span:first-of-type {
-    transform: rotate(10deg) translate(4px);
-    @apply bg-zinc-200
+   transform: rotate(10deg) translate(4px);
+   @apply bg-zinc-200
 }
 
 .button:hover > span:last-of-type {
-    transform: rotate(-10deg) translate(-4px);
-    @apply bg-zinc-200
+   transform: rotate(-10deg) translate(-4px);
+   @apply bg-zinc-200
 }
