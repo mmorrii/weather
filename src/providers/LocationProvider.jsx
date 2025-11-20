@@ -21,10 +21,9 @@ export const LocationProvider = ({ children }) => {
    }, [])
 
    const locationDataAdapter = (data) => {
-      console.log(data)
       return {
          id: data.osm_id,
-         name: data.address?.city || data.address?.town || data.address?.village || "N/A",
+         name: data.address?.city || data.address?.town || data.address?.village || data.address?.state || "N/A",
          latitude: Number(data.lat),
          longitude: Number(data.lon),
          type: data.type,
