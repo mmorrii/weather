@@ -17,11 +17,31 @@ export const LocationProvider = ({ children }) => {
          })
          .then((res) => res.json())
          .then((data) => setLocation(data.region))
-         .catch(error => console.log("Error current location: ", error))
+         .catch(error => console.error("Error current location: ", error))
    }, [])
 
+   const locationDataAdapter = (data) => {
+      console.log(data)
+      return {
+         id: data.osm_id,
+         name: data.address?.city || data.address?.town || data.address?.village || "N/A",
+         latitude: Number(data.lat),
+         longitude: Number(data.lon),
+         type: data.type,
+         continentCode: "",
+         countryCode: data.address?.country_code,
+         division1Code: "",
+         division2Code: null,
+         division3Code: null,
+         division4Code: null,
+         population: null,
+         timezone: null,
+         parentRegions: []
+      }
+   }
+
    return (
-      <LocationContext.Provider value={{ location, setLocation }}>
+      <LocationContext.Provider value={{ location, setLocation, locationDataAdapter }}>
          { children }
       </LocationContext.Provider>
    )

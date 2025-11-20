@@ -1,6 +1,6 @@
 import { Header } from "./Header.jsx"
-import { LocationProvider } from "../components/LocationProvider.jsx"
-import { ForecastProvider } from "../components/ForecastProvider.jsx"
+import { LocationProvider } from "../providers/LocationProvider.jsx"
+import { ForecastProvider } from "../providers/ForecastProvider.jsx"
 import { Outlet } from "react-router-dom"
 import { CustomSuspense } from "../components/CustomSuspense.jsx"
 
